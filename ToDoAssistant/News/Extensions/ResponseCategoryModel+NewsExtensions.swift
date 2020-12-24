@@ -10,7 +10,7 @@ import Foundation
 
 extension ResponseCategoryModel {
     func calculateIsNewsRequest() -> Bool {
-        let responseStrings = response.split(separator: " ")
+        let responseStrings = response.split(separator: GlobalConstants.spaceSeparator)
         guard responseStrings.count < 10 else { return false }
 
         var hasNews = false

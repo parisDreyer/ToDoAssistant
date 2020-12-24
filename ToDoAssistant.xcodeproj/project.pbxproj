@@ -19,6 +19,7 @@
 		56279F482516264C00DAC0ED /* ToDoAssistantUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56279F472516264C00DAC0ED /* ToDoAssistantUITests.swift */; };
 		56279F562516303E00DAC0ED /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56279F552516303E00DAC0ED /* MessageView.swift */; };
 		5639350B257D3AD100CA7B33 /* NewsRequestApiKey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5639350A257D3AD100CA7B33 /* NewsRequestApiKey.txt */; };
+		56393517257D7CA400CA7B33 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56393516257D7CA400CA7B33 /* GlobalConstants.swift */; };
 		5653736425167C1B00828464 /* Bot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653736325167C1B00828464 /* Bot.swift */; };
 		5653736C25167C4500828464 /* MessageViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653736B25167C4500828464 /* MessageViewState.swift */; };
 		5653737125167C8000828464 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653737025167C8000828464 /* MessagesView.swift */; };
@@ -78,7 +79,8 @@
 		56279F472516264C00DAC0ED /* ToDoAssistantUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoAssistantUITests.swift; sourceTree = "<group>"; };
 		56279F492516264C00DAC0ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56279F552516303E00DAC0ED /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
-		5639350A257D3AD100CA7B33 /* NewsRequestApiKey.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = NewsRequestApiKey.txt; sourceTree = "<group>"; };
+		5639350A257D3AD100CA7B33 /* NewsRequestApiKey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NewsRequestApiKey.txt; sourceTree = "<group>"; usesTabs = 0; };
+		56393516257D7CA400CA7B33 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		5653736325167C1B00828464 /* Bot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bot.swift; sourceTree = "<group>"; };
 		5653736B25167C4500828464 /* MessageViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewState.swift; sourceTree = "<group>"; };
 		5653737025167C8000828464 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
@@ -159,10 +161,10 @@
 		56279F242516264A00DAC0ED /* ToDoAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				56393515257D7C8E00CA7B33 /* Core */,
 				56393509257D39F000CA7B33 /* ApiKeys */,
 				56B933662571760D001EB195 /* Contacts */,
 				56D1CE4525559858008485FD /* News */,
-				5653737F25168B1F00828464 /* Extensions */,
 				5653736225167C0E00828464 /* Bot */,
 				5653736125167BFA00828464 /* Message */,
 				56279F252516264A00DAC0ED /* AppDelegate.swift */,
@@ -172,7 +174,6 @@
 				56279F302516264C00DAC0ED /* LaunchScreen.storyboard */,
 				56279F332516264C00DAC0ED /* Info.plist */,
 				56279F2D2516264C00DAC0ED /* Preview Content */,
-				56B93376257268E3001EB195 /* TodoAssistantDisplayManager.swift */,
 			);
 			path = ToDoAssistant;
 			sourceTree = "<group>";
@@ -209,6 +210,16 @@
 				5639350A257D3AD100CA7B33 /* NewsRequestApiKey.txt */,
 			);
 			path = ApiKeys;
+			sourceTree = "<group>";
+		};
+		56393515257D7C8E00CA7B33 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5653737F25168B1F00828464 /* Extensions */,
+				56393516257D7CA400CA7B33 /* GlobalConstants.swift */,
+				56B93376257268E3001EB195 /* TodoAssistantDisplayManager.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		5653736125167BFA00828464 /* Message */ = {
@@ -433,6 +444,7 @@
 				5653737125167C8000828464 /* MessagesView.swift in Sources */,
 				5653736C25167C4500828464 /* MessageViewState.swift in Sources */,
 				5653737625167DCC00828464 /* ResponseCategory.swift in Sources */,
+				56393517257D7CA400CA7B33 /* GlobalConstants.swift in Sources */,
 				56D1CE4725559990008485FD /* NewsRequest.swift in Sources */,
 				56B9336825717627001EB195 /* ContactsInteractor.swift in Sources */,
 				56D1CE672556706F008485FD /* BotInteractor.swift in Sources */,

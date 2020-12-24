@@ -16,6 +16,7 @@ protocol NewsRequestDelegate: AnyObject {
 /// https://newsapi.org/
 final class NewsRequest {
     private enum Constants {
+        static let apiKeyFileName = "NewsRequestApiKey"
         static let newsUrl = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey="
     }
     weak var delegate: NewsRequestDelegate?
@@ -44,14 +45,13 @@ final class NewsRequest {
 
 private extension NewsRequest {
     func loadApiKey() -> String? {
-        if let filepath = Bundle.main.path(forResource: "NewsRequestApiKey", ofType: "txt") {
-            do {
-                let contents = try String(contentsOfFile: filepath)
-                return contents
-            } catch {
-                return nil
-            }
-        } else {
+        guard let filepath = Bundle.main.path(forResource: Constants.apiKeyFileName, ofType: GlobalConstants.txt) else {
+            return nil
+        }
+        do {
+            let contents = try String(contentsOfFile: filepath)
+            return contents.trimWhiteSpaceAndNewLines()
+        } catch {
             return nil
         }
     }

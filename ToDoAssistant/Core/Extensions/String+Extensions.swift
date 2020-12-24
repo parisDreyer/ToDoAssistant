@@ -34,6 +34,10 @@ extension String {
         return String(self[start ..< end])
     }
 
+    func trimWhiteSpaceAndNewLines() -> String {
+        return trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+    }
+
     static func containsOnlyLetters(input: String) -> Bool {
         for chr in input {
            if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ) {
