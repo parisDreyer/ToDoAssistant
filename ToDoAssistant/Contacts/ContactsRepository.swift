@@ -54,14 +54,6 @@ extension ContactsRepository: ContactsRepositoryInput {
                 self?.interactor?.displayError(error)
             }
             self?.interactor?.displayContacts(contacts)
-
-            // do something with the contacts array (e.g. print the names)
-
-//            let formatter = CNContactFormatter()
-//            formatter.style = .fullName
-//            for contact in contacts {
-//                print(formatter.string(from: contact) ?? "???")
-//            }
         }
     }
     

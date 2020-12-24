@@ -12,6 +12,6 @@ extension Bot {
     var news: String {
         return interactor.news?.articles?
                             .map { $0.asString }
-                            .joined(separator: "\n") ?? ""
+                            .joined(separator: GlobalConstants.newLine) ?? ""
     }
 }

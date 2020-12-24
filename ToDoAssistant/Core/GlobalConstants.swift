@@ -11,4 +11,5 @@ import Foundation
 enum GlobalConstants {
     static let txt = "txt"
     static let spaceSeparator: String.Element = " "
+    static let newLine: String = "\n"
 }

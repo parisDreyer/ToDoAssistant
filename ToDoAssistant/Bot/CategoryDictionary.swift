@@ -30,11 +30,7 @@ final class CategoryDictionary {
             return .greet
         }
 
-        if actions.count > 1 {
-            return actions.randomElement()
-        } else {
-            return actions.first
-        }
+        return actions.randomElement()
     }
 
     func update(category: ResponseCategory) {

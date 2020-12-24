@@ -10,7 +10,7 @@ import Foundation
 
 extension Article {
     var asString: String {
-        let n = "\n"
+        let n = GlobalConstants.newLine
         return properNouns +
                unwrap(title, "title: ", n) +
                unwrap(author, "by: ", n) +
@@ -36,12 +36,12 @@ extension Article {
                 // second char is a not a letter (e.g. ', :, `) or second char is not capitalized
                 (!String.containsOnlyLetters(input: word[1]) || word[1] != upperCaseWord[1])
             else { return }
-            properNouns += "Key: \(word)\n"
+            properNouns += "Key: \(word)\(GlobalConstants.newLine)"
         })
         guard !properNouns.isEmpty else {
             return ""
         }
-        return "===================\nProper Nouns In Body\n-------------------\n" + properNouns + "\n-------------------\n"
+        return "===================\(GlobalConstants.newLine)Proper Nouns In Body\(GlobalConstants.newLine)-------------------\(GlobalConstants.newLine)" + properNouns + "\(GlobalConstants.newLine)-------------------\(GlobalConstants.newLine)"
     }
 }
 

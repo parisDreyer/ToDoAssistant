@@ -44,8 +44,6 @@ private extension Bot {
         return Message(id: userInput.id + 1, sender: .bot, message: currentBotResponse)
     }
 
-
-
     func botResponse(for category: ResponseCategory) -> String? {
         guard let action = categoryDictionary.action(category: category) else {
             return nil

@@ -37,8 +37,8 @@ extension ContactsPresenter: ContactsPresenterInput {
         let contacts = entity.contacts.compactMap { contact -> Contact? in
             let image = contact.imageData.map { UIImage(data: $0) ?? nil } ?? nil
             let name = contact.givenName + contact.familyName
-            let phoneNumbers = contact.phoneNumbers.map { $0.value.stringValue }.joined(separator: "/n")
-            let email = contact.emailAddresses.map { $0.value as String }.joined(separator: "/n")
+            let phoneNumbers = contact.phoneNumbers.map { $0.value.stringValue }.joined(separator: GlobalConstants.newLine)
+            let email = contact.emailAddresses.map { $0.value as String }.joined(separator: GlobalConstants.newLine)
             let contactObject = Contact(image: image, name: name, phoneNumber: phoneNumbers, emailAddress: email)
 
             guard contactObject.hasSufficientDataForDisplay else { return nil }
