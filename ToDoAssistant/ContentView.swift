@@ -9,10 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    var displayManager: DisplayManagerInput?
+    weak var displayManager: DisplayManagerInput?
 
     var body: some View {
-        MessagesView()
+        MessagesView(displayManager: displayManager)
     }
 }
 

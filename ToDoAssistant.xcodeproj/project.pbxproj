@@ -34,14 +34,16 @@
 		56B93377257268E3001EB195 /* TodoAssistantDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B93376257268E3001EB195 /* TodoAssistantDisplayManager.swift */; };
 		56B9337C25726972001EB195 /* ContactsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B9337B25726972001EB195 /* ContactsRouter.swift */; };
 		56B9339125727FDA001EB195 /* BotRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B9339025727FDA001EB195 /* BotRouter.swift */; };
-		56B933A5257290B2001EB195 /* Contacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B933A4257290B2001EB195 /* Contacts.swift */; };
+		56B933A5257290B2001EB195 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B933A4257290B2001EB195 /* Contact.swift */; };
 		56D1CE4725559990008485FD /* NewsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE4625559990008485FD /* NewsRequest.swift */; };
 		56D1CE4F2555CF47008485FD /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE4E2555CF47008485FD /* String+Extensions.swift */; };
 		56D1CE582555F5FA008485FD /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE572555F5FA008485FD /* News.swift */; };
 		56D1CE5D2555F625008485FD /* Article+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE5C2555F625008485FD /* Article+Extensions.swift */; };
-		56D1CE6225562E63008485FD /* Bot+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE6125562E63008485FD /* Bot+Extensions.swift */; };
+		56D1CE6225562E63008485FD /* Bot+NewsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE6125562E63008485FD /* Bot+NewsExtensions.swift */; };
 		56D1CE672556706F008485FD /* BotInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE662556706F008485FD /* BotInteractor.swift */; };
 		56D1CE812557007C008485FD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE802557007C008485FD /* Message.swift */; };
+		56ED012E25951662001770B8 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED012D25951662001770B8 /* ContactsViewController.swift */; };
+		56ED013A2595455C001770B8 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED01392595455C001770B8 /* ContactCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,14 +97,16 @@
 		56B93376257268E3001EB195 /* TodoAssistantDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAssistantDisplayManager.swift; sourceTree = "<group>"; };
 		56B9337B25726972001EB195 /* ContactsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsRouter.swift; sourceTree = "<group>"; };
 		56B9339025727FDA001EB195 /* BotRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotRouter.swift; sourceTree = "<group>"; };
-		56B933A4257290B2001EB195 /* Contacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contacts.swift; sourceTree = "<group>"; };
+		56B933A4257290B2001EB195 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		56D1CE4625559990008485FD /* NewsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRequest.swift; sourceTree = "<group>"; };
 		56D1CE4E2555CF47008485FD /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		56D1CE572555F5FA008485FD /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		56D1CE5C2555F625008485FD /* Article+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+Extensions.swift"; sourceTree = "<group>"; };
-		56D1CE6125562E63008485FD /* Bot+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bot+Extensions.swift"; sourceTree = "<group>"; };
+		56D1CE6125562E63008485FD /* Bot+NewsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bot+NewsExtensions.swift"; sourceTree = "<group>"; };
 		56D1CE662556706F008485FD /* BotInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotInteractor.swift; sourceTree = "<group>"; };
 		56D1CE802557007C008485FD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		56ED012D25951662001770B8 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		56ED01392595455C001770B8 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,12 +263,14 @@
 		56B933662571760D001EB195 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				56ED013E2595465C001770B8 /* Models */,
+				56ED013825954523001770B8 /* Views */,
 				56077FCD257D312500B3E0C2 /* Extensions */,
+				56ED012D25951662001770B8 /* ContactsViewController.swift */,
 				56B9336725717627001EB195 /* ContactsInteractor.swift */,
 				56B9336C257260FB001EB195 /* ContactsRepository.swift */,
 				56B9337125726498001EB195 /* ContactsPresenter.swift */,
 				56B9337B25726972001EB195 /* ContactsRouter.swift */,
-				56B933A4257290B2001EB195 /* Contacts.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -283,10 +289,26 @@
 			isa = PBXGroup;
 			children = (
 				56D1CE5C2555F625008485FD /* Article+Extensions.swift */,
-				56D1CE6125562E63008485FD /* Bot+Extensions.swift */,
+				56D1CE6125562E63008485FD /* Bot+NewsExtensions.swift */,
 				56077FD6257D337100B3E0C2 /* ResponseCategoryModel+NewsExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		56ED013825954523001770B8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				56ED01392595455C001770B8 /* ContactCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		56ED013E2595465C001770B8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				56B933A4257290B2001EB195 /* Contact.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,7 +451,7 @@
 				56D1CE582555F5FA008485FD /* News.swift in Sources */,
 				56279F562516303E00DAC0ED /* MessageView.swift in Sources */,
 				5653737B251683EB00828464 /* CategoryDictionary.swift in Sources */,
-				56B933A5257290B2001EB195 /* Contacts.swift in Sources */,
+				56B933A5257290B2001EB195 /* Contact.swift in Sources */,
 				56B9337225726498001EB195 /* ContactsPresenter.swift in Sources */,
 				56D1CE812557007C008485FD /* Message.swift in Sources */,
 				56B9336D257260FC001EB195 /* ContactsRepository.swift in Sources */,
@@ -437,7 +459,7 @@
 				56B93377257268E3001EB195 /* TodoAssistantDisplayManager.swift in Sources */,
 				56279F282516264A00DAC0ED /* SceneDelegate.swift in Sources */,
 				56077FCF257D318900B3E0C2 /* ResponseCategoryModel+ContactsExtensions.swift in Sources */,
-				56D1CE6225562E63008485FD /* Bot+Extensions.swift in Sources */,
+				56D1CE6225562E63008485FD /* Bot+NewsExtensions.swift in Sources */,
 				56279F2A2516264A00DAC0ED /* ContentView.swift in Sources */,
 				56077FD7257D337100B3E0C2 /* ResponseCategoryModel+NewsExtensions.swift in Sources */,
 				56D1CE4F2555CF47008485FD /* String+Extensions.swift in Sources */,
@@ -450,6 +472,8 @@
 				56D1CE672556706F008485FD /* BotInteractor.swift in Sources */,
 				5653736425167C1B00828464 /* Bot.swift in Sources */,
 				56B9337C25726972001EB195 /* ContactsRouter.swift in Sources */,
+				56ED012E25951662001770B8 /* ContactsViewController.swift in Sources */,
+				56ED013A2595455C001770B8 /* ContactCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  Bot+Extensions.swift
+//  Bot+NewsExtensions.swift
 //  ToDoAssistant
 //
 //  Created by Luke Dreyer on 11/6/20.

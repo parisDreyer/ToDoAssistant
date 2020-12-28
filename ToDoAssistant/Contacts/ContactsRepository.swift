@@ -22,7 +22,6 @@ protocol ContactsRepositoryOutput: AnyObject {
 
 class ContactsRepository {
     weak var interactor: ContactsRepositoryOutput?
-    
 }
 
 extension ContactsRepository: ContactsRepositoryInput {
@@ -45,7 +44,13 @@ extension ContactsRepository: ContactsRepositoryInput {
             // get the contacts
 
             var contacts = [CNContact]()
-            let request = CNContactFetchRequest(keysToFetch: [CNContactIdentifierKey as NSString, CNContactFormatter.descriptorForRequiredKeys(for: .fullName)])
+            let request = CNContactFetchRequest(keysToFetch: [
+                CNContactIdentifierKey as NSString,
+                CNContactFormatter.descriptorForRequiredKeys(for: .fullName),
+                CNContactPhoneNumbersKey as NSString,
+                CNContactEmailAddressesKey as NSString,
+                CNContactImageDataKey as NSString
+            ])
             do {
                 try store.enumerateContacts(with: request) { contact, stop in
                     contacts.append(contact)

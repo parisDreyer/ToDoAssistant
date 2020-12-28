@@ -23,17 +23,22 @@ final class BotInteractor {
         var hasDisplayedNews = false
     }
 
-    weak var router: BotRouterInput?
+    private let router: BotRouterInput
     private(set) var entity: Entity = Entity(newsResponse: nil)
     private var pendingNewsRequest: NewsRequest?
     weak var bot: BotInteractorOutput?
+
+    init(router: BotRouterInput) {
+        self.router = router
+    }
 }
 
 // MARK: - BotInteractorInput
 
 extension BotInteractor: BotInteractorInput {
+
     func getContacts() {
-        router?.displayContacts()
+        router.displayContacts()
     }
     
     var news: News? {
@@ -61,7 +66,7 @@ extension BotInteractor: NewsRequestDelegate {
     }
     
     func error(error: Error) {
-        router?.displayError(message: error.localizedDescription)
+        router.displayError(message: error.localizedDescription)
     }
 
 }

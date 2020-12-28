@@ -1,5 +1,5 @@
 //
-//  Contacts.swift
+//  Contact.swift
 //  ToDoAssistant
 //
 //  Created by Luke Dreyer on 11/28/20.
@@ -7,10 +7,6 @@
 //
 
 import UIKit
-
-struct Contacts {
-    
-}
 
 struct Contact {
     let image: UIImage?
