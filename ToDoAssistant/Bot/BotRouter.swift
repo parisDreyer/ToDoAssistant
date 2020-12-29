@@ -14,19 +14,22 @@ protocol BotRouterInput: AnyObject {
 }
 
 class BotRouter {
-    weak var displayManager: DisplayManagerInput?
-    
+    private(set) weak var displayManager: DisplayManagerInput?
+
+    init(displayManager: DisplayManagerInput?) {
+        self.displayManager = displayManager
+    }
 }
 
 extension BotRouter: BotRouterInput {
 
     func displayContacts() {
-        guard let displayManager = displayManager, let contactsView = displayManager.getContactsView else {
-            displayError(message: "Could not get contacts view")
+        guard let displayManager = displayManager else {
+            displayError(message: "Could not get display manager")
             return
         }
         let router = ContactsRouter(displayManager: displayManager)
-        router.present(viewInput: contactsView)
+        router.present()
     }
 
     func displayError(message: String) {

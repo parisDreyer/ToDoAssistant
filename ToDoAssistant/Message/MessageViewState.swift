@@ -15,11 +15,11 @@ enum Sender {
 
 typealias SetMessage = (Message) -> Void
 final class MessageViewState {
+    private weak var displayManager: DisplayManagerInput?
     
     private lazy var interactor: BotInteractor = {
-        let router = BotRouter()
-        let interactor = BotInteractor()
-        interactor.router = router
+        let router = BotRouter(displayManager: displayManager)
+        let interactor = BotInteractor(router: router)
         return interactor
     }()
     private lazy var bot: Bot = { () -> Bot in
@@ -28,7 +28,9 @@ final class MessageViewState {
         return bot
     }()
 
-    
+    init(displayManager: DisplayManagerInput?) {
+        self.displayManager = displayManager
+    }
 
     func receive(message: Message, _ callback: SetMessage?) {
         callback?(message)

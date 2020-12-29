@@ -22,6 +22,8 @@ final class CategoryDictionary {
             return .greet
         case StaticActionID.news.rawValue:
             return .getNews
+        case StaticActionID.contacts.rawValue:
+            return .getContacts
         default:
             break
         }

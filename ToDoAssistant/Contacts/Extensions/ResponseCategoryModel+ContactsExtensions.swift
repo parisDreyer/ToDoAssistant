@@ -21,13 +21,14 @@ extension ResponseCategoryModel {
         }
 
         for word in responseStrings {
+            let wordString = String(word)
             if isAskingForContacts {
                 return true
-            } else if word == "CONTACT" || word == "CONTACTS" {
+            } else if wordString == "CONTACT" || wordString == "CONTACTS" {
                 hasContacts = true
-            } else if String(word).isSelfReferenceWord {
+            } else if wordString.isSelfReferenceWord {
                 hasSelfReference = true
-            } else if !hasQuestion && String(word).isQuestionWord {
+            } else if !hasQuestion && wordString.isQuestionWord {
                 hasQuestion = true
             }
         }

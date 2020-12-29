@@ -9,9 +9,9 @@
 import UIKit
 
 protocol DisplayManagerInput: AnyObject {
+    func present(viewController: UIViewController)
     func displayAlert(alert: String, title: String, style: UIAlertController.Style)
     func displayError(error: String)
-    var getContactsView: ContactsViewInput? { get }
 }
 /// A Class for handling basic operations that everything else uses, such as displaying errors or routing between modules
 class TodoAssistantDisplayManager {
@@ -34,17 +34,26 @@ private extension TodoAssistantDisplayManager {
     /// see `func displayError(error:)` for external class use accessed through `DisplayManagerInput`
     func displayError(_ message: String = "Oops something went wrong") {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        navigationController?.pushViewController(alert, animated: shouldAnimateViewTransitions)
+        let action = UIAlertAction(
+            title: NSLocalizedString("OK", comment: "Default action"),
+            style: .default,
+            handler: { [weak self] _ in
+                guard self?.navigationController?.presentedViewController == alert else { return }
+                self?.navigationController?.popViewController(animated: false)
+            }
+        )
+        alert.addAction(action)
+        alert.modalPresentationStyle = .overFullScreen
+        navigationController?.present(alert, animated: shouldAnimateViewTransitions)
     }
 }
 
 // MARK: - DisplayManagerInput
 
 extension TodoAssistantDisplayManager: DisplayManagerInput {
-    var getContactsView: ContactsViewInput? {
-        return nil
+    func present(viewController: UIViewController) {
+        navigationController?.pushViewController(viewController, animated: false)
     }
-    
     
     func displayAlert(alert: String, title: String, style: UIAlertController.Style) {
         let alert = UIAlertController(title: title, message: alert, preferredStyle: style)

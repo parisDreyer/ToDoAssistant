@@ -12,19 +12,11 @@ protocol ContactsPresenterInput: AnyObject {
     func present(entity: ContactsInteractor.Entity)
 }
 
-protocol ContactsPresenterOutput: AnyObject {
-    
-}
+final class ContactsPresenter {
+    let interactor: ContactsInteractorInput
+    var view: ContactsViewInput?
 
-protocol ContactsViewInput: AnyObject {
-    func showContactsList(contacts: [Contact])
-}
-
-class ContactsPresenter {
-    let interactor: ContactsPresenterOutput
-    weak var view: ContactsViewInput?
-
-    init(interactor: ContactsPresenterOutput) {
+    init(interactor: ContactsInteractorInput) {
         self.interactor = interactor
     }
 }
@@ -34,19 +26,27 @@ class ContactsPresenter {
 extension ContactsPresenter: ContactsPresenterInput {
 
     func present(entity: ContactsInteractor.Entity) {
-        let contacts = entity.contacts.compactMap { contact -> Contact? in
-            let image = contact.imageData.map { UIImage(data: $0) ?? nil } ?? nil
-            let name = contact.givenName + contact.familyName
-            let phoneNumbers = contact.phoneNumbers.map { $0.value.stringValue }.joined(separator: GlobalConstants.newLine)
-            let email = contact.emailAddresses.map { $0.value as String }.joined(separator: GlobalConstants.newLine)
-            let contactObject = Contact(image: image, name: name, phoneNumber: phoneNumbers, emailAddress: email)
-
-            guard contactObject.hasSufficientDataForDisplay else { return nil }
-
-            return contactObject
-        }
+        let contacts = entity.contacts.filter { $0.hasSufficientDataForDisplay }
 
         guard !contacts.isEmpty else { return }
         view?.showContactsList(contacts: contacts)
     }
+}
+
+// MARK: - ContactsViewOutput
+
+extension ContactsPresenter: ContactsViewOutput {
+    func sendEmail(to address: String) {
+        interactor.openURL(urlString: "mailto://\(address)")
+    }
+
+    func makeCall(to number: String) {
+        let numberWithoutPunctuation = number.trimPhonePunctuation()
+        interactor.openURL(urlString: "tel://\(numberWithoutPunctuation)")
+    }
+
+    func getContacts() {
+        interactor.getData()
+    }
+
 }

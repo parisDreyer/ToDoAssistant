@@ -12,7 +12,11 @@ import SwiftUI
 struct MessagesView: View {
     @State var userMessage: String = ""
     @State var messages: [Message] = []
-    var state = MessageViewState()
+    private(set) var state: MessageViewState
+
+    init(displayManager: DisplayManagerInput?) {
+        state = MessageViewState(displayManager: displayManager)
+    }
 
     var body: some View {
         VStack {

@@ -38,6 +38,11 @@ extension String {
         return trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
     }
 
+    func trimPhonePunctuation() -> String {
+        // returns string with only lower case or upper case roman letters
+        return filter { $0 != "-" && $0 != " " && $0 != "(" && $0 != ")" }
+    }
+
     static func containsOnlyLetters(input: String) -> Bool {
         for chr in input {
            if (!(chr >= "a" && chr <= "z") && !(chr >= "A" && chr <= "Z") ) {

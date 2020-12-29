@@ -90,6 +90,8 @@ extension ResponseCategoryModel {
         let identifier: Double
         if isNewsRequest() {
             identifier = StaticActionID.news.rawValue
+        } else if isContactsRequest() {
+            identifier = StaticActionID.contacts.rawValue
         } else {
             let words = response.split(separator: " ")
             let verbosityCoefficient = (Double(words.count) - 1.0) / max(Double(words.count), 1.0)
