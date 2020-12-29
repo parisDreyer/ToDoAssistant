@@ -15,7 +15,6 @@
 		56279F2C2516264C00DAC0ED /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56279F2B2516264C00DAC0ED /* Assets.xcassets */; };
 		56279F2F2516264C00DAC0ED /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56279F2E2516264C00DAC0ED /* Preview Assets.xcassets */; };
 		56279F322516264C00DAC0ED /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56279F302516264C00DAC0ED /* LaunchScreen.storyboard */; };
-		56279F3D2516264C00DAC0ED /* ToDoAssistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56279F3C2516264C00DAC0ED /* ToDoAssistantTests.swift */; };
 		56279F482516264C00DAC0ED /* ToDoAssistantUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56279F472516264C00DAC0ED /* ToDoAssistantUITests.swift */; };
 		56279F562516303E00DAC0ED /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56279F552516303E00DAC0ED /* MessageView.swift */; };
 		5639350B257D3AD100CA7B33 /* NewsRequestApiKey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5639350A257D3AD100CA7B33 /* NewsRequestApiKey.txt */; };
@@ -28,6 +27,8 @@
 		5653738125168B3400828464 /* StringProtocol+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653738025168B3400828464 /* StringProtocol+Extensions.swift */; };
 		56537389251690A000828464 /* ResponseCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56537388251690A000828464 /* ResponseCategoryModel.swift */; };
 		5653739725169B4800828464 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653739625169B4800828464 /* Action.swift */; };
+		5680017A259AC70D000DB888 /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56800179259AC70D000DB888 /* ContactsTests.swift */; };
+		56800183259AC7B2000DB888 /* MockDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56800182259AC7B2000DB888 /* MockDisplayManager.swift */; };
 		56B9336825717627001EB195 /* ContactsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B9336725717627001EB195 /* ContactsInteractor.swift */; };
 		56B9336D257260FC001EB195 /* ContactsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B9336C257260FB001EB195 /* ContactsRepository.swift */; };
 		56B9337225726498001EB195 /* ContactsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B9337125726498001EB195 /* ContactsPresenter.swift */; };
@@ -75,7 +76,6 @@
 		56279F312516264C00DAC0ED /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		56279F332516264C00DAC0ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56279F382516264C00DAC0ED /* ToDoAssistantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoAssistantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		56279F3C2516264C00DAC0ED /* ToDoAssistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoAssistantTests.swift; sourceTree = "<group>"; };
 		56279F3E2516264C00DAC0ED /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56279F432516264C00DAC0ED /* ToDoAssistantUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoAssistantUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		56279F472516264C00DAC0ED /* ToDoAssistantUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoAssistantUITests.swift; sourceTree = "<group>"; };
@@ -91,6 +91,8 @@
 		5653738025168B3400828464 /* StringProtocol+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringProtocol+Extensions.swift"; sourceTree = "<group>"; };
 		56537388251690A000828464 /* ResponseCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCategoryModel.swift; sourceTree = "<group>"; };
 		5653739625169B4800828464 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		56800179259AC70D000DB888 /* ContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTests.swift; sourceTree = "<group>"; };
+		56800182259AC7B2000DB888 /* MockDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDisplayManager.swift; sourceTree = "<group>"; };
 		56B9336725717627001EB195 /* ContactsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsInteractor.swift; sourceTree = "<group>"; };
 		56B9336C257260FB001EB195 /* ContactsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsRepository.swift; sourceTree = "<group>"; };
 		56B9337125726498001EB195 /* ContactsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPresenter.swift; sourceTree = "<group>"; };
@@ -193,7 +195,8 @@
 		56279F3B2516264C00DAC0ED /* ToDoAssistantTests */ = {
 			isa = PBXGroup;
 			children = (
-				56279F3C2516264C00DAC0ED /* ToDoAssistantTests.swift */,
+				56800181259AC761000DB888 /* Mocks */,
+				56800178259AC6D2000DB888 /* Contacts */,
 				56279F3E2516264C00DAC0ED /* Info.plist */,
 			);
 			path = ToDoAssistantTests;
@@ -258,6 +261,22 @@
 				56D1CE4E2555CF47008485FD /* String+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		56800178259AC6D2000DB888 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				56800179259AC70D000DB888 /* ContactsTests.swift */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		56800181259AC761000DB888 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				56800182259AC7B2000DB888 /* MockDisplayManager.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		56B933662571760D001EB195 /* Contacts */ = {
@@ -481,7 +500,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56279F3D2516264C00DAC0ED /* ToDoAssistantTests.swift in Sources */,
+				5680017A259AC70D000DB888 /* ContactsTests.swift in Sources */,
+				56800183259AC7B2000DB888 /* MockDisplayManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,7 +702,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5GJRDP873Y;
 				INFOPLIST_FILE = ToDoAssistantTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -704,7 +724,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5GJRDP873Y;
 				INFOPLIST_FILE = ToDoAssistantTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
