@@ -64,7 +64,9 @@ extension ResponseCategoryModel {
     }
 
     mutating func isNewsRequest() -> Bool {
-        if calculatedUniqueIdentifier == StaticActionID.news.rawValue { return true }
+        if let calculatedUniqueIdentifier = calculatedUniqueIdentifier {
+            return calculatedUniqueIdentifier == StaticActionID.news.rawValue
+        }
 
         let isAskingForNews = calculateIsNewsRequest()
         if isAskingForNews {
@@ -74,12 +76,26 @@ extension ResponseCategoryModel {
     }
 
     mutating func isContactsRequest() -> Bool {
-        if calculatedUniqueIdentifier == StaticActionID.contacts.rawValue { return true }
+        if let calculatedUniqueIdentifier = calculatedUniqueIdentifier {
+            return calculatedUniqueIdentifier == StaticActionID.contacts.rawValue
+        }
+
         let isContacts = calculateIsContactsRequest()
         if isContacts {
             calculatedUniqueIdentifier = StaticActionID.contacts.rawValue
         }
         return isContacts
+    }
+
+    mutating func isSurveyRequest() -> Bool {
+        if let calculatedUniqueIdentifier = calculatedUniqueIdentifier {
+            return calculatedUniqueIdentifier == StaticActionID.survey.rawValue
+        }
+        let isSurvey = calculateIsSurveyRequest()
+        if isSurvey {
+            calculatedUniqueIdentifier = StaticActionID.survey.rawValue
+        }
+        return isSurvey
     }
 
     mutating func uniqueIdentifier() -> Double {
@@ -92,6 +108,8 @@ extension ResponseCategoryModel {
             identifier = StaticActionID.news.rawValue
         } else if isContactsRequest() {
             identifier = StaticActionID.contacts.rawValue
+        } else if isSurveyRequest() {
+            identifier = StaticActionID.survey.rawValue
         } else {
             let words = response.split(separator: " ")
             let verbosityCoefficient = (Double(words.count) - 1.0) / max(Double(words.count), 1.0)

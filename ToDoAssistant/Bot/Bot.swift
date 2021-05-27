@@ -55,6 +55,16 @@ private extension Bot {
 
     func responseFor(_ action: Action) -> String {
         switch action {
+        // order matters for these cases -- lower ones are more inclusive than higher ones
+        case .getNews:
+            interactor.getNews()
+            return "... Fetching News ..."
+        case .getContacts:
+            interactor.getContacts()
+            return "... Fetching Contacts ..."
+        case .getSurvey:
+            interactor.getSurvey()
+            return "...Fetching Survey ..."
         case .getMoreInfo(let about):
             return "Could you tell me more about what \(about.response) means?"
         case .askQuestion(let about):
@@ -67,12 +77,6 @@ private extension Bot {
             return "I don't know about \(userResponse.response)"
         case .greet:
             return "Hi!"
-        case .getNews:
-            interactor.getNews()
-            return "... Fetching News ..."
-        case .getContacts:
-            interactor.getContacts()
-            return "... Fetching Contacts ..."
         }
     }
 }

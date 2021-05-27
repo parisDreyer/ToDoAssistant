@@ -12,6 +12,7 @@ protocol BotInteractorInput: AnyObject {
     func getNews()
     var news: News? { get }
     func getContacts()
+    func getSurvey()
 }
 
 protocol BotInteractorOutput: AnyObject {
@@ -36,6 +37,9 @@ final class BotInteractor {
 // MARK: - BotInteractorInput
 
 extension BotInteractor: BotInteractorInput {
+    func getSurvey() {
+        router.displaySurvey()
+    }
 
     func getContacts() {
         router.displayContacts()

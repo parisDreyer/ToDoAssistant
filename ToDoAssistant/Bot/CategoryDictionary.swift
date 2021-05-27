@@ -14,7 +14,8 @@ protocol Categorizable: AnyObject {
 
 final class CategoryDictionary {
     private(set) var actionsByIdentifier: [Double: [Action]] = [:]
-    
+
+    /// This function is the sole place to return an action that the bot will say or do
     func action(category: ResponseCategory) -> Action? {
         let identifier = category.possibleUniqueIdentifier
         switch identifier {
@@ -24,25 +25,33 @@ final class CategoryDictionary {
             return .getNews
         case StaticActionID.contacts.rawValue:
             return .getContacts
+        case StaticActionID.survey.rawValue:
+            return .getSurvey
         default:
             break
         }
 
         guard let actions = actionsByIdentifier[identifier], !actions.isEmpty else {
+            // when the bot has no saved memory of actions to use in this situation, default to greet
             return .greet
         }
 
+        // if no other options present themselves and we have actions in memory, choose something random for the bot to say or do
         return actions.randomElement()
     }
 
+    // This function is the sole place to decide an action that the bot will say or do
     func update(category: ResponseCategory) {
         let model = category.model
         let action: Action
 
+        // in future find way to prefilter string to more effeciently rule out some of these options rather than checking them each time
         if category.isNewsRequest {
             action = .getNews
         } else if category.isContactsRequest {
             action = .getContacts
+        } else if category.isSurveyRequest {
+            action = .getSurvey
         } else if category.isUncategorized {
             action = .getMoreInfo(about: model)
         } else if model.isNegation {

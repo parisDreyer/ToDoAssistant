@@ -30,6 +30,10 @@ final class ResponseCategory {
         return model.isContactsRequest()
     }
 
+    var isSurveyRequest: Bool {
+        return model.isSurveyRequest()
+    }
+
     var isUncategorized: Bool {
         let requiresMoreContext: Bool
         if case .getMoreInfo = categoryDictionary?.action(category: self) {
