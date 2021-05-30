@@ -50,12 +50,13 @@
 		56D20E03263D8B22000E9897 /* SurveyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D20E02263D8B22000E9897 /* SurveyPresenter.swift */; };
 		56ED012E25951662001770B8 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED012D25951662001770B8 /* ContactsViewController.swift */; };
 		56ED013A2595455C001770B8 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED01392595455C001770B8 /* ContactCell.swift */; };
+		56F074CA2663C6240099DA8F /* ORKFieldValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F074C92663C6240099DA8F /* ORKFieldValue.swift */; };
 		56F46083265A896C005EA565 /* StaticActionId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F46082265A896C005EA565 /* StaticActionId.swift */; };
 		56F46089265A8C39005EA565 /* ResponseCategoryModel+SurveyExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F46088265A8C39005EA565 /* ResponseCategoryModel+SurveyExtensions.swift */; };
 		56F4608F265A94EC005EA565 /* ResearchKit in Frameworks */ = {isa = PBXBuildFile; productRef = 56F4608E265A94EC005EA565 /* ResearchKit */; };
 		56F46094265A9588005EA565 /* ConsentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F46093265A9588005EA565 /* ConsentDocument.swift */; };
 		56F46099265A971F005EA565 /* ConsentTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F46098265A971F005EA565 /* ConsentTask.swift */; };
-		56F4609F265FDB4A005EA565 /* SurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F4609E265FDB4A005EA565 /* SurveyTask.swift */; };
+		56F4609F265FDB4A005EA565 /* SurveyTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F4609E265FDB4A005EA565 /* SurveyTaskFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,11 +126,12 @@
 		56D20E02263D8B22000E9897 /* SurveyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPresenter.swift; sourceTree = "<group>"; };
 		56ED012D25951662001770B8 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		56ED01392595455C001770B8 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
+		56F074C92663C6240099DA8F /* ORKFieldValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORKFieldValue.swift; sourceTree = "<group>"; };
 		56F46082265A896C005EA565 /* StaticActionId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticActionId.swift; sourceTree = "<group>"; };
 		56F46088265A8C39005EA565 /* ResponseCategoryModel+SurveyExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResponseCategoryModel+SurveyExtensions.swift"; sourceTree = "<group>"; };
 		56F46093265A9588005EA565 /* ConsentDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentDocument.swift; sourceTree = "<group>"; };
 		56F46098265A971F005EA565 /* ConsentTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentTask.swift; sourceTree = "<group>"; };
-		56F4609E265FDB4A005EA565 /* SurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTask.swift; sourceTree = "<group>"; };
+		56F4609E265FDB4A005EA565 /* SurveyTaskFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTaskFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,7 +383,8 @@
 			children = (
 				56F46098265A971F005EA565 /* ConsentTask.swift */,
 				56F46093265A9588005EA565 /* ConsentDocument.swift */,
-				56F4609E265FDB4A005EA565 /* SurveyTask.swift */,
+				56F4609E265FDB4A005EA565 /* SurveyTaskFactory.swift */,
+				56F074C92663C6240099DA8F /* ORKFieldValue.swift */,
 			);
 			path = ResearchKitSurvey;
 			sourceTree = "<group>";
@@ -535,9 +538,10 @@
 				56279F562516303E00DAC0ED /* MessageView.swift in Sources */,
 				5653737B251683EB00828464 /* CategoryDictionary.swift in Sources */,
 				56B933A5257290B2001EB195 /* Contact.swift in Sources */,
+				56F074CA2663C6240099DA8F /* ORKFieldValue.swift in Sources */,
 				56B9337225726498001EB195 /* ContactsPresenter.swift in Sources */,
 				56D20DF4263D8ADF000E9897 /* SurveyInteractor.swift in Sources */,
-				56F4609F265FDB4A005EA565 /* SurveyTask.swift in Sources */,
+				56F4609F265FDB4A005EA565 /* SurveyTaskFactory.swift in Sources */,
 				56D1CE812557007C008485FD /* Message.swift in Sources */,
 				56B9336D257260FC001EB195 /* ContactsRepository.swift in Sources */,
 				56D20E03263D8B22000E9897 /* SurveyPresenter.swift in Sources */,
