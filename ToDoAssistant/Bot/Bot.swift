@@ -83,5 +83,29 @@ private extension Bot {
 
 // MARK: - BotInteractorOutput
 
-extension Bot: BotInteractorOutput { 
+extension Bot: BotInteractorOutput {
+    func getQuestions() -> [String : [String]] {
+        var questions: [String: [String]] = [:]
+        if let previousUserInput = previousUserInput {
+            let model = previousUserInput.model
+            questions[model.response] = getQuestionsFromModel(model)
+        }
+        if let previousResponse = previousResponse {
+            let model = previousResponse.model
+            questions[model.response] = getQuestionsFromModel(model)
+        }
+        return questions
+    }
+
+    private func getQuestionsFromModel(_ model: ResponseCategoryModel) -> [String] {
+        var m = model
+        return [
+            "is this an Affirmation? We thought \(m.isAffirmation.yesOrNo)",
+            "is this an Negation? We thought \(m.isNegation.yesOrNo)",
+            "is this a Survey Request? We thought \(m.isSurveyRequest().yesOrNo)",
+            "is this a Contacts Request? We thought \(m.isContactsRequest().yesOrNo)",
+            "is this a News Request? We thought \(m.isNewsRequest().yesOrNo)",
+            "is this the Exact Same Response? We thought \(m.isExactSameResponse.yesOrNo)"
+        ]
+    }
 }

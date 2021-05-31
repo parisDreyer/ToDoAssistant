@@ -16,6 +16,7 @@ protocol BotInteractorInput: AnyObject {
 }
 
 protocol BotInteractorOutput: AnyObject {
+    func getQuestions() -> [String: [String]]
 }
 
 final class BotInteractor {
@@ -38,7 +39,7 @@ final class BotInteractor {
 
 extension BotInteractor: BotInteractorInput {
     func getSurvey() {
-        router.displaySurvey()
+        router.displaySurvey(delegate: self)
     }
 
     func getContacts() {
@@ -65,10 +66,11 @@ extension BotInteractor: BotInteractorInput {
 extension BotInteractor: NewsRequestDelegate {
 
     func receiveNews(_ news: News) {
+        // todo make this trigger adding an async news message to the chat
         pendingNewsRequest = nil
         entity = Entity(newsResponse: news, hasDisplayedNews: false)
     }
-    
+
     func error(error: Error) {
         router.displayError(message: error.localizedDescription)
     }

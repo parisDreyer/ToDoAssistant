@@ -19,9 +19,9 @@ extension UIColor {
 }
 
 final class SurveyTaskFactory {
-    public static func makeSurveyTask() -> ORKOrderedTask {
+    public static func makeExampleSurvey() -> ORKOrderedTask {
 
-      var steps = [ORKStep]()
+        var steps = [ORKStep]()
 
         let instructionStep = ORKInstructionStep(identifier: "IntroStep")
         instructionStep.title = "The Questions Three"
@@ -63,7 +63,27 @@ final class SurveyTaskFactory {
         summaryStep.text = "That was easy!"
         steps += [summaryStep]
 
-
-      return ORKOrderedTask(identifier: "SurveyTask", steps: steps)
+        return ORKOrderedTask(identifier: "SurveyTask", steps: steps)
     }
+
+    public static func makeBotSurvey(surveyQuestions: SurveyQuestions) -> ORKOrderedTask {
+        let steps = surveyQuestions.textSurveyQuestions.map {
+            makeMultipleChoiceStep($0.question, questionOptions: $0.options)
+        }
+        return ORKOrderedTask(identifier: "BotSurvey", steps: steps)
+    }
+}
+
+// MARK: - Private
+
+private extension SurveyTaskFactory {
+
+    static func makeMultipleChoiceStep(_ question: String, questionOptions: [String]) -> ORKQuestionStep {
+        let textChoices = questionOptions.enumerated().map { (index, text) -> ORKTextChoice in
+            return ORKTextChoice(text: text, value: ORKFieldValue(value: index))
+        }
+        let answer: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .singleChoice, textChoices: textChoices)
+        return ORKQuestionStep(identifier: question, title: question, answer: answer)
+    }
+
 }

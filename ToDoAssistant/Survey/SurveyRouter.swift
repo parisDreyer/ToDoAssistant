@@ -18,14 +18,17 @@ protocol SurveyRouterInput: AnyObject {
 
 final class SurveyRouter {
     private weak var displayManager: DisplayManagerInput?
+    private let surveyDelegate: SurveyDelegate
     private var viewController: SurveyViewController?
 
-    init(displayManager: DisplayManagerInput) {
+    init(displayManager: DisplayManagerInput, surveyDelegate: SurveyDelegate) {
         self.displayManager = displayManager
+        self.surveyDelegate = surveyDelegate
     }
 
     func present() {
-        let interactor = SurveyInteractor(router: self, repository: SurveyRepository())
+        let repository = SurveyRepository(delegate: surveyDelegate)
+        let interactor = SurveyInteractor(router: self, repository: repository)
         let presenter = SurveyPresenter(interactor: interactor)
         interactor.presenter = presenter
         let viewController = SurveyViewController(presenter: presenter)

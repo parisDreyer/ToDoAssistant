@@ -9,12 +9,18 @@
 import Foundation
 import ResearchKit
 
+protocol SurveyDelegate: AnyObject {
+    func getSurveyQuestions() -> [String: [String]]
+}
+
 protocol SurveyRepositoryInput: AnyObject {
     func getSurvey()
+    func getSurveyQuestions()
 }
 
 protocol SurveyRepositoryOutput: AnyObject {
     func displaySurvey(_ surveyURL: String)
+    func displaySurvey(_ questions: SurveyQuestions)
     func displayError(_ error: Error)
 }
 
@@ -23,13 +29,25 @@ class SurveyRepository {
         static let surveyURL = "https://forms.gle/ES2WQiKwPFoBZT8S9"
     }
     weak var interactor: SurveyRepositoryOutput?
+    let delegate: SurveyDelegate
+    init(delegate: SurveyDelegate) {
+        self.delegate = delegate
+    }
 }
 
 extension SurveyRepository: SurveyRepositoryInput {
+    func getSurveyQuestions() {
+        guard let interactor = interactor else { return }
+
+        let questions = delegate.getSurveyQuestions()
+        let textSurveyQuestions = questions.map { TextSurveyQuestion(question: $0.0, options: $0.1) }
+        let surveyQuestions = SurveyQuestions(textSurveyQuestions: textSurveyQuestions)
+
+        interactor.displaySurvey(surveyQuestions)
+    }
+
     func getSurvey() {
         interactor?.displaySurvey(Constants.surveyURL)
     }
 
-
 }
-

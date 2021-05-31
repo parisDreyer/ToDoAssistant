@@ -14,10 +14,12 @@ protocol SurveyViewOutput: AnyObject {
     func getSurvey()
     func openSurvey(url: String)
     func showError(message: String)
+    func getBotSurvey()
 }
 
 protocol SurveyViewInput: AnyObject {
     func showSurvey(url: String)
+    func showBotSurvey(questions: SurveyQuestions)
 }
 
 final class SurveyViewController: UIViewController {
@@ -34,8 +36,9 @@ final class SurveyViewController: UIViewController {
     }
 
     let presenter: SurveyViewOutput
-    let consentButton = makeButton("Show Consent Form")
-    let surveyButton = makeButton("Show Survey")
+    let consentButton      = makeButton("Show Consent Form")
+    let surveyButton       = makeButton("Show Survey")
+    let surveyBotButton    = makeButton("Show Bot Created Survey")
     let googleSurveyButton = makeButton("Show Google Forms Survey")
 
     init(presenter: SurveyViewOutput) {
@@ -68,9 +71,11 @@ private extension SurveyViewController {
     func setupView() {
         consentButton.addTarget(self, action: #selector(consentTapped), for: .touchUpInside)
         surveyButton.addTarget(self, action: #selector(viewSurveyTapped), for: .touchUpInside)
+        surveyBotButton.addTarget(self, action: #selector(viewBotSurveyTapped), for: .touchUpInside)
         googleSurveyButton.addTarget(self, action: #selector(viewGoogleSurveyTapped), for: .touchUpInside)
         view.backgroundColor = .white
-        [consentButton, surveyButton, googleSurveyButton].forEach { view.addSubview($0) }
+        [consentButton, surveyButton, surveyBotButton, googleSurveyButton]
+            .forEach { view.addSubview($0) }
     }
 
     func setupConstraints() {
@@ -83,7 +88,11 @@ private extension SurveyViewController {
             surveyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 42),
             surveyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -42),
 
-            googleSurveyButton.topAnchor.constraint(equalTo: surveyButton.bottomAnchor, constant: 32),
+            surveyBotButton.topAnchor.constraint(equalTo: surveyButton.bottomAnchor, constant: 32),
+            surveyBotButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 42),
+            surveyBotButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -42),
+
+            googleSurveyButton.topAnchor.constraint(equalTo: surveyBotButton.bottomAnchor, constant: 32),
             googleSurveyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 42),
             googleSurveyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -42),
         ])
@@ -106,9 +115,13 @@ private extension SurveyViewController {
     }
 
     @objc func viewSurveyTapped(sender : AnyObject) {
-        let taskViewController = ORKTaskViewController(task: SurveyTaskFactory.makeSurveyTask(), taskRun: nil)
+        let taskViewController = ORKTaskViewController(task: SurveyTaskFactory.makeExampleSurvey(), taskRun: nil)
         taskViewController.delegate = self
         present(taskViewController, animated: true, completion: nil)
+    }
+
+    @objc func viewBotSurveyTapped(sender: AnyObject) {
+        presenter.getBotSurvey()
     }
 
     @objc func viewGoogleSurveyTapped(sender : AnyObject) {
@@ -125,6 +138,13 @@ private extension SurveyViewController {
 extension SurveyViewController: SurveyViewInput {
     func showSurvey(url: String) {
         viewModel = .init(url: url)
+    }
+
+    func showBotSurvey(questions: SurveyQuestions) {
+        let task = SurveyTaskFactory.makeBotSurvey(surveyQuestions: questions)
+        let taskViewController = ORKTaskViewController(task: task, taskRun: nil)
+        taskViewController.delegate = self
+        present(taskViewController, animated: true, completion: nil)
     }
 }
 

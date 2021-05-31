@@ -10,6 +10,7 @@ import UIKit
 
 protocol SurveyPresenterInput: AnyObject {
     func present(entity: SurveyInteractor.Entity)
+    func presentBotSurvey(entity: SurveyInteractor.Entity)
 }
 
 final class SurveyPresenter {
@@ -26,13 +27,19 @@ final class SurveyPresenter {
 extension SurveyPresenter: SurveyPresenterInput {
 
     func present(entity: SurveyInteractor.Entity) {
-
         guard !entity.surveyURL.isEmpty else {
             showError(message: "Survey URL was empty")
             return
         }
         view?.showSurvey(url: entity.surveyURL)
     }
+
+    func presentBotSurvey(entity: SurveyInteractor.Entity) {
+        guard let surveyQuestions = entity.surveyQuestions else {
+            showError(message: "Survey Questions were empty")
+            return
+        }
+        view?.showBotSurvey(questions: surveyQuestions)    }
 }
 
 // MARK: - SurveyViewOutput
@@ -50,5 +57,8 @@ extension SurveyPresenter: SurveyViewOutput {
         interactor.getData()
     }
 
+    func getBotSurvey() {
+        interactor.getBotSurvey()
+    }
 }
 

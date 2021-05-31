@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		56077FCF257D318900B3E0C2 /* ResponseCategoryModel+ContactsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56077FCE257D318900B3E0C2 /* ResponseCategoryModel+ContactsExtensions.swift */; };
 		56077FD7257D337100B3E0C2 /* ResponseCategoryModel+NewsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56077FD6257D337100B3E0C2 /* ResponseCategoryModel+NewsExtensions.swift */; };
+		56265320266442D900359DBB /* SurveyQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626531F266442D900359DBB /* SurveyQuestions.swift */; };
+		56265322266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56265321266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift */; };
+		56265326266485D700359DBB /* Bool+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56265325266485D700359DBB /* Bool+Extensions.swift */; };
 		56279F262516264A00DAC0ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56279F252516264A00DAC0ED /* AppDelegate.swift */; };
 		56279F282516264A00DAC0ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56279F272516264A00DAC0ED /* SceneDelegate.swift */; };
 		56279F2A2516264A00DAC0ED /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56279F292516264A00DAC0ED /* ContentView.swift */; };
@@ -79,6 +82,9 @@
 /* Begin PBXFileReference section */
 		56077FCE257D318900B3E0C2 /* ResponseCategoryModel+ContactsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResponseCategoryModel+ContactsExtensions.swift"; sourceTree = "<group>"; };
 		56077FD6257D337100B3E0C2 /* ResponseCategoryModel+NewsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResponseCategoryModel+NewsExtensions.swift"; sourceTree = "<group>"; };
+		5626531F266442D900359DBB /* SurveyQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestions.swift; sourceTree = "<group>"; };
+		56265321266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BotInteractor+SurveyDelegateExtensions.swift"; sourceTree = "<group>"; };
+		56265325266485D700359DBB /* Bool+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extensions.swift"; sourceTree = "<group>"; };
 		56279F222516264A00DAC0ED /* ToDoAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56279F252516264A00DAC0ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56279F272516264A00DAC0ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -166,6 +172,33 @@
 				56077FCE257D318900B3E0C2 /* ResponseCategoryModel+ContactsExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5626531E2664423700359DBB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5626531F266442D900359DBB /* SurveyQuestions.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5626532326647A1A00359DBB /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				5653737A251683EB00828464 /* CategoryDictionary.swift */,
+				5653737525167DCC00828464 /* ResponseCategory.swift */,
+				56537388251690A000828464 /* ResponseCategoryModel.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		5626532426647A8200359DBB /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				5653739625169B4800828464 /* Action.swift */,
+				56F46082265A896C005EA565 /* StaticActionId.swift */,
+			);
+			path = Action;
 			sourceTree = "<group>";
 		};
 		56279F192516264A00DAC0ED = {
@@ -268,14 +301,11 @@
 		5653736225167C0E00828464 /* Bot */ = {
 			isa = PBXGroup;
 			children = (
+				5626532426647A8200359DBB /* Action */,
+				5626532326647A1A00359DBB /* Category */,
 				5653736325167C1B00828464 /* Bot.swift */,
 				56B9339025727FDA001EB195 /* BotRouter.swift */,
 				56D1CE662556706F008485FD /* BotInteractor.swift */,
-				5653737A251683EB00828464 /* CategoryDictionary.swift */,
-				5653737525167DCC00828464 /* ResponseCategory.swift */,
-				56537388251690A000828464 /* ResponseCategoryModel.swift */,
-				5653739625169B4800828464 /* Action.swift */,
-				56F46082265A896C005EA565 /* StaticActionId.swift */,
 			);
 			path = Bot;
 			sourceTree = "<group>";
@@ -285,6 +315,7 @@
 			children = (
 				5653738025168B3400828464 /* StringProtocol+Extensions.swift */,
 				56D1CE4E2555CF47008485FD /* String+Extensions.swift */,
+				56265325266485D700359DBB /* Bool+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -343,6 +374,7 @@
 		56D20DEA263D8A73000E9897 /* Survey */ = {
 			isa = PBXGroup;
 			children = (
+				5626531E2664423700359DBB /* Models */,
 				56F4609D265FDB27005EA565 /* ResearchKitSurvey */,
 				56F46087265A8C17005EA565 /* Extension */,
 				56D20DEB263D8ACE000E9897 /* SurveyViewController.swift */,
@@ -374,6 +406,7 @@
 			isa = PBXGroup;
 			children = (
 				56F46088265A8C39005EA565 /* ResponseCategoryModel+SurveyExtensions.swift */,
+				56265321266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -455,7 +488,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1170;
-				LastUpgradeCheck = 1170;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Luke Dreyer";
 				TargetAttributes = {
 					56279F212516264A00DAC0ED = {
@@ -535,6 +568,7 @@
 				56B9339125727FDA001EB195 /* BotRouter.swift in Sources */,
 				5653738125168B3400828464 /* StringProtocol+Extensions.swift in Sources */,
 				56D1CE582555F5FA008485FD /* News.swift in Sources */,
+				56265326266485D700359DBB /* Bool+Extensions.swift in Sources */,
 				56279F562516303E00DAC0ED /* MessageView.swift in Sources */,
 				5653737B251683EB00828464 /* CategoryDictionary.swift in Sources */,
 				56B933A5257290B2001EB195 /* Contact.swift in Sources */,
@@ -557,6 +591,7 @@
 				56D1CE4F2555CF47008485FD /* String+Extensions.swift in Sources */,
 				5653737125167C8000828464 /* MessagesView.swift in Sources */,
 				5653736C25167C4500828464 /* MessageViewState.swift in Sources */,
+				56265320266442D900359DBB /* SurveyQuestions.swift in Sources */,
 				5653737625167DCC00828464 /* ResponseCategory.swift in Sources */,
 				56393517257D7CA400CA7B33 /* GlobalConstants.swift in Sources */,
 				56D20DF9263D8AEF000E9897 /* SurveyRouter.swift in Sources */,
@@ -565,6 +600,7 @@
 				56D1CE4725559990008485FD /* NewsRequest.swift in Sources */,
 				56B9336825717627001EB195 /* ContactsInteractor.swift in Sources */,
 				56D1CE672556706F008485FD /* BotInteractor.swift in Sources */,
+				56265322266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift in Sources */,
 				5653736425167C1B00828464 /* Bot.swift in Sources */,
 				56B9337C25726972001EB195 /* ContactsRouter.swift in Sources */,
 				56ED012E25951662001770B8 /* ContactsViewController.swift in Sources */,
@@ -642,6 +678,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -702,6 +739,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

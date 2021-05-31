@@ -12,6 +12,7 @@ import ResearchKit
 
 protocol SurveyInteractorInput: AnyObject {
     func getData()
+    func getBotSurvey()
     func openURL(urlString: String)
     func displayError(_ error: Error)
 }
@@ -19,9 +20,14 @@ protocol SurveyInteractorInput: AnyObject {
 final class SurveyInteractor {
     struct Entity {
         let surveyURL: String
+        var surveyQuestions: SurveyQuestions?
+        init(surveyURL: String = "", surveyQuestions: SurveyQuestions? = nil) {
+            self.surveyURL = surveyURL
+            self.surveyQuestions = surveyQuestions
+        }
     }
 
-    private(set) var entity = Entity(surveyURL: "")
+    private(set) var entity = Entity()
     let repository: SurveyRepositoryInput
     let router: SurveyRouterInput
     var presenter: SurveyPresenterInput?
@@ -48,11 +54,19 @@ extension SurveyInteractor: SurveyInteractorInput {
     func getData() {
         repository.getSurvey()
     }
+
+    func getBotSurvey() {
+        repository.getSurveyQuestions()
+    }
 }
 
 // MARK: - SurveyRepositoryOutput
 
 extension SurveyInteractor: SurveyRepositoryOutput {
+    func displaySurvey(_ questions: SurveyQuestions) {
+        entity.surveyQuestions = questions
+        presenter?.presentBotSurvey(entity: entity)
+    }
 
     func displaySurvey(_ surveyURL: String) {
         entity = Entity(surveyURL: surveyURL)
@@ -62,6 +76,5 @@ extension SurveyInteractor: SurveyRepositoryOutput {
     func displayError(_ error: Error) {
         router.display(error: error.localizedDescription)
     }
-
 }
 
