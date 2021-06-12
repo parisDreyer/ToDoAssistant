@@ -10,6 +10,8 @@ import Foundation
 
 extension ResponseCategoryModel {
     func calculateIsSurveyRequest() -> Bool {
-        return response.uppercased() == "SURVEY"
+        guard response.count <= GlobalConstants.eighty else { return false }
+        let words = response.split(separator: .init(" "))
+        return words.contains { $0.uppercased() == "SURVEY" }
     }
 }

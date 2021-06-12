@@ -11,22 +11,25 @@ import SwiftUI
 
 struct MessagesView: View {
     @State var userMessage: String = ""
-    @State var messages: [Message] = []
-    private(set) var state: MessageViewState
+    @ObservedObject var viewModel = MessagesViewModel()
+
+    private(set) var presenter: MessageViewPresenter
 
     init(displayManager: DisplayManagerInput?) {
-        state = MessageViewState(displayManager: displayManager)
+        presenter = MessageViewPresenter(displayManager: displayManager)
+        presenter.setMessage = setMessage
+        presenter.getLastSentMessage = getLastSentMessage
     }
 
     var body: some View {
         VStack {
             ScrollView(.vertical) {
                 ScrollViewReader { scrollView in
-                    LazyVStack {
-                        ForEach(messages, id: \.self) { MessageView(message: $0) }
-                    }.onChange(of: messages) { newValue in
-                        guard !newValue.isEmpty else { return }
-                        scrollView.scrollTo(newValue[newValue.endIndex - 1])
+                    ForEach(viewModel.messages, id: \.self) {
+                        MessageView(message: $0)
+                    }
+                    .onChange(of: viewModel.messages) { newValue in
+                        scrollView.scrollTo(newValue[newValue.count - 1])
                     }
                 }
             }
@@ -40,13 +43,25 @@ struct MessagesView: View {
             }
         }
     }
+}
 
-    private func sendMessage() {
+//MARK: - Private
+
+extension MessagesView {
+    func sendMessage() {
         guard !userMessage.isEmpty else { return }
-        let message = Message(id: messages.count, sender: .user, message: userMessage)
-        state.receive(message: message) { response in
-            self.messages.append(response)
-        }
+        let message = Message(id: viewModel.messages.count, sender: .user, message: userMessage)
+        presenter.receive(message: message)
         userMessage = ""
+    }
+
+    func setMessage(_ message: Message) {
+        DispatchQueue.main.async {
+            viewModel.append(message: message)
+        }
+    }
+
+    func getLastSentMessage() -> Message? {
+        return viewModel.messages.last
     }
 }

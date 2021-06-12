@@ -22,8 +22,13 @@
 		56279F562516303E00DAC0ED /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56279F552516303E00DAC0ED /* MessageView.swift */; };
 		5639350B257D3AD100CA7B33 /* NewsRequestApiKey.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5639350A257D3AD100CA7B33 /* NewsRequestApiKey.txt */; };
 		56393517257D7CA400CA7B33 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56393516257D7CA400CA7B33 /* GlobalConstants.swift */; };
+		563D7BB22674C97000B5E084 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563D7BB12674C97000B5E084 /* Queue.swift */; };
+		563D7BB42674CA3500B5E084 /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563D7BB32674CA3500B5E084 /* LinkedList.swift */; };
+		563D7BB62674D7D000B5E084 /* GeneralError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563D7BB52674D7D000B5E084 /* GeneralError.swift */; };
+		563D7BB82674D80600B5E084 /* ToDoAssistantDomains.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563D7BB72674D80600B5E084 /* ToDoAssistantDomains.swift */; };
+		563D7BBA2674E37A00B5E084 /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563D7BB92674E37A00B5E084 /* MessagesViewModel.swift */; };
 		5653736425167C1B00828464 /* Bot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653736325167C1B00828464 /* Bot.swift */; };
-		5653736C25167C4500828464 /* MessageViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653736B25167C4500828464 /* MessageViewState.swift */; };
+		5653736C25167C4500828464 /* MessageViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653736B25167C4500828464 /* MessageViewPresenter.swift */; };
 		5653737125167C8000828464 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653737025167C8000828464 /* MessagesView.swift */; };
 		5653737625167DCC00828464 /* ResponseCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653737525167DCC00828464 /* ResponseCategory.swift */; };
 		5653737B251683EB00828464 /* CategoryDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653737A251683EB00828464 /* CategoryDictionary.swift */; };
@@ -43,7 +48,6 @@
 		56D1CE4F2555CF47008485FD /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE4E2555CF47008485FD /* String+Extensions.swift */; };
 		56D1CE582555F5FA008485FD /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE572555F5FA008485FD /* News.swift */; };
 		56D1CE5D2555F625008485FD /* Article+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE5C2555F625008485FD /* Article+Extensions.swift */; };
-		56D1CE6225562E63008485FD /* Bot+NewsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE6125562E63008485FD /* Bot+NewsExtensions.swift */; };
 		56D1CE672556706F008485FD /* BotInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE662556706F008485FD /* BotInteractor.swift */; };
 		56D1CE812557007C008485FD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE802557007C008485FD /* Message.swift */; };
 		56D20DEC263D8ACE000E9897 /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D20DEB263D8ACE000E9897 /* SurveyViewController.swift */; };
@@ -101,8 +105,13 @@
 		56279F552516303E00DAC0ED /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		5639350A257D3AD100CA7B33 /* NewsRequestApiKey.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NewsRequestApiKey.txt; sourceTree = "<group>"; usesTabs = 0; };
 		56393516257D7CA400CA7B33 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		563D7BB12674C97000B5E084 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		563D7BB32674CA3500B5E084 /* LinkedList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
+		563D7BB52674D7D000B5E084 /* GeneralError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralError.swift; sourceTree = "<group>"; };
+		563D7BB72674D80600B5E084 /* ToDoAssistantDomains.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoAssistantDomains.swift; sourceTree = "<group>"; };
+		563D7BB92674E37A00B5E084 /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
 		5653736325167C1B00828464 /* Bot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bot.swift; sourceTree = "<group>"; };
-		5653736B25167C4500828464 /* MessageViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewState.swift; sourceTree = "<group>"; };
+		5653736B25167C4500828464 /* MessageViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewPresenter.swift; sourceTree = "<group>"; };
 		5653737025167C8000828464 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		5653737525167DCC00828464 /* ResponseCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCategory.swift; sourceTree = "<group>"; };
 		5653737A251683EB00828464 /* CategoryDictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryDictionary.swift; sourceTree = "<group>"; };
@@ -122,7 +131,6 @@
 		56D1CE4E2555CF47008485FD /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		56D1CE572555F5FA008485FD /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		56D1CE5C2555F625008485FD /* Article+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Article+Extensions.swift"; sourceTree = "<group>"; };
-		56D1CE6125562E63008485FD /* Bot+NewsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bot+NewsExtensions.swift"; sourceTree = "<group>"; };
 		56D1CE662556706F008485FD /* BotInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotInteractor.swift; sourceTree = "<group>"; };
 		56D1CE802557007C008485FD /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		56D20DEB263D8ACE000E9897 /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +291,10 @@
 				5653737F25168B1F00828464 /* Extensions */,
 				56393516257D7CA400CA7B33 /* GlobalConstants.swift */,
 				56B93376257268E3001EB195 /* TodoAssistantDisplayManager.swift */,
+				563D7BB12674C97000B5E084 /* Queue.swift */,
+				563D7BB32674CA3500B5E084 /* LinkedList.swift */,
+				563D7BB52674D7D000B5E084 /* GeneralError.swift */,
+				563D7BB72674D80600B5E084 /* ToDoAssistantDomains.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -291,9 +303,10 @@
 			isa = PBXGroup;
 			children = (
 				56279F552516303E00DAC0ED /* MessageView.swift */,
-				5653736B25167C4500828464 /* MessageViewState.swift */,
+				5653736B25167C4500828464 /* MessageViewPresenter.swift */,
 				5653737025167C8000828464 /* MessagesView.swift */,
 				56D1CE802557007C008485FD /* Message.swift */,
+				563D7BB92674E37A00B5E084 /* MessagesViewModel.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -365,7 +378,6 @@
 			isa = PBXGroup;
 			children = (
 				56D1CE5C2555F625008485FD /* Article+Extensions.swift */,
-				56D1CE6125562E63008485FD /* Bot+NewsExtensions.swift */,
 				56077FD6257D337100B3E0C2 /* ResponseCategoryModel+NewsExtensions.swift */,
 			);
 			path = Extensions;
@@ -569,31 +581,34 @@
 				5653738125168B3400828464 /* StringProtocol+Extensions.swift in Sources */,
 				56D1CE582555F5FA008485FD /* News.swift in Sources */,
 				56265326266485D700359DBB /* Bool+Extensions.swift in Sources */,
+				563D7BBA2674E37A00B5E084 /* MessagesViewModel.swift in Sources */,
 				56279F562516303E00DAC0ED /* MessageView.swift in Sources */,
 				5653737B251683EB00828464 /* CategoryDictionary.swift in Sources */,
 				56B933A5257290B2001EB195 /* Contact.swift in Sources */,
 				56F074CA2663C6240099DA8F /* ORKFieldValue.swift in Sources */,
 				56B9337225726498001EB195 /* ContactsPresenter.swift in Sources */,
 				56D20DF4263D8ADF000E9897 /* SurveyInteractor.swift in Sources */,
+				563D7BB42674CA3500B5E084 /* LinkedList.swift in Sources */,
 				56F4609F265FDB4A005EA565 /* SurveyTaskFactory.swift in Sources */,
 				56D1CE812557007C008485FD /* Message.swift in Sources */,
 				56B9336D257260FC001EB195 /* ContactsRepository.swift in Sources */,
 				56D20E03263D8B22000E9897 /* SurveyPresenter.swift in Sources */,
+				563D7BB62674D7D000B5E084 /* GeneralError.swift in Sources */,
 				56D20DFE263D8B00000E9897 /* SurveyRepository.swift in Sources */,
 				56F46099265A971F005EA565 /* ConsentTask.swift in Sources */,
 				56279F262516264A00DAC0ED /* AppDelegate.swift in Sources */,
 				56B93377257268E3001EB195 /* TodoAssistantDisplayManager.swift in Sources */,
 				56279F282516264A00DAC0ED /* SceneDelegate.swift in Sources */,
 				56077FCF257D318900B3E0C2 /* ResponseCategoryModel+ContactsExtensions.swift in Sources */,
-				56D1CE6225562E63008485FD /* Bot+NewsExtensions.swift in Sources */,
 				56279F2A2516264A00DAC0ED /* ContentView.swift in Sources */,
 				56077FD7257D337100B3E0C2 /* ResponseCategoryModel+NewsExtensions.swift in Sources */,
 				56D1CE4F2555CF47008485FD /* String+Extensions.swift in Sources */,
 				5653737125167C8000828464 /* MessagesView.swift in Sources */,
-				5653736C25167C4500828464 /* MessageViewState.swift in Sources */,
+				5653736C25167C4500828464 /* MessageViewPresenter.swift in Sources */,
 				56265320266442D900359DBB /* SurveyQuestions.swift in Sources */,
 				5653737625167DCC00828464 /* ResponseCategory.swift in Sources */,
 				56393517257D7CA400CA7B33 /* GlobalConstants.swift in Sources */,
+				563D7BB82674D80600B5E084 /* ToDoAssistantDomains.swift in Sources */,
 				56D20DF9263D8AEF000E9897 /* SurveyRouter.swift in Sources */,
 				56F46089265A8C39005EA565 /* ResponseCategoryModel+SurveyExtensions.swift in Sources */,
 				56F46094265A9588005EA565 /* ConsentDocument.swift in Sources */,
@@ -605,6 +620,7 @@
 				56B9337C25726972001EB195 /* ContactsRouter.swift in Sources */,
 				56ED012E25951662001770B8 /* ContactsViewController.swift in Sources */,
 				56ED013A2595455C001770B8 /* ContactCell.swift in Sources */,
+				563D7BB22674C97000B5E084 /* Queue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,4 +12,5 @@ enum GlobalConstants {
     static let txt = "txt"
     static let spaceSeparator: String.Element = " "
     static let newLine: String = "\n"
+    static let eighty: Int = 80
 }

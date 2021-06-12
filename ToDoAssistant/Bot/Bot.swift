@@ -13,14 +13,16 @@ final class Bot {
     private var previousUserInput: ResponseCategory?
     private var previousResponse: ResponseCategory?
     private(set) var interactor: BotInteractorInput
+    private weak var presenter: MessageViewPresenterInput?
 
-    init(interactor: BotInteractorInput) {
+    init(interactor: BotInteractorInput, presenter: MessageViewPresenterInput) {
         self.interactor = interactor
+        self.presenter = presenter
     }
 
-    func respond(message: Message, _ callback: SetMessage?) {
+    func respond(message: Message) {
         guard let response = buildMessage(message) else { return }
-        callback?(response)
+        presenter?.receive(message: response)
     }
 }
 
@@ -49,8 +51,8 @@ private extension Bot {
             return nil
         }
 
-        let conversationResponse = responseFor(action)
-        return news + conversationResponse
+        return responseFor(action)
+//        return news + conversationResponse
     }
 
     func responseFor(_ action: Action) -> String {
@@ -84,6 +86,11 @@ private extension Bot {
 // MARK: - BotInteractorOutput
 
 extension Bot: BotInteractorOutput {
+    func update(response: String) {
+        let message = Message(id: -1, sender: .bot, message: response)
+        presenter?.receive(message: message)
+    }
+
     func getQuestions() -> [String : [String]] {
         var questions: [String: [String]] = [:]
         if let previousUserInput = previousUserInput {
