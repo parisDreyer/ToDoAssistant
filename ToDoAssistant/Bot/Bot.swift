@@ -52,7 +52,6 @@ private extension Bot {
         }
 
         return responseFor(action)
-//        return news + conversationResponse
     }
 
     func responseFor(_ action: Action) -> String {

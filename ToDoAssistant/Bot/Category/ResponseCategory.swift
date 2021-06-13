@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol Categorizable: AnyObject {
+    var possibleUniqueIdentifier: Double { get }
+}
+
 final class ResponseCategory {
     private(set) var model: ResponseCategoryModel
     weak var categoryDictionary: CategoryDictionary?

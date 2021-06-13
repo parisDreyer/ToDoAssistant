@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol Categorizable: AnyObject {
-    var possibleUniqueIdentifier: Double { get }
-}
-
 final class CategoryDictionary {
     private(set) var actionsByIdentifier: [Double: [Action]] = [:]
 
@@ -40,7 +36,9 @@ final class CategoryDictionary {
         return actions.randomElement()
     }
 
-    // This function is the sole place to decide an action that the bot will say or do
+    // Categorizes Response Actions
+    //
+    // This function is the sole place to set a category for an action
     func update(category: ResponseCategory) {
         let model = category.model
         let action: Action

@@ -65,17 +65,15 @@ private extension MessageViewPresenter {
     func resolveSendingMessages() {
         guard let setMessage = setMessage, let getLastSentMessage = getLastSentMessage else { return }
 
-//        DispatchQueue.main.async {
-            let lastSentMessage: Message? = getLastSentMessage()
-            let lastSentMessageId = lastSentMessage?.id ?? -1
-            var currentResolvedMessageId = lastSentMessageId + 1
+        let lastSentMessage: Message? = getLastSentMessage()
+        let lastSentMessageId = lastSentMessage?.id ?? -1
+        var currentResolvedMessageId = lastSentMessageId + 1
 
-            while !self.sendingMessagesQueue.isEmpty, let message = self.sendingMessagesQueue.dequeue() {
-                let resolvedMessage = Message(id: currentResolvedMessageId, sender: message.sender, message: message.message)
-                currentResolvedMessageId += 1
-                setMessage(resolvedMessage)
-            }
-//        }
+        while !sendingMessagesQueue.isEmpty, let message = self.sendingMessagesQueue.dequeue() {
+            let resolvedMessage = Message(id: currentResolvedMessageId, sender: message.sender, message: message.message)
+            currentResolvedMessageId += 1
+            setMessage(resolvedMessage)
+        }
     }
 
 }
