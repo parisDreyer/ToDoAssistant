@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol Categorizable: AnyObject {
+    var possibleUniqueIdentifier: Double { get }
+}
+
 final class ResponseCategory {
     private(set) var model: ResponseCategoryModel
     weak var categoryDictionary: CategoryDictionary?
@@ -28,6 +32,10 @@ final class ResponseCategory {
 
     var isContactsRequest: Bool {
         return model.isContactsRequest()
+    }
+
+    var isSurveyRequest: Bool {
+        return model.isSurveyRequest()
     }
 
     var isUncategorized: Bool {

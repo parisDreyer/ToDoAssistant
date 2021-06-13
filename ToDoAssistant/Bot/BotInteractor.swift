@@ -10,17 +10,24 @@ import Foundation
 
 protocol BotInteractorInput: AnyObject {
     func getNews()
-    var news: News? { get }
     func getContacts()
+    func getSurvey()
 }
 
 protocol BotInteractorOutput: AnyObject {
+    func getQuestions() -> [String: [String]]
+    func update(response: String)
 }
 
 final class BotInteractor {
     struct Entity {
         let newsResponse: News?
-        var hasDisplayedNews = false
+
+        fileprivate func getNewsString() -> String? {
+            return newsResponse?.articles?
+                        .map { $0.asString }
+                        .joined(separator: GlobalConstants.newLine) ?? ""
+        }
     }
 
     private let router: BotRouterInput
@@ -36,15 +43,12 @@ final class BotInteractor {
 // MARK: - BotInteractorInput
 
 extension BotInteractor: BotInteractorInput {
+    func getSurvey() {
+        router.displaySurvey(delegate: self)
+    }
 
     func getContacts() {
         router.displayContacts()
-    }
-    
-    var news: News? {
-        guard !entity.hasDisplayedNews, let response = entity.newsResponse else { return nil }
-        entity.hasDisplayedNews = true
-        return response
     }
 
     func getNews() {
@@ -62,11 +66,18 @@ extension BotInteractor: NewsRequestDelegate {
 
     func receiveNews(_ news: News) {
         pendingNewsRequest = nil
-        entity = Entity(newsResponse: news, hasDisplayedNews: false)
+        entity = Entity(newsResponse: news)
+
+        guard let newsString = entity.getNewsString() else {
+            error(error: GeneralError(message: "News Response Empty", domain: .bot))
+            return
+        }
+        bot?.update(response: newsString)
     }
-    
+
     func error(error: Error) {
         router.displayError(message: error.localizedDescription)
     }
 
 }
+

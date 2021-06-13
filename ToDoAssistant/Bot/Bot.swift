@@ -13,14 +13,16 @@ final class Bot {
     private var previousUserInput: ResponseCategory?
     private var previousResponse: ResponseCategory?
     private(set) var interactor: BotInteractorInput
+    private weak var presenter: MessageViewPresenterInput?
 
-    init(interactor: BotInteractorInput) {
+    init(interactor: BotInteractorInput, presenter: MessageViewPresenterInput) {
         self.interactor = interactor
+        self.presenter = presenter
     }
 
-    func respond(message: Message, _ callback: SetMessage?) {
+    func respond(message: Message) {
         guard let response = buildMessage(message) else { return }
-        callback?(response)
+        presenter?.receive(message: response)
     }
 }
 
@@ -49,12 +51,20 @@ private extension Bot {
             return nil
         }
 
-        let conversationResponse = responseFor(action)
-        return news + conversationResponse
+        return responseFor(action)
     }
 
     func responseFor(_ action: Action) -> String {
         switch action {
+        case .getNews:
+            interactor.getNews()
+            return "... Fetching News ..."
+        case .getContacts:
+            interactor.getContacts()
+            return "... Fetching Contacts ..."
+        case .getSurvey:
+            interactor.getSurvey()
+            return "...Fetching Survey ..."
         case .getMoreInfo(let about):
             return "Could you tell me more about what \(about.response) means?"
         case .askQuestion(let about):
@@ -67,17 +77,40 @@ private extension Bot {
             return "I don't know about \(userResponse.response)"
         case .greet:
             return "Hi!"
-        case .getNews:
-            interactor.getNews()
-            return "... Fetching News ..."
-        case .getContacts:
-            interactor.getContacts()
-            return "... Fetching Contacts ..."
         }
     }
 }
 
 // MARK: - BotInteractorOutput
 
-extension Bot: BotInteractorOutput { 
+extension Bot: BotInteractorOutput {
+    func update(response: String) {
+        let message = Message(id: -1, sender: .bot, message: response)
+        presenter?.receive(message: message)
+    }
+
+    func getQuestions() -> [String : [String]] {
+        var questions: [String: [String]] = [:]
+        if let previousUserInput = previousUserInput {
+            let model = previousUserInput.model
+            questions[model.response] = getQuestionsFromModel(model)
+        }
+        if let previousResponse = previousResponse {
+            let model = previousResponse.model
+            questions[model.response] = getQuestionsFromModel(model)
+        }
+        return questions
+    }
+
+    private func getQuestionsFromModel(_ model: ResponseCategoryModel) -> [String] {
+        var m = model
+        return [
+            "is this an Affirmation? We thought \(m.isAffirmation.yesOrNo)",
+            "is this an Negation? We thought \(m.isNegation.yesOrNo)",
+            "is this a Survey Request? We thought \(m.isSurveyRequest().yesOrNo)",
+            "is this a Contacts Request? We thought \(m.isContactsRequest().yesOrNo)",
+            "is this a News Request? We thought \(m.isNewsRequest().yesOrNo)",
+            "is this the Exact Same Response? We thought \(m.isExactSameResponse.yesOrNo)"
+        ]
+    }
 }

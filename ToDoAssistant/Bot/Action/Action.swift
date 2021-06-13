@@ -8,12 +8,6 @@
 
 import Foundation
 
-enum StaticActionID: Double {
-    case greet = 0
-    case news = 1
-    case contacts = 2
-}
-
 enum Action {
     case getNews
     case getContacts
@@ -22,8 +16,8 @@ enum Action {
     case tellFact(about: ResponseCategoryModel)
     case confirm(userResponse: ResponseCategoryModel)
     case deny(userResponse: ResponseCategoryModel)
+    case getSurvey
     case greet
-
 }
 
 // MARK: Hashable
@@ -59,6 +53,8 @@ private extension Action {
             return StaticActionID.news.rawValue
         case .getContacts:
             return StaticActionID.contacts.rawValue
+        case .getSurvey:
+            return StaticActionID.survey.rawValue
         }
     }
 
