@@ -56,7 +56,6 @@ private extension Bot {
 
     func responseFor(_ action: Action) -> String {
         switch action {
-        // order matters for these cases -- lower ones are more inclusive than higher ones
         case .getNews:
             interactor.getNews()
             return "... Fetching News ..."
