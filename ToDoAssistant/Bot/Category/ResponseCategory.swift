@@ -12,6 +12,7 @@ protocol Categorizable: AnyObject {
     var possibleUniqueIdentifier: Double { get }
 }
 
+// Wrapper for ResponseCategoryModel
 final class ResponseCategory {
     private(set) var model: ResponseCategoryModel
     weak var categoryDictionary: CategoryDictionary?
@@ -36,6 +37,10 @@ final class ResponseCategory {
 
     var isSurveyRequest: Bool {
         return model.isSurveyRequest()
+    }
+
+    func getSurveyId() -> SurveyId {
+        return model.surveyId()
     }
 
     var isUncategorized: Bool {

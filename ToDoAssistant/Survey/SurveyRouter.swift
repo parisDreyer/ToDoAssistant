@@ -26,9 +26,9 @@ final class SurveyRouter {
         self.surveyDelegate = surveyDelegate
     }
 
-    func present() {
+    func present(id: SurveyId) {
         let repository = SurveyRepository(delegate: surveyDelegate)
-        let interactor = SurveyInteractor(router: self, repository: repository)
+        let interactor = SurveyInteractor(id: id, router: self, repository: repository)
         let presenter = SurveyPresenter(interactor: interactor)
         interactor.presenter = presenter
         let viewController = SurveyViewController(presenter: presenter)
