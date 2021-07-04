@@ -11,7 +11,7 @@ import Foundation
 protocol BotInteractorInput: AnyObject {
     func getNews()
     func getContacts()
-    func getSurvey()
+    func getSurvey(id: SurveyId)
 }
 
 protocol BotInteractorOutput: AnyObject {
@@ -43,8 +43,8 @@ final class BotInteractor {
 // MARK: - BotInteractorInput
 
 extension BotInteractor: BotInteractorInput {
-    func getSurvey() {
-        router.displaySurvey(delegate: self)
+    func getSurvey(id: SurveyId) {
+        router.displaySurvey(id: id, delegate: self)
     }
 
     func getContacts() {

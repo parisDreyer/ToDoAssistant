@@ -16,7 +16,7 @@ enum Action {
     case tellFact(about: ResponseCategoryModel)
     case confirm(userResponse: ResponseCategoryModel)
     case deny(userResponse: ResponseCategoryModel)
-    case getSurvey
+    case getSurvey(surveyId: SurveyId = .none)
     case greet
 }
 

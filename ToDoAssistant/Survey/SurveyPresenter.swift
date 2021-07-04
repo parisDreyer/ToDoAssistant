@@ -11,6 +11,7 @@ import UIKit
 protocol SurveyPresenterInput: AnyObject {
     func present(entity: SurveyInteractor.Entity)
     func presentBotSurvey(entity: SurveyInteractor.Entity)
+    func presentCitizenshipSurvey(entity: SurveyInteractor.Entity)
 }
 
 final class SurveyPresenter {
@@ -25,6 +26,22 @@ final class SurveyPresenter {
 // MARK: - SurveyPresenterInput
 
 extension SurveyPresenter: SurveyPresenterInput {
+    func presentCitizenshipSurvey(entity: SurveyInteractor.Entity) {
+        guard let survey = entity.citizenshipSurvey else {
+            showError(message: "Citizenship Survey empty")
+            return
+        }
+        let randomizedCategoryOrder = survey.questionsByCategory.shuffled()
+        let questions: [SurveyQuestions] = randomizedCategoryOrder.map {
+            let randomizedQuestionOrder = $0.questions.shuffled()
+            let textSurveyQuestions = randomizedQuestionOrder.map {
+                TextSurveyQuestion(question: $0.question, options: $0.answers)
+            }
+            return SurveyQuestions(textSurveyQuestions: textSurveyQuestions)
+        }
+        view?.showMultiPartSurvey(title: "Citizenship Survey", questions: questions)
+    }
+
 
     func present(entity: SurveyInteractor.Entity) {
         guard !entity.surveyURL.isEmpty else {
@@ -45,6 +62,14 @@ extension SurveyPresenter: SurveyPresenterInput {
 // MARK: - SurveyViewOutput
 
 extension SurveyPresenter: SurveyViewOutput {
+    func viewLoaded() {
+        getSurvey()
+    }
+
+    func getCitizenshipSurvey() {
+        interactor.getCitizenshipSurvey()
+    }
+
     func showError(message: String) {
         interactor.displayError(URLError(.badURL, userInfo: ["message": message]))
     }

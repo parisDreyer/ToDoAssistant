@@ -35,6 +35,10 @@
 		5653738125168B3400828464 /* StringProtocol+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653738025168B3400828464 /* StringProtocol+Extensions.swift */; };
 		56537389251690A000828464 /* ResponseCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56537388251690A000828464 /* ResponseCategoryModel.swift */; };
 		5653739725169B4800828464 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5653739625169B4800828464 /* Action.swift */; };
+		566D98662690CA5E00BE68C4 /* CitizenshipSurvey.json in Resources */ = {isa = PBXBuildFile; fileRef = 566D98652690CA5E00BE68C4 /* CitizenshipSurvey.json */; };
+		566D98682690F34300BE68C4 /* CitizenshipSurvey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566D98672690F34300BE68C4 /* CitizenshipSurvey.swift */; };
+		566D986A2690FA0200BE68C4 /* FileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566D98692690FA0200BE68C4 /* FileLoader.swift */; };
+		566D986C2691EB8F00BE68C4 /* SurveyId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566D986B2691EB8F00BE68C4 /* SurveyId.swift */; };
 		5680017A259AC70D000DB888 /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56800179259AC70D000DB888 /* ContactsTests.swift */; };
 		56800183259AC7B2000DB888 /* MockDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56800182259AC7B2000DB888 /* MockDisplayManager.swift */; };
 		56B9336825717627001EB195 /* ContactsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B9336725717627001EB195 /* ContactsInteractor.swift */; };
@@ -44,6 +48,9 @@
 		56B9337C25726972001EB195 /* ContactsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B9337B25726972001EB195 /* ContactsRouter.swift */; };
 		56B9339125727FDA001EB195 /* BotRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B9339025727FDA001EB195 /* BotRouter.swift */; };
 		56B933A5257290B2001EB195 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B933A4257290B2001EB195 /* Contact.swift */; };
+		56CE47A12688981C00A866CA /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 56CE47A02688981C00A866CA /* SQLite */; };
+		56CE47A32688987E00A866CA /* CategoriesDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CE47A22688987E00A866CA /* CategoriesDao.swift */; };
+		56CE47A5268898FE00A866CA /* BaseDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CE47A4268898FE00A866CA /* BaseDao.swift */; };
 		56D1CE4725559990008485FD /* NewsRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE4625559990008485FD /* NewsRequest.swift */; };
 		56D1CE4F2555CF47008485FD /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE4E2555CF47008485FD /* String+Extensions.swift */; };
 		56D1CE582555F5FA008485FD /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D1CE572555F5FA008485FD /* News.swift */; };
@@ -118,6 +125,10 @@
 		5653738025168B3400828464 /* StringProtocol+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringProtocol+Extensions.swift"; sourceTree = "<group>"; };
 		56537388251690A000828464 /* ResponseCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCategoryModel.swift; sourceTree = "<group>"; };
 		5653739625169B4800828464 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		566D98652690CA5E00BE68C4 /* CitizenshipSurvey.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CitizenshipSurvey.json; sourceTree = "<group>"; };
+		566D98672690F34300BE68C4 /* CitizenshipSurvey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitizenshipSurvey.swift; sourceTree = "<group>"; };
+		566D98692690FA0200BE68C4 /* FileLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLoader.swift; sourceTree = "<group>"; };
+		566D986B2691EB8F00BE68C4 /* SurveyId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyId.swift; sourceTree = "<group>"; };
 		56800179259AC70D000DB888 /* ContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTests.swift; sourceTree = "<group>"; };
 		56800182259AC7B2000DB888 /* MockDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDisplayManager.swift; sourceTree = "<group>"; };
 		56B9336725717627001EB195 /* ContactsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsInteractor.swift; sourceTree = "<group>"; };
@@ -127,6 +138,8 @@
 		56B9337B25726972001EB195 /* ContactsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsRouter.swift; sourceTree = "<group>"; };
 		56B9339025727FDA001EB195 /* BotRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotRouter.swift; sourceTree = "<group>"; };
 		56B933A4257290B2001EB195 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		56CE47A22688987E00A866CA /* CategoriesDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesDao.swift; sourceTree = "<group>"; };
+		56CE47A4268898FE00A866CA /* BaseDao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDao.swift; sourceTree = "<group>"; };
 		56D1CE4625559990008485FD /* NewsRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsRequest.swift; sourceTree = "<group>"; };
 		56D1CE4E2555CF47008485FD /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		56D1CE572555F5FA008485FD /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
@@ -153,6 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56CE47A12688981C00A866CA /* SQLite in Frameworks */,
 				56F4608F265A94EC005EA565 /* ResearchKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				5626531F266442D900359DBB /* SurveyQuestions.swift */,
+				566D98672690F34300BE68C4 /* CitizenshipSurvey.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -295,6 +310,9 @@
 				563D7BB32674CA3500B5E084 /* LinkedList.swift */,
 				563D7BB52674D7D000B5E084 /* GeneralError.swift */,
 				563D7BB72674D80600B5E084 /* ToDoAssistantDomains.swift */,
+				56CE47A22688987E00A866CA /* CategoriesDao.swift */,
+				56CE47A4268898FE00A866CA /* BaseDao.swift */,
+				566D98692690FA0200BE68C4 /* FileLoader.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -331,6 +349,14 @@
 				56265325266485D700359DBB /* Bool+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		566D98642690CA1E00BE68C4 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				566D98652690CA5E00BE68C4 /* CitizenshipSurvey.json */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 		56800178259AC6D2000DB888 /* Contacts */ = {
@@ -386,6 +412,7 @@
 		56D20DEA263D8A73000E9897 /* Survey */ = {
 			isa = PBXGroup;
 			children = (
+				566D98642690CA1E00BE68C4 /* JSON */,
 				5626531E2664423700359DBB /* Models */,
 				56F4609D265FDB27005EA565 /* ResearchKitSurvey */,
 				56F46087265A8C17005EA565 /* Extension */,
@@ -394,6 +421,7 @@
 				56D20DF8263D8AEF000E9897 /* SurveyRouter.swift */,
 				56D20DFD263D8B00000E9897 /* SurveyRepository.swift */,
 				56D20E02263D8B22000E9897 /* SurveyPresenter.swift */,
+				566D986B2691EB8F00BE68C4 /* SurveyId.swift */,
 			);
 			path = Survey;
 			sourceTree = "<group>";
@@ -452,6 +480,7 @@
 			name = ToDoAssistant;
 			packageProductDependencies = (
 				56F4608E265A94EC005EA565 /* ResearchKit */,
+				56CE47A02688981C00A866CA /* SQLite */,
 			);
 			productName = ToDoAssistant;
 			productReference = 56279F222516264A00DAC0ED /* ToDoAssistant.app */;
@@ -505,6 +534,7 @@
 				TargetAttributes = {
 					56279F212516264A00DAC0ED = {
 						CreatedOnToolsVersion = 11.7;
+						LastSwiftMigration = 1250;
 					};
 					56279F372516264C00DAC0ED = {
 						CreatedOnToolsVersion = 11.7;
@@ -527,6 +557,7 @@
 			mainGroup = 56279F192516264A00DAC0ED;
 			packageReferences = (
 				56F4608D265A94EC005EA565 /* XCRemoteSwiftPackageReference "ResearchKit" */,
+				56CE479F2688981C00A866CA /* XCRemoteSwiftPackageReference "SQLite.swift" */,
 			);
 			productRefGroup = 56279F232516264A00DAC0ED /* Products */;
 			projectDirPath = "";
@@ -547,6 +578,7 @@
 				56279F322516264C00DAC0ED /* LaunchScreen.storyboard in Resources */,
 				56279F2F2516264C00DAC0ED /* Preview Assets.xcassets in Resources */,
 				5639350B257D3AD100CA7B33 /* NewsRequestApiKey.txt in Resources */,
+				566D98662690CA5E00BE68C4 /* CitizenshipSurvey.json in Resources */,
 				56279F2C2516264C00DAC0ED /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -578,6 +610,7 @@
 				56D20DEC263D8ACE000E9897 /* SurveyViewController.swift in Sources */,
 				56D1CE5D2555F625008485FD /* Article+Extensions.swift in Sources */,
 				56B9339125727FDA001EB195 /* BotRouter.swift in Sources */,
+				566D986C2691EB8F00BE68C4 /* SurveyId.swift in Sources */,
 				5653738125168B3400828464 /* StringProtocol+Extensions.swift in Sources */,
 				56D1CE582555F5FA008485FD /* News.swift in Sources */,
 				56265326266485D700359DBB /* Bool+Extensions.swift in Sources */,
@@ -585,6 +618,7 @@
 				56279F562516303E00DAC0ED /* MessageView.swift in Sources */,
 				5653737B251683EB00828464 /* CategoryDictionary.swift in Sources */,
 				56B933A5257290B2001EB195 /* Contact.swift in Sources */,
+				56CE47A5268898FE00A866CA /* BaseDao.swift in Sources */,
 				56F074CA2663C6240099DA8F /* ORKFieldValue.swift in Sources */,
 				56B9337225726498001EB195 /* ContactsPresenter.swift in Sources */,
 				56D20DF4263D8ADF000E9897 /* SurveyInteractor.swift in Sources */,
@@ -592,6 +626,7 @@
 				56F4609F265FDB4A005EA565 /* SurveyTaskFactory.swift in Sources */,
 				56D1CE812557007C008485FD /* Message.swift in Sources */,
 				56B9336D257260FC001EB195 /* ContactsRepository.swift in Sources */,
+				56CE47A32688987E00A866CA /* CategoriesDao.swift in Sources */,
 				56D20E03263D8B22000E9897 /* SurveyPresenter.swift in Sources */,
 				563D7BB62674D7D000B5E084 /* GeneralError.swift in Sources */,
 				56D20DFE263D8B00000E9897 /* SurveyRepository.swift in Sources */,
@@ -615,11 +650,13 @@
 				56D1CE4725559990008485FD /* NewsRequest.swift in Sources */,
 				56B9336825717627001EB195 /* ContactsInteractor.swift in Sources */,
 				56D1CE672556706F008485FD /* BotInteractor.swift in Sources */,
+				566D986A2690FA0200BE68C4 /* FileLoader.swift in Sources */,
 				56265322266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift in Sources */,
 				5653736425167C1B00828464 /* Bot.swift in Sources */,
 				56B9337C25726972001EB195 /* ContactsRouter.swift in Sources */,
 				56ED012E25951662001770B8 /* ContactsViewController.swift in Sources */,
 				56ED013A2595455C001770B8 /* ContactCell.swift in Sources */,
+				566D98682690F34300BE68C4 /* CitizenshipSurvey.swift in Sources */,
 				563D7BB22674C97000B5E084 /* Queue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -788,6 +825,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ToDoAssistant/Preview Content\"";
 				DEVELOPMENT_TEAM = 5GJRDP873Y;
@@ -808,6 +846,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"ToDoAssistant/Preview Content\"";
 				DEVELOPMENT_TEAM = 5GJRDP873Y;
@@ -819,6 +858,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.DesperadoIndieDevelopers.ToDoAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ToDoAssistant/Core/ToDoAssistant-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -950,6 +990,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		56CE479F2688981C00A866CA /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.12.2;
+			};
+		};
 		56F4608D265A94EC005EA565 /* XCRemoteSwiftPackageReference "ResearchKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SpMngs/ResearchKit.git";
@@ -961,6 +1009,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		56CE47A02688981C00A866CA /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56CE479F2688981C00A866CA /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
 		56F4608E265A94EC005EA565 /* ResearchKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 56F4608D265A94EC005EA565 /* XCRemoteSwiftPackageReference "ResearchKit" */;

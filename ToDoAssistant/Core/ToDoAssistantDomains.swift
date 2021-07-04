@@ -15,6 +15,7 @@ enum ToDoAssistantDomains: String {
     case news
     case message
     case contacts
+    case dao
 
     var description: String {
         self.rawValue.uppercased()
