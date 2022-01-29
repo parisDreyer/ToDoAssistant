@@ -10,6 +10,14 @@ import UIKit
 @testable import ToDoAssistant
 
 class MockDisplayManager: DisplayManagerInput {
+    func cleanupAndExit() {
+        // todo add tests
+    }
+
+    func setDelegate(_ delegate: DisplayManagerDelegate) {
+        // todo add tests
+    }
+
     var presentedViewController: UIViewController?
     func present(viewController: UIViewController) {
         presentedViewController = viewController

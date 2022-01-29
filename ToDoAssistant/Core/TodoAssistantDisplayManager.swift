@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol DisplayManagerDelegate: AnyObject {
+    func save()
+}
+
 protocol DisplayManagerInput: AnyObject {
     func present(viewController: UIViewController)
     func displayAlert(alert: String, title: String, style: UIAlertController.Style)
     func displayError(error: String)
+    func cleanupAndExit()
+    func setDelegate(_ delegate: DisplayManagerDelegate)
 }
 /// A Class for handling basic operations that everything else uses, such as displaying errors or routing between modules
 class TodoAssistantDisplayManager {
@@ -21,6 +27,8 @@ class TodoAssistantDisplayManager {
         // TODO: add accessibility feature to turn off animations for users that don't want animations
         return true
     }
+
+    private weak var delegate: DisplayManagerDelegate?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -51,6 +59,14 @@ private extension TodoAssistantDisplayManager {
 // MARK: - DisplayManagerInput
 
 extension TodoAssistantDisplayManager: DisplayManagerInput {
+    func setDelegate(_ delegate: DisplayManagerDelegate) {
+        self.delegate = delegate
+    }
+
+    func cleanupAndExit() {
+        delegate?.save()
+    }
+
     func present(viewController: UIViewController) {
         navigationController?.pushViewController(viewController, animated: false)
     }

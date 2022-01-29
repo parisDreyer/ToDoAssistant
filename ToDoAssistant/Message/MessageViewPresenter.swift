@@ -28,7 +28,9 @@ final class MessageViewPresenter {
     
     private lazy var interactor: BotInteractor = {
         let router = BotRouter(displayManager: displayManager)
-        return .init(router: router)
+        let interactor = BotInteractor(router: router)
+        router.interactor = interactor
+        return interactor
     }()
     private lazy var bot: Bot = { () -> Bot in
         let bot = Bot(interactor: interactor, presenter: self)

@@ -40,7 +40,7 @@ extension String {
 
     func trimPhonePunctuation() -> String {
         // returns string with only lower case or upper case roman letters
-        return filter { $0 != "-" && $0 != " " && $0 != "(" && $0 != ")" }
+        return filter { $0 != "-" && $0 != GlobalConstants.spaceSeparator && $0 != "(" && $0 != ")" }
     }
 
     static func containsOnlyLetters(input: String) -> Bool {

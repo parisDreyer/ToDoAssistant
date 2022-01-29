@@ -28,8 +28,9 @@ final class CategoryDictionary {
         }
 
         guard let actions = actionsByIdentifier[identifier], !actions.isEmpty else {
-            // when the bot has no saved memory of actions to use in this situation, default to greet
-            return .greet
+            // load deeper saved memory associated with the category's response model
+            category.loadBy(id: identifier)
+            return .rememberedResponse(response: category.model)
         }
 
         // if no other options present themselves and we have actions in memory, choose something random for the bot to say or do

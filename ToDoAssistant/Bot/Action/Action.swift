@@ -18,6 +18,7 @@ enum Action {
     case deny(userResponse: ResponseCategoryModel)
     case getSurvey(surveyId: SurveyId = .none)
     case greet
+    case rememberedResponse(response: ResponseCategoryModel)
 }
 
 // MARK: Hashable
@@ -45,7 +46,7 @@ private extension Action {
 
     var possibleUniqueIdentifier: Double? {
         switch self {
-        case .getMoreInfo(let category), .askQuestion(let category), .tellFact(let category), .confirm(let category), .deny(let category):
+        case .getMoreInfo(let category), .askQuestion(let category), .tellFact(let category), .confirm(let category), .deny(let category), .rememberedResponse(let category):
             return category.possibleUniqueIdentifier
         case .greet:
             return StaticActionID.greet.rawValue

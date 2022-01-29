@@ -31,6 +31,15 @@ struct ResponseCategoryModel {
         self.previousResponseWasAffirmation = previousResponseWasAffirmation
         self.previousResponseWasNegation = previousResponseWasNegation
     }
+
+    init(_ id: Double) {
+        response = String.from(calculatedUniqueIdentifier: id) ?? GlobalConstants.emptyString
+        calculatedUniqueIdentifier = id
+        previousResponse = nil
+        previousResponseWasAffirmation = nil
+        previousResponseWasNegation = nil
+    }
+
 }
 
 // MARK: - Internal
@@ -111,14 +120,11 @@ extension ResponseCategoryModel {
             identifier = StaticActionID.contacts.rawValue
         } else if isSurveyRequest() {
             identifier = StaticActionID.survey.rawValue
+        } else if let id = response.calculateUniqueIdentifier() {
+            identifier = id
         } else {
-            let words = response.split(separator: " ")
-            let verbosityCoefficient = (Double(words.count) - 1.0) / max(Double(words.count), 1.0)
-            let uniqueWordNumber = words.map { word -> Double in
-                word.asciiValues.reduce(1) { $1 == 0 ? $0 : $0 * Double($1) }
-            }.reduce(1) { $0 * $1 }
-
-            identifier = Double(verbosityCoefficient * (1.0 / uniqueWordNumber))
+            // should never happen if the above case is implemented correctly
+            identifier = 0
         }
         calculatedUniqueIdentifier = identifier
         return identifier

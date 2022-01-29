@@ -17,6 +17,7 @@ protocol BotInteractorInput: AnyObject {
 protocol BotInteractorOutput: AnyObject {
     func getQuestions() -> [String: [String]]
     func update(response: String)
+    func saveData()
 }
 
 final class BotInteractor {
@@ -26,8 +27,9 @@ final class BotInteractor {
         fileprivate func getNewsString() -> String? {
             return newsResponse?.articles?
                         .map { $0.asString }
-                        .joined(separator: GlobalConstants.newLine) ?? ""
+                        .joined(separator: GlobalConstants.newLine) ?? GlobalConstants.emptyString
         }
+        // refactor to handle all saved state from this file
     }
 
     private let router: BotRouterInput
@@ -43,6 +45,7 @@ final class BotInteractor {
 // MARK: - BotInteractorInput
 
 extension BotInteractor: BotInteractorInput {
+
     func getSurvey(id: SurveyId) {
         router.displaySurvey(id: id, delegate: self)
     }
@@ -57,6 +60,14 @@ extension BotInteractor: BotInteractorInput {
             pendingNewsRequest?.delegate = self
             pendingNewsRequest?.getNews()
         }
+    }
+}
+
+// MARK: - BotRouterOutput
+
+extension BotInteractor: BotRouterOutput {
+    func saveData() {
+        bot?.saveData()
     }
 }
 

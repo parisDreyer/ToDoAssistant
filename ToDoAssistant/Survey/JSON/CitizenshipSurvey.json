@@ -206,9 +206,8 @@
                 {
                     "question": "What is the name of the Vice President of the United States now",
                     "answers": [
-                        "Michael Richard Pence",
-                        "Mike Pence",
-                        "Pence"
+                        "Kamala Harris",
+                        "Harris"
                     ]
                 },
                 {
@@ -316,7 +315,8 @@
                 {
                     "question": "Who is the Governor of your state",
                     "answers": [
-                        "Answers will vary. [Residents of the District of Columbia and U.S. territories without a Governor should say \"we don't have a Governor.\""
+                        "Answers will vary. [Residents of the District of Columbia and U.S. territories without a Governor should say \"we don't have a Governor.\"",
+                        "Charlie Baker (Republican) is the governer of Massachusetts"
                     ]
                 },
                 {
@@ -334,7 +334,7 @@
                 {
                     "question": "What is the political party of the President now?",
                     "answers": [
-                        "Republican (Party)"
+                        "Democrat (Party)"
                     ]
                 },
                 {
