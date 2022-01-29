@@ -16,17 +16,20 @@ protocol SurveyDelegate: AnyObject {
 protocol SurveyRepositoryInput: AnyObject {
     func getSurvey()
     func getSurveyQuestions()
+    func getCitizenshipSurveyQuestions()
 }
 
 protocol SurveyRepositoryOutput: AnyObject {
     func displaySurvey(_ surveyURL: String)
     func displaySurvey(_ questions: SurveyQuestions)
+    func displaySurvey(_ questions: CitizenshipSurvey)
     func displayError(_ error: Error)
 }
 
 class SurveyRepository {
     private enum Constants {
         static let surveyURL = "https://forms.gle/ES2WQiKwPFoBZT8S9"
+        static let citizenshipSurveyJSON = "CitizenshipSurvey"
     }
     weak var interactor: SurveyRepositoryOutput?
     let delegate: SurveyDelegate
@@ -48,6 +51,18 @@ extension SurveyRepository: SurveyRepositoryInput {
 
     func getSurvey() {
         interactor?.displaySurvey(Constants.surveyURL)
+    }
+
+    func getCitizenshipSurveyQuestions() {
+        guard let data = FileLoader.readDataFrom(fileName: Constants.citizenshipSurveyJSON) else {
+            // TODO: error handling
+            return
+        }
+        do {
+            interactor?.displaySurvey(try JSONDecoder().decode(CitizenshipSurvey.self, from: data))
+        } catch {
+            // TODO: error handling
+        }
     }
 
 }

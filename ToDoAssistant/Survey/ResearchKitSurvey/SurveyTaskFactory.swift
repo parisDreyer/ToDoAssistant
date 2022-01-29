@@ -67,16 +67,27 @@ final class SurveyTaskFactory {
     }
 
     public static func makeBotSurvey(surveyQuestions: SurveyQuestions) -> ORKOrderedTask {
-        let steps = surveyQuestions.textSurveyQuestions.map {
-            makeMultipleChoiceStep($0.question, questionOptions: $0.options)
-        }
+        let steps = makeSurveySteps(surveyQuestions)
         return ORKOrderedTask(identifier: "BotSurvey", steps: steps)
+    }
+
+    public static func makeMultiPartSurvey(title: String, surveyQuestions: [SurveyQuestions]) -> ORKOrderedTask {
+        let steps = surveyQuestions.reduce([ORKQuestionStep]()) { (questionSteps, nextQuestion) -> [ORKQuestionStep] in
+            return questionSteps + makeSurveySteps(nextQuestion)
+        }
+        return ORKOrderedTask(identifier: title, steps: steps)
     }
 }
 
 // MARK: - Private
 
 private extension SurveyTaskFactory {
+
+    static func makeSurveySteps(_ surveyQuestions: SurveyQuestions) -> [ORKQuestionStep]  {
+        return surveyQuestions.textSurveyQuestions.map {
+            makeMultipleChoiceStep($0.question, questionOptions: $0.options)
+        }
+    }
 
     static func makeMultipleChoiceStep(_ question: String, questionOptions: [String]) -> ORKQuestionStep {
         let textChoices = questionOptions.enumerated().map { (index, text) -> ORKTextChoice in

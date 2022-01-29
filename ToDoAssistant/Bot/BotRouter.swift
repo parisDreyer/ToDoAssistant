@@ -11,7 +11,7 @@ import Foundation
 protocol BotRouterInput: AnyObject {
     func displayError(message: String)
     func displayContacts()
-    func displaySurvey(delegate: SurveyDelegate)
+    func displaySurvey(id: SurveyId, delegate: SurveyDelegate)
 }
 
 class BotRouter {
@@ -33,13 +33,13 @@ extension BotRouter: BotRouterInput {
         router.present()
     }
 
-    func displaySurvey(delegate: SurveyDelegate) {
+    func displaySurvey(id: SurveyId, delegate: SurveyDelegate) {
         guard let displayManager = displayManager else {
             displayError(message: "Could not get display manager")
             return
         }
         let router = SurveyRouter(displayManager: displayManager, surveyDelegate: delegate)
-        router.present()
+        router.present(id: id)
     }
 
     func displayError(message: String) {

@@ -15,11 +15,14 @@ protocol SurveyViewOutput: AnyObject {
     func openSurvey(url: String)
     func showError(message: String)
     func getBotSurvey()
+    func getCitizenshipSurvey()
+    func viewLoaded()
 }
 
 protocol SurveyViewInput: AnyObject {
     func showSurvey(url: String)
     func showBotSurvey(questions: SurveyQuestions)
+    func showMultiPartSurvey(title: String, questions: [SurveyQuestions])
 }
 
 final class SurveyViewController: UIViewController {
@@ -36,10 +39,11 @@ final class SurveyViewController: UIViewController {
     }
 
     let presenter: SurveyViewOutput
-    let consentButton      = makeButton("Show Consent Form")
-    let surveyButton       = makeButton("Show Survey")
-    let surveyBotButton    = makeButton("Show Bot Created Survey")
-    let googleSurveyButton = makeButton("Show Google Forms Survey")
+    let consentButton           = makeButton("Show Consent Form")
+    let surveyButton            = makeButton("Show Survey")
+    let surveyBotButton         = makeButton("Show Bot Created Survey")
+    let googleSurveyButton      = makeButton("Show Google Forms Survey")
+    let citizenshipSurveyButton = makeButton("Show Citizenship Survey")
 
     init(presenter: SurveyViewOutput) {
         self.presenter = presenter
@@ -73,8 +77,9 @@ private extension SurveyViewController {
         surveyButton.addTarget(self, action: #selector(viewSurveyTapped), for: .touchUpInside)
         surveyBotButton.addTarget(self, action: #selector(viewBotSurveyTapped), for: .touchUpInside)
         googleSurveyButton.addTarget(self, action: #selector(viewGoogleSurveyTapped), for: .touchUpInside)
+        citizenshipSurveyButton.addTarget(self, action: #selector(viewCitizenshipSurveyTapped), for: .touchUpInside)
         view.backgroundColor = .white
-        [consentButton, surveyButton, surveyBotButton, googleSurveyButton]
+        [consentButton, surveyButton, surveyBotButton, googleSurveyButton, citizenshipSurveyButton]
             .forEach { view.addSubview($0) }
     }
 
@@ -95,10 +100,15 @@ private extension SurveyViewController {
             googleSurveyButton.topAnchor.constraint(equalTo: surveyBotButton.bottomAnchor, constant: 32),
             googleSurveyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 42),
             googleSurveyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -42),
+
+            citizenshipSurveyButton.topAnchor.constraint(equalTo: googleSurveyButton.bottomAnchor, constant: 32),
+            citizenshipSurveyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 42),
+            citizenshipSurveyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -42),
         ])
     }
 
     func updateView() {
+        presenter.viewLoaded()
     }
 
     class func makeButton(_ title: String) -> UIButton {
@@ -131,22 +141,40 @@ private extension SurveyViewController {
         }
         presenter.openSurvey(url: url)
     }
+
+    @objc func viewCitizenshipSurveyTapped(sender: AnyObject) {
+        presenter.getCitizenshipSurvey()
+    }
 }
 
 // MARK: - SurveyViewInput
 
 extension SurveyViewController: SurveyViewInput {
+    func showMultiPartSurvey(title: String, questions: [SurveyQuestions]) {
+        let task = SurveyTaskFactory.makeMultiPartSurvey(title: title, surveyQuestions: questions)
+        showORKSurvey(task: task)
+    }
+
     func showSurvey(url: String) {
         viewModel = .init(url: url)
     }
 
     func showBotSurvey(questions: SurveyQuestions) {
         let task = SurveyTaskFactory.makeBotSurvey(surveyQuestions: questions)
+        showORKSurvey(task: task)
+    }
+}
+
+// MARK: - Private
+
+private extension SurveyViewController {
+    func showORKSurvey(task: ORKOrderedTask) {
         let taskViewController = ORKTaskViewController(task: task, taskRun: nil)
         taskViewController.delegate = self
         present(taskViewController, animated: true, completion: nil)
     }
 }
+
 
 // MARK: - ORKTaskViewControllerDelegate
 

@@ -14,4 +14,22 @@ extension ResponseCategoryModel {
         let words = response.split(separator: .init(" "))
         return words.contains { $0.uppercased() == "SURVEY" }
     }
+
+    func surveyId() -> SurveyId {
+        guard response.count <= GlobalConstants.eighty else { return .none }
+        let words = response.split(separator: .init(" "))
+        if (words.contains(where: { $0.uppercased() == "SURVEY" })) {
+            if (words.contains(where: { $0.uppercased() == "CITIZENSHIP" })) {
+                return .citizenship
+            } else if (words.contains(where: { $0.uppercased() == "BOT" })) {
+                return .bot
+            } else if (words.contains(where: { $0.uppercased() == "GOOGLE" })) {
+                return .google
+            } else {
+                return .none
+            }
+        } else {
+            return .none
+        }
+    }
 }

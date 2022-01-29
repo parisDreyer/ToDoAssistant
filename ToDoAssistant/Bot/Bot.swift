@@ -62,8 +62,8 @@ private extension Bot {
         case .getContacts:
             interactor.getContacts()
             return "... Fetching Contacts ..."
-        case .getSurvey:
-            interactor.getSurvey()
+        case .getSurvey(let surveyId):
+            interactor.getSurvey(id: surveyId)
             return "...Fetching Survey ..."
         case .getMoreInfo(let about):
             return "Could you tell me more about what \(about.response) means?"

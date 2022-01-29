@@ -22,7 +22,7 @@ final class CategoryDictionary {
         case StaticActionID.contacts.rawValue:
             return .getContacts
         case StaticActionID.survey.rawValue:
-            return .getSurvey
+            return .getSurvey(surveyId: category.getSurveyId())
         default:
             break
         }
@@ -49,7 +49,7 @@ final class CategoryDictionary {
         } else if category.isContactsRequest {
             action = .getContacts
         } else if category.isSurveyRequest {
-            action = .getSurvey
+            action = .getSurvey(surveyId: category.getSurveyId())
         } else if category.isUncategorized {
             action = .getMoreInfo(about: model)
         } else if model.isNegation {

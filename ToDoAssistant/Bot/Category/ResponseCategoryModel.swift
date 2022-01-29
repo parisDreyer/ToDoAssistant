@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Corresonds to the Category DB Table
 struct ResponseCategoryModel {
     let response: String
     let previousResponse: String?
