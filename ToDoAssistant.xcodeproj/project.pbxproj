@@ -39,6 +39,7 @@
 		566D98682690F34300BE68C4 /* CitizenshipSurvey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566D98672690F34300BE68C4 /* CitizenshipSurvey.swift */; };
 		566D986A2690FA0200BE68C4 /* FileLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566D98692690FA0200BE68C4 /* FileLoader.swift */; };
 		566D986C2691EB8F00BE68C4 /* SurveyId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566D986B2691EB8F00BE68C4 /* SurveyId.swift */; };
+		5673D77327A5D446001688AE /* StringUniqueIdEncodeDecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5673D77227A5D446001688AE /* StringUniqueIdEncodeDecodeTests.swift */; };
 		5680017A259AC70D000DB888 /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56800179259AC70D000DB888 /* ContactsTests.swift */; };
 		56800183259AC7B2000DB888 /* MockDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56800182259AC7B2000DB888 /* MockDisplayManager.swift */; };
 		56B9336825717627001EB195 /* ContactsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B9336725717627001EB195 /* ContactsInteractor.swift */; };
@@ -71,6 +72,7 @@
 		56F46094265A9588005EA565 /* ConsentDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F46093265A9588005EA565 /* ConsentDocument.swift */; };
 		56F46099265A971F005EA565 /* ConsentTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F46098265A971F005EA565 /* ConsentTask.swift */; };
 		56F4609F265FDB4A005EA565 /* SurveyTaskFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F4609E265FDB4A005EA565 /* SurveyTaskFactory.swift */; };
+		56F5B3C92693CDA200773D6A /* String+BotExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F5B3C82693CDA200773D6A /* String+BotExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +131,7 @@
 		566D98672690F34300BE68C4 /* CitizenshipSurvey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitizenshipSurvey.swift; sourceTree = "<group>"; };
 		566D98692690FA0200BE68C4 /* FileLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileLoader.swift; sourceTree = "<group>"; };
 		566D986B2691EB8F00BE68C4 /* SurveyId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyId.swift; sourceTree = "<group>"; };
+		5673D77227A5D446001688AE /* StringUniqueIdEncodeDecodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUniqueIdEncodeDecodeTests.swift; sourceTree = "<group>"; };
 		56800179259AC70D000DB888 /* ContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTests.swift; sourceTree = "<group>"; };
 		56800182259AC7B2000DB888 /* MockDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDisplayManager.swift; sourceTree = "<group>"; };
 		56B9336725717627001EB195 /* ContactsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsInteractor.swift; sourceTree = "<group>"; };
@@ -159,6 +162,7 @@
 		56F46093265A9588005EA565 /* ConsentDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentDocument.swift; sourceTree = "<group>"; };
 		56F46098265A971F005EA565 /* ConsentTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConsentTask.swift; sourceTree = "<group>"; };
 		56F4609E265FDB4A005EA565 /* SurveyTaskFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTaskFactory.swift; sourceTree = "<group>"; };
+		56F5B3C82693CDA200773D6A /* String+BotExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+BotExtensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +280,7 @@
 		56279F3B2516264C00DAC0ED /* ToDoAssistantTests */ = {
 			isa = PBXGroup;
 			children = (
+				5673D77127A5D417001688AE /* String+Extensions */,
 				56800181259AC761000DB888 /* Mocks */,
 				56800178259AC6D2000DB888 /* Contacts */,
 				56279F3E2516264C00DAC0ED /* Info.plist */,
@@ -332,6 +337,7 @@
 		5653736225167C0E00828464 /* Bot */ = {
 			isa = PBXGroup;
 			children = (
+				56F5B3C72693CD8900773D6A /* Extensions */,
 				5626532426647A8200359DBB /* Action */,
 				5626532326647A1A00359DBB /* Category */,
 				5653736325167C1B00828464 /* Bot.swift */,
@@ -357,6 +363,14 @@
 				566D98652690CA5E00BE68C4 /* CitizenshipSurvey.json */,
 			);
 			path = JSON;
+			sourceTree = "<group>";
+		};
+		5673D77127A5D417001688AE /* String+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5673D77227A5D446001688AE /* StringUniqueIdEncodeDecodeTests.swift */,
+			);
+			path = "String+Extensions";
 			sourceTree = "<group>";
 		};
 		56800178259AC6D2000DB888 /* Contacts */ = {
@@ -460,6 +474,14 @@
 				56F074C92663C6240099DA8F /* ORKFieldValue.swift */,
 			);
 			path = ResearchKitSurvey;
+			sourceTree = "<group>";
+		};
+		56F5B3C72693CD8900773D6A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				56F5B3C82693CDA200773D6A /* String+BotExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -637,6 +659,7 @@
 				56077FCF257D318900B3E0C2 /* ResponseCategoryModel+ContactsExtensions.swift in Sources */,
 				56279F2A2516264A00DAC0ED /* ContentView.swift in Sources */,
 				56077FD7257D337100B3E0C2 /* ResponseCategoryModel+NewsExtensions.swift in Sources */,
+				56F5B3C92693CDA200773D6A /* String+BotExtensions.swift in Sources */,
 				56D1CE4F2555CF47008485FD /* String+Extensions.swift in Sources */,
 				5653737125167C8000828464 /* MessagesView.swift in Sources */,
 				5653736C25167C4500828464 /* MessageViewPresenter.swift in Sources */,
@@ -666,6 +689,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5680017A259AC70D000DB888 /* ContactsTests.swift in Sources */,
+				5673D77327A5D446001688AE /* StringUniqueIdEncodeDecodeTests.swift in Sources */,
 				56800183259AC7B2000DB888 /* MockDisplayManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

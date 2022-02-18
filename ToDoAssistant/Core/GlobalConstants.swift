@@ -9,8 +9,10 @@
 import Foundation
 
 enum GlobalConstants {
+    static let emptyString = ""
     static let txt = "txt"
     static let spaceSeparator: String.Element = " "
+    static let spaceSeparatorString: String = " "
     static let newLine: String = "\n"
     static let eighty: Int = 80
 }

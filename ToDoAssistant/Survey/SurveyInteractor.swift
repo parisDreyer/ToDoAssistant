@@ -23,7 +23,7 @@ final class SurveyInteractor {
         let surveyURL: String
         var surveyQuestions: SurveyQuestions?
         var citizenshipSurvey: CitizenshipSurvey?
-        init(surveyURL: String = "", surveyQuestions: SurveyQuestions? = nil, citizenshipSurvey: CitizenshipSurvey? = nil) {
+        init(surveyURL: String = GlobalConstants.emptyString, surveyQuestions: SurveyQuestions? = nil, citizenshipSurvey: CitizenshipSurvey? = nil) {
             self.surveyURL = surveyURL
             self.surveyQuestions = surveyQuestions
             self.citizenshipSurvey = citizenshipSurvey

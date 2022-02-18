@@ -14,11 +14,22 @@ protocol BotRouterInput: AnyObject {
     func displaySurvey(id: SurveyId, delegate: SurveyDelegate)
 }
 
+protocol BotRouterOutput: AnyObject {
+    func saveData()
+}
+
 class BotRouter {
     private(set) weak var displayManager: DisplayManagerInput?
+    weak var interactor: BotRouterOutput?
 
     init(displayManager: DisplayManagerInput?) {
         self.displayManager = displayManager
+        self.displayManager?.setDelegate(self)
+    }
+
+    func present() {
+        // TODO: - refactor BotRouter and MessagesViewPresenter so that this router is the sole interface for the bot
+
     }
 }
 
@@ -44,5 +55,11 @@ extension BotRouter: BotRouterInput {
 
     func displayError(message: String) {
         displayManager?.displayError(error: message)
+    }
+}
+
+extension BotRouter: DisplayManagerDelegate {
+    func save() {
+        interactor?.saveData()
     }
 }

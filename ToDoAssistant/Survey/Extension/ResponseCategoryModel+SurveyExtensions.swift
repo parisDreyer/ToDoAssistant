@@ -11,13 +11,13 @@ import Foundation
 extension ResponseCategoryModel {
     func calculateIsSurveyRequest() -> Bool {
         guard response.count <= GlobalConstants.eighty else { return false }
-        let words = response.split(separator: .init(" "))
+        let words = response.split(separator: GlobalConstants.spaceSeparator)
         return words.contains { $0.uppercased() == "SURVEY" }
     }
 
     func surveyId() -> SurveyId {
         guard response.count <= GlobalConstants.eighty else { return .none }
-        let words = response.split(separator: .init(" "))
+        let words = response.split(separator: GlobalConstants.spaceSeparator)
         if (words.contains(where: { $0.uppercased() == "SURVEY" })) {
             if (words.contains(where: { $0.uppercased() == "CITIZENSHIP" })) {
                 return .citizenship

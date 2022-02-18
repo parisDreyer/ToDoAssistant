@@ -24,7 +24,7 @@ extension Article {
     ///     Asssumes text is not all upcased or downcased
     var properNouns: String {
         let text = unwrap(title) + unwrap(description) + unwrap(content)
-        var properNouns = ""
+        var properNouns = GlobalConstants.emptyString
         // check each word in text splitting on space and punctuation
         text.enumerateSubstrings(in: text.startIndex..<text.endIndex, options: .byWords, { (subString, _, _, _) -> Void in
             guard let word = subString,
@@ -39,7 +39,7 @@ extension Article {
             properNouns += "Key: \(word)\(GlobalConstants.newLine)"
         })
         guard !properNouns.isEmpty else {
-            return ""
+            return GlobalConstants.emptyString
         }
         return "===================\(GlobalConstants.newLine)Proper Nouns In Body\(GlobalConstants.newLine)-------------------\(GlobalConstants.newLine)" + properNouns + "\(GlobalConstants.newLine)-------------------\(GlobalConstants.newLine)"
     }
@@ -48,7 +48,7 @@ extension Article {
 // MARK: - Private
 
 private extension Article {
-    func unwrap(_ value: String?, _ prefix: String = "", _ suffix: String = " ") -> String {
-        return value.map { "\(prefix)\($0)\(suffix)" } ?? ""
+    func unwrap(_ value: String?, _ prefix: String = GlobalConstants.emptyString, _ suffix: String = GlobalConstants.spaceSeparatorString) -> String {
+        return value.map { "\(prefix)\($0)\(suffix)" } ?? GlobalConstants.emptyString
     }
 }

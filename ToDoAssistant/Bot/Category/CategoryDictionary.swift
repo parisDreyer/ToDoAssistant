@@ -9,7 +9,7 @@
 import Foundation
 
 final class CategoryDictionary {
-    private(set) var actionsByIdentifier: [Double: [Action]] = [:]
+    private(set) var actionsByIdentifier: [String: [Action]] = [:]
 
     /// This function is the sole place to return an action that the bot will say or do
     func action(category: ResponseCategory) -> Action? {
@@ -28,8 +28,12 @@ final class CategoryDictionary {
         }
 
         guard let actions = actionsByIdentifier[identifier], !actions.isEmpty else {
-            // when the bot has no saved memory of actions to use in this situation, default to greet
-            return .greet
+            // load deeper saved memory associated with the category's response model
+            let rememberedCategory = ResponseCategory.from(category: category)
+            rememberedCategory?.loadBy(id: identifier)
+            return rememberedCategory.map {
+                .rememberedResponse(response: $0.model)
+            }
         }
 
         // if no other options present themselves and we have actions in memory, choose something random for the bot to say or do

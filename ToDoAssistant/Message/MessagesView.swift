@@ -10,7 +10,7 @@ import Foundation
 import SwiftUI
 
 struct MessagesView: View {
-    @State var userMessage: String = ""
+    @State var userMessage: String = GlobalConstants.emptyString
     @ObservedObject var viewModel = MessagesViewModel()
 
     private(set) var presenter: MessageViewPresenter
@@ -52,7 +52,7 @@ extension MessagesView {
         guard !userMessage.isEmpty else { return }
         let message = Message(id: viewModel.messages.count, sender: .user, message: userMessage)
         presenter.receive(message: message)
-        userMessage = ""
+        userMessage = GlobalConstants.emptyString
     }
 
     func setMessage(_ message: Message) {

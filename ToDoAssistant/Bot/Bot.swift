@@ -77,6 +77,8 @@ private extension Bot {
             return "I don't know about \(userResponse.response)"
         case .greet:
             return "Hi!"
+        case .rememberedResponse(let remembered):
+            return remembered.response
         }
     }
 }
@@ -84,6 +86,28 @@ private extension Bot {
 // MARK: - BotInteractorOutput
 
 extension Bot: BotInteractorOutput {
+    func saveData() {
+        // check these before adding more data to prevent inserting data in an endless loop
+        var savedIds: Set<String> = []
+
+        var currentResponseCategory = previousResponse
+        while currentResponseCategory != nil,
+              let id = currentResponseCategory?.possibleUniqueIdentifier,
+              !savedIds.contains(id) {
+            savedIds.insert(id)
+            currentResponseCategory?.save()
+            currentResponseCategory = currentResponseCategory?.previousResponse
+        }
+
+        var currentUserInputResponseCategory = previousUserInput
+        while currentUserInputResponseCategory != nil,
+              let id = currentUserInputResponseCategory?.possibleUniqueIdentifier,
+              !savedIds.contains(id) {
+            currentUserInputResponseCategory?.save()
+            currentUserInputResponseCategory = currentUserInputResponseCategory?.previousResponse
+        }
+    }
+
     func update(response: String) {
         let message = Message(id: -1, sender: .bot, message: response)
         presenter?.receive(message: message)
