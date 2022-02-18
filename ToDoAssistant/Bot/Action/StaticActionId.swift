@@ -8,9 +8,9 @@
 
 import Foundation
 
-enum StaticActionID: Double {
-    case greet = 0
-    case news = 1
-    case contacts = 2
-    case survey = 3
+enum StaticActionID: String {
+    case greet = "0"
+    case news = "1"
+    case contacts = "2"
+    case survey = "3"
 }

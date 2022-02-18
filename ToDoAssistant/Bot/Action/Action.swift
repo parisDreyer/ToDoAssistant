@@ -44,7 +44,7 @@ extension Action: Hashable {
 
 private extension Action {
 
-    var possibleUniqueIdentifier: Double? {
+    var possibleUniqueIdentifier: String? {
         switch self {
         case .getMoreInfo(let category), .askQuestion(let category), .tellFact(let category), .confirm(let category), .deny(let category), .rememberedResponse(let category):
             return category.possibleUniqueIdentifier

@@ -9,17 +9,17 @@
 import Foundation
 
 protocol Categorizable: AnyObject {
-    var possibleUniqueIdentifier: Double { get }
+    var possibleUniqueIdentifier: String { get }
 }
 
 protocol StoredDataItem: AnyObject {
     func save()
-    func loadBy(id: Double)
+    func loadBy(id: String)
 }
 
 struct Category: Decodable {
     let id: Int64
-    let calculatedUniqueIdentifier: Double
+    let calculatedUniqueIdentifier: String
 }
 
 // Wrapper for ResponseCategoryModel
@@ -70,13 +70,21 @@ final class ResponseCategory {
             && model.userRepeatedThemself
             && (categoryDictionary == nil || requiresMoreContext)
     }
+
+    class func from(category: ResponseCategory) -> ResponseCategory? {
+        guard let dictionary = category.categoryDictionary else {
+            return nil
+        }
+        return .init(categoryDictionary: dictionary,
+                     previousResponse: category.previousResponse)
+    }
 }
 
 // MARK: - Categorizable
 
 extension ResponseCategory: Categorizable {
 
-    var possibleUniqueIdentifier: Double {
+    var possibleUniqueIdentifier: String {
         return model.uniqueIdentifier()
     }
 
@@ -85,7 +93,7 @@ extension ResponseCategory: Categorizable {
 // MARK: - StoredDataItem
 
 extension ResponseCategory: StoredDataItem {
-    func loadBy(id: Double) {
+    func loadBy(id: String) {
         guard let row = categoriesDao.get(identifier: id) else {
             // todo error handling
             return

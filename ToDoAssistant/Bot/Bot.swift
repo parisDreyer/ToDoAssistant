@@ -88,7 +88,7 @@ private extension Bot {
 extension Bot: BotInteractorOutput {
     func saveData() {
         // check these before adding more data to prevent inserting data in an endless loop
-        var savedIds: Set<Double> = []
+        var savedIds: Set<String> = []
 
         var currentResponseCategory = previousResponse
         while currentResponseCategory != nil,

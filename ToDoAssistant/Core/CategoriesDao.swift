@@ -20,7 +20,7 @@ final class CategoriesDao: BaseDao {
         case insufficientDataForTableInsert
     }
     private let id = Expression<Int64>(Constants.id.rawValue)
-    private let calculatedUniqueIdentifier = Expression<Double>(Constants.calculatedUniqueIdentifier.rawValue)
+    private let calculatedUniqueIdentifier = Expression<String>(Constants.calculatedUniqueIdentifier.rawValue)
 
     init() {
         super.init(name: Constants.categories.rawValue)
@@ -46,7 +46,7 @@ final class CategoriesDao: BaseDao {
         _ = try connection.run(getTable().insert(calculatedUniqueIdentifier <- model.possibleUniqueIdentifier))
     }
 
-    func get(identifier: Double) -> Row? {
+    func get(identifier: String) -> Row? {
         do {
             let query = getTable().where(calculatedUniqueIdentifier == identifier)
             return try connection?.pluck(query)

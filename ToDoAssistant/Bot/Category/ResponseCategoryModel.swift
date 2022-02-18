@@ -17,8 +17,8 @@ struct ResponseCategoryModel {
 
     // NOTE: Only used in the var: possibleUniqueIdentifier
     // Since the possibleUniqueIdentifier var is expensive to compute we store it here after calculating
-    private var calculatedUniqueIdentifier: Double?
-    var possibleUniqueIdentifier: Double? {
+    private var calculatedUniqueIdentifier: String?
+    var possibleUniqueIdentifier: String? {
         return calculatedUniqueIdentifier
     }
 
@@ -32,7 +32,7 @@ struct ResponseCategoryModel {
         self.previousResponseWasNegation = previousResponseWasNegation
     }
 
-    init(_ id: Double) {
+    init(_ id: String) {
         response = String.from(calculatedUniqueIdentifier: id) ?? GlobalConstants.emptyString
         calculatedUniqueIdentifier = id
         previousResponse = nil
@@ -108,12 +108,12 @@ extension ResponseCategoryModel {
         return isSurvey
     }
 
-    mutating func uniqueIdentifier() -> Double {
+    mutating func uniqueIdentifier() -> String {
         if let calculatedUniqueIdentifier = calculatedUniqueIdentifier {
             return calculatedUniqueIdentifier
         }
 
-        let identifier: Double
+        let identifier: String
         if isNewsRequest() {
             identifier = StaticActionID.news.rawValue
         } else if isContactsRequest() {
@@ -124,7 +124,7 @@ extension ResponseCategoryModel {
             identifier = id
         } else {
             // should never happen if the above case is implemented correctly
-            identifier = 0
+            identifier = "0"
         }
         calculatedUniqueIdentifier = identifier
         return identifier
