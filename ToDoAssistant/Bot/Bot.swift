@@ -9,6 +9,9 @@
 import Foundation
 
 final class Bot {
+    private enum Constants {
+        static let maxIterationCountWithoutAnythingToSave = 12
+    }
     private var categoryDictionary = CategoryDictionary()
     private var previousUserInput: ResponseCategory?
     private var previousResponse: ResponseCategory?
@@ -89,22 +92,32 @@ extension Bot: BotInteractorOutput {
     func saveData() {
         // check these before adding more data to prevent inserting data in an endless loop
         var savedIds: Set<String> = []
-
-        var currentResponseCategory = previousResponse
-        while currentResponseCategory != nil,
-              let id = currentResponseCategory?.possibleUniqueIdentifier,
-              !savedIds.contains(id) {
+        var iterationCountWithoutFindingAnythingToSave = 0
+        // helper anonymous func operating on variables in this `saveData` function
+        let saveResponse = { (category: ResponseCategory?) in
+            guard let id = category?.possibleUniqueIdentifier, !savedIds.contains(id) else {
+                iterationCountWithoutFindingAnythingToSave += 1
+                return
+            }
             savedIds.insert(id)
-            currentResponseCategory?.save()
-            currentResponseCategory = currentResponseCategory?.previousResponse
+            category?.save()
+            iterationCountWithoutFindingAnythingToSave = 0
         }
 
+        // save responses in sequence same as conversation so that primary key ID in database lines up with conversation
+        var currentResponseCategory = previousResponse
         var currentUserInputResponseCategory = previousUserInput
-        while currentUserInputResponseCategory != nil,
-              let id = currentUserInputResponseCategory?.possibleUniqueIdentifier,
-              !savedIds.contains(id) {
-            currentUserInputResponseCategory?.save()
-            currentUserInputResponseCategory = currentUserInputResponseCategory?.previousResponse
+
+        while iterationCountWithoutFindingAnythingToSave < Constants.maxIterationCountWithoutAnythingToSave
+              || (currentUserInputResponseCategory != nil && currentResponseCategory != nil) {
+            // save responses
+            saveResponse(currentUserInputResponseCategory) // user
+            saveResponse(currentResponseCategory)          // bot
+
+            // get the next response in the series
+            currentUserInputResponseCategory = currentUserInputResponseCategory?.previousResponse // user
+            currentResponseCategory = currentResponseCategory?.previousResponse                   // bot
+
         }
     }
 

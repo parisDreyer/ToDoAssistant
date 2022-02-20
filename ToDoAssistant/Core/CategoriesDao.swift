@@ -56,4 +56,15 @@ final class CategoriesDao: BaseDao {
         }
         return nil
     }
+
+    func get(primaryKey: Int64) -> Row? {
+        do {
+            let query = getTable().where(id == primaryKey)
+            return try connection?.pluck(query)
+        } catch {
+            print("error")
+            // todo error handling
+        }
+        return nil
+    }
 }

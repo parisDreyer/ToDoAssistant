@@ -15,6 +15,7 @@ protocol Categorizable: AnyObject {
 protocol StoredDataItem: AnyObject {
     func save()
     func loadBy(id: String)
+    func loadBy(primaryKey: Int64)
 }
 
 struct Category: Decodable {
@@ -93,6 +94,33 @@ extension ResponseCategory: Categorizable {
 // MARK: - StoredDataItem
 
 extension ResponseCategory: StoredDataItem {
+    func loadBy(primaryKey: Int64) {
+        guard let row = categoriesDao.get(primaryKey: primaryKey) else {
+            // todo error handling
+            return
+        }
+        let decoder = row.decoder()
+        do {
+            let category = try Category(from: decoder)
+            let calculatedUniqueIdentifier = category.calculatedUniqueIdentifier
+            // this operation is expensive, maybe only do this if needed
+            let responseString = String.from(calculatedUniqueIdentifier: calculatedUniqueIdentifier)
+
+            guard let responseString = responseString else {
+                // todo error handling
+                return
+            }
+            let oldModel = model
+            model = ResponseCategoryModel(response: responseString,
+                                          primaryKey: category.id,
+                                          previousResponse: oldModel.previousResponse,
+                                          previousResponseWasAffirmation: oldModel.previousResponseWasAffirmation,
+                                          previousResponseWasNegation: oldModel.previousResponseWasNegation)
+        } catch {
+            // todo error handling
+        }
+    }
+
     func loadBy(id: String) {
         guard let row = categoriesDao.get(identifier: id) else {
             // todo error handling
@@ -111,6 +139,7 @@ extension ResponseCategory: StoredDataItem {
             }
             let oldModel = model
             model = ResponseCategoryModel(response: responseString,
+                                          primaryKey: category.id,
                                           previousResponse: oldModel.previousResponse,
                                           previousResponseWasAffirmation: oldModel.previousResponseWasAffirmation,
                                           previousResponseWasNegation: oldModel.previousResponseWasNegation)
