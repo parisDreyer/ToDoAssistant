@@ -10,12 +10,16 @@ import UIKit
 import SwiftUI
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    typealias Dependencies = ContentView.Dependencies
 
     var window: UIWindow?
-    var rootViewController: UIViewController?
-    var rootNavigationController = UINavigationController()
-    lazy var displayManager: DisplayManagerInput = {
-        return TodoAssistantDisplayManager(navigationController: rootNavigationController)
+    private var rootViewController: UIViewController?
+    private var rootNavigationController = UINavigationController()
+    private lazy var dependencies: Dependencies = {
+        let displayManager = TodoAssistantDisplayManager(navigationController: rootNavigationController)
+        return AppDependencies(displayManager: displayManager,
+                        categoriesDao: CategoriesDao(),
+                        categoryDictionary: CategoryDictionary())
     }()
 
 
@@ -25,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = ContentView(displayManager: displayManager)
+        let contentView = ContentView(dependencies: dependencies)
         let viewController = UIHostingController(rootView: contentView)
         rootNavigationController.pushViewController(viewController, animated: false)
 
@@ -60,7 +64,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called when the scene will move from an active state to an inactive state.
         // This may occur due to temporary interruptions (ex. an incoming phone call).
 
-        displayManager.cleanupAndExit()
+        dependencies.displayManager.cleanupAndExit()
     }
 
     func sceneWillEnterForeground(_ scene: UIScene) {

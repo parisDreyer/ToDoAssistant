@@ -25,22 +25,21 @@ struct Category: Decodable {
 
 // Wrapper for ResponseCategoryModel
 final class ResponseCategory {
+    typealias Dependencies = CategoriesDaoDependency
+                             & CategoryDictionaryDependency
+    private let dependencies: Dependencies
     private(set) var model: ResponseCategoryModel
     private(set) var previousResponse: ResponseCategory?
-    weak var categoryDictionary: CategoryDictionary?
-    private lazy var categoriesDao: CategoriesDao = { () -> CategoriesDao in
-        CategoriesDao()
-    }()
 
-    init(response: String? = nil,
-        categoryDictionary: CategoryDictionary,
-        previousResponse: ResponseCategory? = nil) {
+    init(dependencies: Dependencies,
+         response: String? = nil,
+         previousResponse: ResponseCategory? = nil) {
+        self.dependencies = dependencies
         self.previousResponse = previousResponse
         model = ResponseCategoryModel(response: response?.uppercased() ?? GlobalConstants.emptyString,
                                       previousResponse: previousResponse?.model.response,
                                       previousResponseWasAffirmation: previousResponse?.model.isAffirmation,
                                       previousResponseWasNegation: previousResponse?.model.isNegation)
-        self.categoryDictionary = categoryDictionary
     }
 
     var isNewsRequest: Bool {
@@ -61,7 +60,7 @@ final class ResponseCategory {
 
     var isUncategorized: Bool {
         let requiresMoreContext: Bool
-        if case .getMoreInfo = categoryDictionary?.action(category: self) {
+        if case .getMoreInfo = dependencies.categoryDictionary.action(category: self) {
             requiresMoreContext = true
         } else {
             requiresMoreContext = false
@@ -69,15 +68,11 @@ final class ResponseCategory {
         return !model.isNegation
             && !model.isAffirmation
             && model.userRepeatedThemself
-            && (categoryDictionary == nil || requiresMoreContext)
+            && requiresMoreContext
     }
 
     class func from(category: ResponseCategory) -> ResponseCategory? {
-        guard let dictionary = category.categoryDictionary else {
-            return nil
-        }
-        return .init(categoryDictionary: dictionary,
-                     previousResponse: category.previousResponse)
+        return .init(dependencies: category.dependencies, previousResponse: category.previousResponse)
     }
 }
 
@@ -95,7 +90,7 @@ extension ResponseCategory: Categorizable {
 
 extension ResponseCategory: StoredDataItem {
     func loadBy(primaryKey: Int64) {
-        guard let row = categoriesDao.get(primaryKey: primaryKey) else {
+        guard let row = dependencies.categoriesDao.get(primaryKey: primaryKey) else {
             // todo error handling
             return
         }
@@ -122,7 +117,7 @@ extension ResponseCategory: StoredDataItem {
     }
 
     func loadBy(id: String) {
-        guard let row = categoriesDao.get(identifier: id) else {
+        guard let row = dependencies.categoriesDao.get(identifier: id) else {
             // todo error handling
             return
         }
@@ -151,7 +146,7 @@ extension ResponseCategory: StoredDataItem {
 
     func save() {
         do {
-            try categoriesDao.insert(model: self)
+            try dependencies.categoriesDao.insert(model: self)
         } catch {
             // todo error handling
         }

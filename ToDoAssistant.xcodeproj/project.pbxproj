@@ -42,6 +42,8 @@
 		5673D77327A5D446001688AE /* StringUniqueIdEncodeDecodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5673D77227A5D446001688AE /* StringUniqueIdEncodeDecodeTests.swift */; };
 		5680017A259AC70D000DB888 /* ContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56800179259AC70D000DB888 /* ContactsTests.swift */; };
 		56800183259AC7B2000DB888 /* MockDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56800182259AC7B2000DB888 /* MockDisplayManager.swift */; };
+		5695533827C2A1B400C7248A /* ResponseCategoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5695533727C2A1B400C7248A /* ResponseCategoryTests.swift */; };
+		5695533A27C3026F00C7248A /* AppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5695533927C3026F00C7248A /* AppDependencies.swift */; };
 		56B9336825717627001EB195 /* ContactsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B9336725717627001EB195 /* ContactsInteractor.swift */; };
 		56B9336D257260FC001EB195 /* ContactsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B9336C257260FB001EB195 /* ContactsRepository.swift */; };
 		56B9337225726498001EB195 /* ContactsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B9337125726498001EB195 /* ContactsPresenter.swift */; };
@@ -134,6 +136,8 @@
 		5673D77227A5D446001688AE /* StringUniqueIdEncodeDecodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUniqueIdEncodeDecodeTests.swift; sourceTree = "<group>"; };
 		56800179259AC70D000DB888 /* ContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTests.swift; sourceTree = "<group>"; };
 		56800182259AC7B2000DB888 /* MockDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDisplayManager.swift; sourceTree = "<group>"; };
+		5695533727C2A1B400C7248A /* ResponseCategoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCategoryTests.swift; sourceTree = "<group>"; };
+		5695533927C3026F00C7248A /* AppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencies.swift; sourceTree = "<group>"; };
 		56B9336725717627001EB195 /* ContactsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsInteractor.swift; sourceTree = "<group>"; };
 		56B9336C257260FB001EB195 /* ContactsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsRepository.swift; sourceTree = "<group>"; };
 		56B9337125726498001EB195 /* ContactsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsPresenter.swift; sourceTree = "<group>"; };
@@ -265,6 +269,7 @@
 				56279F302516264C00DAC0ED /* LaunchScreen.storyboard */,
 				56279F332516264C00DAC0ED /* Info.plist */,
 				56279F2D2516264C00DAC0ED /* Preview Content */,
+				5695533927C3026F00C7248A /* AppDependencies.swift */,
 			);
 			path = ToDoAssistant;
 			sourceTree = "<group>";
@@ -280,6 +285,7 @@
 		56279F3B2516264C00DAC0ED /* ToDoAssistantTests */ = {
 			isa = PBXGroup;
 			children = (
+				5695533527C2A18600C7248A /* Bot */,
 				5673D77127A5D417001688AE /* String+Extensions */,
 				56800181259AC761000DB888 /* Mocks */,
 				56800178259AC6D2000DB888 /* Contacts */,
@@ -387,6 +393,22 @@
 				56800182259AC7B2000DB888 /* MockDisplayManager.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		5695533527C2A18600C7248A /* Bot */ = {
+			isa = PBXGroup;
+			children = (
+				5695533627C2A19100C7248A /* Category */,
+			);
+			path = Bot;
+			sourceTree = "<group>";
+		};
+		5695533627C2A19100C7248A /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				5695533727C2A1B400C7248A /* ResponseCategoryTests.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		56B933662571760D001EB195 /* Contacts */ = {
@@ -642,6 +664,7 @@
 				56B933A5257290B2001EB195 /* Contact.swift in Sources */,
 				56CE47A5268898FE00A866CA /* BaseDao.swift in Sources */,
 				56F074CA2663C6240099DA8F /* ORKFieldValue.swift in Sources */,
+				5695533A27C3026F00C7248A /* AppDependencies.swift in Sources */,
 				56B9337225726498001EB195 /* ContactsPresenter.swift in Sources */,
 				56D20DF4263D8ADF000E9897 /* SurveyInteractor.swift in Sources */,
 				563D7BB42674CA3500B5E084 /* LinkedList.swift in Sources */,
@@ -690,6 +713,7 @@
 			files = (
 				5680017A259AC70D000DB888 /* ContactsTests.swift in Sources */,
 				5673D77327A5D446001688AE /* StringUniqueIdEncodeDecodeTests.swift in Sources */,
+				5695533827C2A1B400C7248A /* ResponseCategoryTests.swift in Sources */,
 				56800183259AC7B2000DB888 /* MockDisplayManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

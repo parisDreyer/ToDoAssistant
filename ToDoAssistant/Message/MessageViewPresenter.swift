@@ -21,25 +21,28 @@ protocol MessageViewPresenterInput: AnyObject {
 }
 
 final class MessageViewPresenter {
+    typealias Dependencies = DisplayManagerDependency
+                             & Bot.Dependencies
+    private let dependencies: Dependencies
+
     var setMessage: SetMessage?
     var getLastSentMessage: GetLastSentMessage?
-    private weak var displayManager: DisplayManagerInput?
     private var sendingMessagesQueue = Queue<Message>()
     
     private lazy var interactor: BotInteractor = {
-        let router = BotRouter(displayManager: displayManager)
+        let router = BotRouter(displayManager: dependencies.displayManager)
         let interactor = BotInteractor(router: router)
         router.interactor = interactor
         return interactor
     }()
     private lazy var bot: Bot = { () -> Bot in
-        let bot = Bot(interactor: interactor, presenter: self)
+        let bot = Bot(dependencies: dependencies, interactor: interactor, presenter: self)
         interactor.bot = bot
         return bot
     }()
 
-    init(displayManager: DisplayManagerInput?) {
-        self.displayManager = displayManager
+    init(dependencies: Dependencies) {
+        self.dependencies = dependencies
     }
 }
 

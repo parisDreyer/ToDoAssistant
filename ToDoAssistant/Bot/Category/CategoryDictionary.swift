@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol CategoryDictionaryDependency {
+    var categoryDictionary: CategoryDictionary { get }
+}
+
 final class CategoryDictionary {
     private(set) var actionsByIdentifier: [String: [Action]] = [:]
 
