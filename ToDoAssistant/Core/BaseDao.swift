@@ -9,11 +9,19 @@
 import Foundation
 import SQLite
 
+extension URL {
+    static var documentsURL: URL? {
+        return try? FileManager
+            .default
+            .url(for: .documentDirectory,
+                 in: .userDomainMask,
+                 appropriateFor: nil,
+                 create: true)
+    }
+}
+
 class BaseDao {
     private enum Constants {
-        static var documentsDirectoryPath: String? {
-            NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
-        }
         static let sqlite3FileEnding = "sqlite3"
     }
     let connection: Connection?
@@ -23,10 +31,11 @@ class BaseDao {
     init(name: String) {
         self.name = name
         do {
-            guard let path = Constants.documentsDirectoryPath else {
+            let dbPathName = "\(name).\(Constants.sqlite3FileEnding)"
+            guard let path = URL.documentsURL?.appendingPathComponent(dbPathName) else {
                 throw GeneralError(message: "Could not find document directory path in BaseDao")
             }
-            connection = try Connection("\(path)\(name).\(Constants.sqlite3FileEnding)")
+            connection = try Connection(path.relativePath)
         } catch {
             connection = nil
         }

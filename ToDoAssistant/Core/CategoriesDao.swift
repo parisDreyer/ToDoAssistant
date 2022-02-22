@@ -24,7 +24,7 @@ final class CategoriesDao: BaseDao {
     private let calculatedUniqueIdentifier = Expression<String>(Constants.calculatedUniqueIdentifier.rawValue)
 
     init() {
-        super.init(name: Constants.categories.rawValue)
+        super.init(name: Constants.todoAssistantCategories.rawValue)
     }
 }
 
@@ -32,7 +32,7 @@ final class CategoriesDao: BaseDao {
 
 private extension CategoriesDao {
     private enum Constants: String {
-        case categories
+        case todoAssistantCategories
         case id
         case calculatedUniqueIdentifier
         case actionId
