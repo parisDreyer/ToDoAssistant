@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol CategoryDictionaryDependency {
+    var categoryDictionary: CategoryDictionary { get }
+}
+
 final class CategoryDictionary {
     private(set) var actionsByIdentifier: [String: [Action]] = [:]
 
@@ -31,6 +35,10 @@ final class CategoryDictionary {
             // load deeper saved memory associated with the category's response model
             let rememberedCategory = ResponseCategory.from(category: category)
             rememberedCategory?.loadBy(id: identifier)
+            if let primaryKey = rememberedCategory?.model.primaryKey {
+                // get the next saved response to this remembered category
+                rememberedCategory?.loadBy(primaryKey:  primaryKey + 1)
+            }
             return rememberedCategory.map {
                 .rememberedResponse(response: $0.model)
             }

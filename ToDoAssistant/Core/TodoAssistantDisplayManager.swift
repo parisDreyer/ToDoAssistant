@@ -12,6 +12,10 @@ protocol DisplayManagerDelegate: AnyObject {
     func save()
 }
 
+protocol DisplayManagerDependency {
+    var displayManager: DisplayManagerInput { get }
+}
+
 protocol DisplayManagerInput: AnyObject {
     func present(viewController: UIViewController)
     func displayAlert(alert: String, title: String, style: UIAlertController.Style)

@@ -9,21 +9,35 @@
 import Foundation
 import SQLite
 
-final class CategoriesDao: BaseDao {
+protocol CategoriesDaoDependency {
+    var categoriesDao: CategoriesDaoInput { get }
+}
 
+protocol CategoriesDaoInput: AnyObject {
+    func insert(model: ResponseCategory) throws
+    func get(identifier: String) -> Row?
+    func get(primaryKey: Int64) -> Row?
+}
+
+final class CategoriesDao: BaseDao {
+    private let id = Expression<Int64>(Constants.id.rawValue)
+    private let calculatedUniqueIdentifier = Expression<String>(Constants.calculatedUniqueIdentifier.rawValue)
+
+    init() {
+        super.init(name: Constants.todoAssistantCategories.rawValue)
+    }
+}
+
+// MARK: - Private
+
+private extension CategoriesDao {
     private enum Constants: String {
-        case categories
+        case todoAssistantCategories
         case id
         case calculatedUniqueIdentifier
         case actionId
         case couldNotAccessDBConnectionInCategoryDao
         case insufficientDataForTableInsert
-    }
-    private let id = Expression<Int64>(Constants.id.rawValue)
-    private let calculatedUniqueIdentifier = Expression<String>(Constants.calculatedUniqueIdentifier.rawValue)
-
-    init() {
-        super.init(name: Constants.categories.rawValue)
     }
 
     func createIfNotExists() throws {
@@ -37,7 +51,11 @@ final class CategoriesDao: BaseDao {
         })
         try connection.run(getTable().createIndex(calculatedUniqueIdentifier, unique: true, ifNotExists: true))
     }
+}
 
+// MARK: - CategoriesDaoInput
+
+extension CategoriesDao: CategoriesDaoInput {
     func insert(model: ResponseCategory) throws {
         try createIfNotExists()
         guard let connection = connection else {
@@ -49,6 +67,17 @@ final class CategoriesDao: BaseDao {
     func get(identifier: String) -> Row? {
         do {
             let query = getTable().where(calculatedUniqueIdentifier == identifier)
+            return try connection?.pluck(query)
+        } catch {
+            print("error")
+            // todo error handling
+        }
+        return nil
+    }
+
+    func get(primaryKey: Int64) -> Row? {
+        do {
+            let query = getTable().where(id == primaryKey)
             return try connection?.pluck(query)
         } catch {
             print("error")

@@ -10,13 +10,15 @@ import Foundation
 import SwiftUI
 
 struct MessagesView: View {
+    typealias Dependencies = MessageViewPresenter.Dependencies
+
     @State var userMessage: String = GlobalConstants.emptyString
     @ObservedObject var viewModel = MessagesViewModel()
 
     private(set) var presenter: MessageViewPresenter
 
-    init(displayManager: DisplayManagerInput?) {
-        presenter = MessageViewPresenter(displayManager: displayManager)
+    init(dependencies: Dependencies) {
+        presenter = MessageViewPresenter(dependencies: dependencies)
         presenter.setMessage = setMessage
         presenter.getLastSentMessage = getLastSentMessage
     }

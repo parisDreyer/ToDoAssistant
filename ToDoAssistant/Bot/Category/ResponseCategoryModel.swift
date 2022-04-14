@@ -11,6 +11,7 @@ import Foundation
 /// Corresonds to the Category DB Table
 struct ResponseCategoryModel {
     let response: String
+    let primaryKey: Int64?
     let previousResponse: String?
     let previousResponseWasAffirmation: Bool?
     let previousResponseWasNegation: Bool?
@@ -23,10 +24,12 @@ struct ResponseCategoryModel {
     }
 
     init(response: String,
+         primaryKey: Int64? = nil,
          previousResponse: String? = nil,
          previousResponseWasAffirmation: Bool? = nil,
          previousResponseWasNegation: Bool? = nil) {
         self.response = response
+        self.primaryKey = primaryKey
         self.previousResponse = previousResponse
         self.previousResponseWasAffirmation = previousResponseWasAffirmation
         self.previousResponseWasNegation = previousResponseWasNegation
@@ -34,6 +37,7 @@ struct ResponseCategoryModel {
 
     init(_ id: String) {
         response = String.from(calculatedUniqueIdentifier: id) ?? GlobalConstants.emptyString
+        primaryKey = nil
         calculatedUniqueIdentifier = id
         previousResponse = nil
         previousResponseWasAffirmation = nil
