@@ -40,7 +40,6 @@ final class SurveyViewController: UIViewController {
 
     let presenter: SurveyViewOutput
     let consentButton           = makeButton("Show Consent Form")
-    let surveyButton            = makeButton("Show Survey")
     let surveyBotButton         = makeButton("Show Bot Created Survey")
     let googleSurveyButton      = makeButton("Show Google Forms Survey")
     let citizenshipSurveyButton = makeButton("Show Citizenship Survey")
@@ -74,12 +73,11 @@ private extension SurveyViewController {
 
     func setupView() {
         consentButton.addTarget(self, action: #selector(consentTapped), for: .touchUpInside)
-        surveyButton.addTarget(self, action: #selector(viewSurveyTapped), for: .touchUpInside)
         surveyBotButton.addTarget(self, action: #selector(viewBotSurveyTapped), for: .touchUpInside)
         googleSurveyButton.addTarget(self, action: #selector(viewGoogleSurveyTapped), for: .touchUpInside)
         citizenshipSurveyButton.addTarget(self, action: #selector(viewCitizenshipSurveyTapped), for: .touchUpInside)
         view.backgroundColor = .white
-        [consentButton, surveyButton, surveyBotButton, googleSurveyButton, citizenshipSurveyButton]
+        [consentButton, surveyBotButton, googleSurveyButton, citizenshipSurveyButton]
             .forEach { view.addSubview($0) }
     }
 
@@ -89,11 +87,7 @@ private extension SurveyViewController {
             consentButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -42),
             consentButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
 
-            surveyButton.topAnchor.constraint(equalTo: consentButton.bottomAnchor, constant: 32),
-            surveyButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 42),
-            surveyButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -42),
-
-            surveyBotButton.topAnchor.constraint(equalTo: surveyButton.bottomAnchor, constant: 32),
+            surveyBotButton.topAnchor.constraint(equalTo: consentButton.bottomAnchor, constant: 32),
             surveyBotButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 42),
             surveyBotButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -42),
 
@@ -120,12 +114,6 @@ private extension SurveyViewController {
 
     @objc func consentTapped(sender : AnyObject) {
         let taskViewController = ORKTaskViewController(task: ConsentTask, taskRun: nil)
-        taskViewController.delegate = self
-        present(taskViewController, animated: true, completion: nil)
-    }
-
-    @objc func viewSurveyTapped(sender : AnyObject) {
-        let taskViewController = ORKTaskViewController(task: SurveyTaskFactory.makeExampleSurvey(), taskRun: nil)
         taskViewController.delegate = self
         present(taskViewController, animated: true, completion: nil)
     }
