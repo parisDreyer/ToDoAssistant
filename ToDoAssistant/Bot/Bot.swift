@@ -9,13 +9,8 @@
 import Foundation
 
 final class Bot {
-    private enum Constants {
-        static let maxIterationCountWithoutAnythingToSave = 12
-    }
     typealias Dependencies = ResponseCategory.Dependencies
     private let dependencies: Dependencies
-    private var previousUserInput: ResponseCategory?
-    private var previousResponse: ResponseCategory?
     private(set) var interactor: BotInteractorInput
     private weak var presenter: MessageViewPresenterInput?
 
@@ -36,23 +31,23 @@ final class Bot {
 // MARK: - Private
 
 private extension Bot {
+
     func buildMessage(_ userInput: Message) -> Message? {
         let currentUserResponse = ResponseCategory(dependencies: dependencies,
                                                    response: userInput.message,
-                                                   previousResponse: previousUserInput)
+                                                   previousResponse: interactor.previousUserInput)
         guard let currentBotResponse = botResponse(for: currentUserResponse) else {
             return nil
         }
 
-        previousUserInput = currentUserResponse
+        interactor.previousUserInput = currentUserResponse
         dependencies.categoryDictionary.update(category: currentUserResponse)
 
-        previousResponse = ResponseCategory(dependencies: dependencies,
-                                            response: currentBotResponse,
-                                            previousResponse: previousResponse)
-        if let previousResponse = previousResponse {
-            dependencies.categoryDictionary.update(category: previousResponse)
-        }
+        let previousResponse = ResponseCategory(dependencies: dependencies,
+                                                response: currentBotResponse,
+                                                previousResponse: interactor.previousResponse)
+        dependencies.categoryDictionary.update(category: previousResponse)
+        interactor.previousResponse = previousResponse
 
         return Message(id: userInput.id + 1, sender: .bot, message: currentBotResponse)
     }
@@ -81,7 +76,10 @@ private extension Bot {
         case .askQuestion(let about):
             return "Why do you say \(about.response)?"
         case .tellFact(let about):
-            return "I have often heard that \(about.response)"
+            guard let response = interactor.answer(question: about.response) else {
+                return "I have often heard that \(about.response)"
+            }
+            return response
         case .confirm(let userResponse):
             return "I agree with \(userResponse.response)"
         case .deny(let userResponse):
@@ -97,42 +95,6 @@ private extension Bot {
 // MARK: - BotInteractorOutput
 
 extension Bot: BotInteractorOutput {
-    func saveData() {
-        // check these before adding more data to prevent inserting data in an endless loop
-        var savedIds: Set<String> = []
-        var iterationCountWithoutFindingAnythingToSave = 0
-        var canTrySavingMoreResponseCategories: Bool {
-            iterationCountWithoutFindingAnythingToSave < Constants.maxIterationCountWithoutAnythingToSave
-        }
-        // helper anonymous func operating on variables in this `saveData` function
-        let saveResponse = { (category: ResponseCategory?) in
-            guard let id = category?.possibleUniqueIdentifier, !savedIds.contains(id) else {
-                iterationCountWithoutFindingAnythingToSave += 1
-                return
-            }
-            savedIds.insert(id)
-            category?.save()
-            iterationCountWithoutFindingAnythingToSave = 0
-        }
-
-        // save responses in sequence same as conversation so that primary key ID in database lines up with conversation
-        var currentResponseCategory = previousResponse
-        var currentUserInputResponseCategory = previousUserInput
-        var stillHasResponseCategoryHistoryToSave: Bool {
-            currentUserInputResponseCategory != nil && currentResponseCategory != nil
-        }
-
-        while canTrySavingMoreResponseCategories && stillHasResponseCategoryHistoryToSave {
-            // save responses
-            saveResponse(currentUserInputResponseCategory) // user
-            saveResponse(currentResponseCategory)          // bot
-
-            // get the next response in the series
-            currentUserInputResponseCategory = currentUserInputResponseCategory?.previousResponse // user
-            currentResponseCategory = currentResponseCategory?.previousResponse                   // bot
-        }
-    }
-
     func update(response: String) {
         let message = Message(id: -1, sender: .bot, message: response)
         presenter?.receive(message: message)
@@ -140,11 +102,11 @@ extension Bot: BotInteractorOutput {
 
     func getQuestions() -> [String : [String]] {
         var questions: [String: [String]] = [:]
-        if let previousUserInput = previousUserInput {
+        if let previousUserInput = interactor.previousUserInput {
             let model = previousUserInput.model
             questions[model.response] = getQuestionsFromModel(model)
         }
-        if let previousResponse = previousResponse {
+        if let previousResponse = interactor.previousResponse {
             let model = previousResponse.model
             questions[model.response] = getQuestionsFromModel(model)
         }

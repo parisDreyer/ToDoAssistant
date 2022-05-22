@@ -34,7 +34,6 @@ class BotRouter {
 }
 
 extension BotRouter: BotRouterInput {
-
     func displayContacts() {
         guard let displayManager = displayManager else {
             displayError(message: "Could not get display manager")

@@ -9,8 +9,8 @@
 import Foundation
 
 protocol NewsRequestDelegate: AnyObject {
-    func receiveNews(_ news: News) -> Void
-    func error(error: Error) -> Void
+    func receiveNews(_ news: News)
+    func handleError(error: Error)
 }
 
 /// https://newsapi.org/
@@ -23,7 +23,7 @@ final class NewsRequest {
 
     func getNews() {
         guard let apiKey = loadApiKey(), let requestUrl = URL(string: Constants.newsUrl + apiKey) else {
-            delegate?.error(error: URLError(.badURL, userInfo: ["message" : "Could not perform request with url \(Constants.newsUrl)"]))
+            delegate?.handleError(error: URLError(.badURL, userInfo: ["message" : "Could not perform request with url \(Constants.newsUrl)"]))
             return
         }
         var request = URLRequest(url: requestUrl)
@@ -31,7 +31,7 @@ final class NewsRequest {
         let task = URLSession.shared.dataTask(with: request) { [weak self] (data, _, error) in
 
             if let error = error {
-                self?.delegate?.error(error: error)
+                self?.delegate?.handleError(error: error)
             }
 
             if let data = data, let news = try? JSONDecoder().decode(News.self, from: data) {
