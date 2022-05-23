@@ -65,6 +65,13 @@
 		56D20DF9263D8AEF000E9897 /* SurveyRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D20DF8263D8AEF000E9897 /* SurveyRouter.swift */; };
 		56D20DFE263D8B00000E9897 /* SurveyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D20DFD263D8B00000E9897 /* SurveyRepository.swift */; };
 		56D20E03263D8B22000E9897 /* SurveyPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56D20E02263D8B22000E9897 /* SurveyPresenter.swift */; };
+		56ECA32D2837A97800006857 /* QuestionAnswerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA32C2837A97800006857 /* QuestionAnswerModel.swift */; };
+		56ECA3372837B47700006857 /* bert-base-uncased-vocab.txt in Resources */ = {isa = PBXBuildFile; fileRef = 56ECA3362837B47700006857 /* bert-base-uncased-vocab.txt */; };
+		56ECA3392839417900006857 /* BertInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA3382839417900006857 /* BertInput.swift */; };
+		56ECA33B283941AA00006857 /* BertOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA33A283941AA00006857 /* BertOutput.swift */; };
+		56ECA33D283941E800006857 /* BertVocabulary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA33C283941E800006857 /* BertVocabulary.swift */; };
+		56ECA33F2839423600006857 /* TokenizedString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA33E2839423600006857 /* TokenizedString.swift */; };
+		56ECA341283945AE00006857 /* BERTQAFP16.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 56ECA340283945AE00006857 /* BERTQAFP16.mlmodel */; };
 		56ED012E25951662001770B8 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED012D25951662001770B8 /* ContactsViewController.swift */; };
 		56ED013A2595455C001770B8 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56ED01392595455C001770B8 /* ContactCell.swift */; };
 		56F074CA2663C6240099DA8F /* ORKFieldValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56F074C92663C6240099DA8F /* ORKFieldValue.swift */; };
@@ -158,6 +165,13 @@
 		56D20DF8263D8AEF000E9897 /* SurveyRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRouter.swift; sourceTree = "<group>"; };
 		56D20DFD263D8B00000E9897 /* SurveyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyRepository.swift; sourceTree = "<group>"; };
 		56D20E02263D8B22000E9897 /* SurveyPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyPresenter.swift; sourceTree = "<group>"; };
+		56ECA32C2837A97800006857 /* QuestionAnswerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerModel.swift; sourceTree = "<group>"; };
+		56ECA3362837B47700006857 /* bert-base-uncased-vocab.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "bert-base-uncased-vocab.txt"; sourceTree = "<group>"; };
+		56ECA3382839417900006857 /* BertInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BertInput.swift; sourceTree = "<group>"; };
+		56ECA33A283941AA00006857 /* BertOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BertOutput.swift; sourceTree = "<group>"; };
+		56ECA33C283941E800006857 /* BertVocabulary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BertVocabulary.swift; sourceTree = "<group>"; };
+		56ECA33E2839423600006857 /* TokenizedString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenizedString.swift; sourceTree = "<group>"; };
+		56ECA340283945AE00006857 /* BERTQAFP16.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = BERTQAFP16.mlmodel; sourceTree = "<group>"; };
 		56ED012D25951662001770B8 /* ContactsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
 		56ED01392595455C001770B8 /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		56F074C92663C6240099DA8F /* ORKFieldValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ORKFieldValue.swift; sourceTree = "<group>"; };
@@ -255,6 +269,7 @@
 		56279F242516264A00DAC0ED /* ToDoAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				56ECA3282837A6D500006857 /* MachineLearning */,
 				56D20DEA263D8A73000E9897 /* Survey */,
 				56393515257D7C8E00CA7B33 /* Core */,
 				56393509257D39F000CA7B33 /* ApiKeys */,
@@ -462,6 +477,36 @@
 			path = Survey;
 			sourceTree = "<group>";
 		};
+		56ECA3282837A6D500006857 /* MachineLearning */ = {
+			isa = PBXGroup;
+			children = (
+				56ECA3302837AEAC00006857 /* QuestionAndAnswer */,
+				56ECA32B2837A7A300006857 /* Models */,
+			);
+			path = MachineLearning;
+			sourceTree = "<group>";
+		};
+		56ECA32B2837A7A300006857 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				56ECA340283945AE00006857 /* BERTQAFP16.mlmodel */,
+				56ECA3362837B47700006857 /* bert-base-uncased-vocab.txt */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		56ECA3302837AEAC00006857 /* QuestionAndAnswer */ = {
+			isa = PBXGroup;
+			children = (
+				56ECA32C2837A97800006857 /* QuestionAnswerModel.swift */,
+				56ECA3382839417900006857 /* BertInput.swift */,
+				56ECA33A283941AA00006857 /* BertOutput.swift */,
+				56ECA33C283941E800006857 /* BertVocabulary.swift */,
+				56ECA33E2839423600006857 /* TokenizedString.swift */,
+			);
+			path = QuestionAndAnswer;
+			sourceTree = "<group>";
+		};
 		56ED013825954523001770B8 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -619,6 +664,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56ECA3372837B47700006857 /* bert-base-uncased-vocab.txt in Resources */,
 				56279F322516264C00DAC0ED /* LaunchScreen.storyboard in Resources */,
 				56279F2F2516264C00DAC0ED /* Preview Assets.xcassets in Resources */,
 				5639350B257D3AD100CA7B33 /* NewsRequestApiKey.txt in Resources */,
@@ -649,6 +695,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56537389251690A000828464 /* ResponseCategoryModel.swift in Sources */,
+				56ECA33F2839423600006857 /* TokenizedString.swift in Sources */,
 				5653739725169B4800828464 /* Action.swift in Sources */,
 				56F46083265A896C005EA565 /* StaticActionId.swift in Sources */,
 				56D20DEC263D8ACE000E9897 /* SurveyViewController.swift in Sources */,
@@ -661,12 +708,15 @@
 				563D7BBA2674E37A00B5E084 /* MessagesViewModel.swift in Sources */,
 				56279F562516303E00DAC0ED /* MessageView.swift in Sources */,
 				5653737B251683EB00828464 /* CategoryDictionary.swift in Sources */,
+				56ECA32D2837A97800006857 /* QuestionAnswerModel.swift in Sources */,
 				56B933A5257290B2001EB195 /* Contact.swift in Sources */,
 				56CE47A5268898FE00A866CA /* BaseDao.swift in Sources */,
 				56F074CA2663C6240099DA8F /* ORKFieldValue.swift in Sources */,
+				56ECA33D283941E800006857 /* BertVocabulary.swift in Sources */,
 				5695533A27C3026F00C7248A /* AppDependencies.swift in Sources */,
 				56B9337225726498001EB195 /* ContactsPresenter.swift in Sources */,
 				56D20DF4263D8ADF000E9897 /* SurveyInteractor.swift in Sources */,
+				56ECA3392839417900006857 /* BertInput.swift in Sources */,
 				563D7BB42674CA3500B5E084 /* LinkedList.swift in Sources */,
 				56F4609F265FDB4A005EA565 /* SurveyTaskFactory.swift in Sources */,
 				56D1CE812557007C008485FD /* Message.swift in Sources */,
@@ -687,6 +737,7 @@
 				5653737125167C8000828464 /* MessagesView.swift in Sources */,
 				5653736C25167C4500828464 /* MessageViewPresenter.swift in Sources */,
 				56265320266442D900359DBB /* SurveyQuestions.swift in Sources */,
+				56ECA33B283941AA00006857 /* BertOutput.swift in Sources */,
 				5653737625167DCC00828464 /* ResponseCategory.swift in Sources */,
 				56393517257D7CA400CA7B33 /* GlobalConstants.swift in Sources */,
 				563D7BB82674D80600B5E084 /* ToDoAssistantDomains.swift in Sources */,
@@ -701,6 +752,7 @@
 				5653736425167C1B00828464 /* Bot.swift in Sources */,
 				56B9337C25726972001EB195 /* ContactsRouter.swift in Sources */,
 				56ED012E25951662001770B8 /* ContactsViewController.swift in Sources */,
+				56ECA341283945AE00006857 /* BERTQAFP16.mlmodel in Sources */,
 				56ED013A2595455C001770B8 /* ContactCell.swift in Sources */,
 				566D98682690F34300BE68C4 /* CitizenshipSurvey.swift in Sources */,
 				563D7BB22674C97000B5E084 /* Queue.swift in Sources */,

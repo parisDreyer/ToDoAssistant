@@ -10,6 +10,7 @@ import Foundation
 
 enum ToDoAssistantDomains: String {
     case bot
+    case machineLearning
     case general
     case survey
     case news

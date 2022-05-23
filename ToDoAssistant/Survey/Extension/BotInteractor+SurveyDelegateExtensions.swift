@@ -14,7 +14,7 @@ extension BotInteractor: SurveyDelegate {
 
     func getSurveyQuestions() -> [String : [String]] {
         guard let bot = bot else {
-            error(error: GeneralError(message: "Bot was nil when getting survey questions", domain: .bot))
+            handleError(error: GeneralError(message: "Bot was nil when getting survey questions", domain: .bot))
             return [:]
         }
         return bot.getQuestions()

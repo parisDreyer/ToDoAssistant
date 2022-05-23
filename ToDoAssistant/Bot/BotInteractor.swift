@@ -12,17 +12,21 @@ protocol BotInteractorInput: AnyObject {
     func getNews()
     func getContacts()
     func getSurvey(id: SurveyId)
+    func answer(question: String) -> String?
+    var previousUserInput: ResponseCategory? { get set }
+    var previousResponse: ResponseCategory? { get set }
 }
 
 protocol BotInteractorOutput: AnyObject {
     func getQuestions() -> [String: [String]]
     func update(response: String)
-    func saveData()
 }
 
 final class BotInteractor {
     struct Entity {
-        let newsResponse: News?
+        var newsResponse: News?
+        var previousUserInput: ResponseCategory?
+        var previousResponse: ResponseCategory?
 
         fileprivate func getNewsString() -> String? {
             return newsResponse?.articles?
@@ -45,6 +49,31 @@ final class BotInteractor {
 // MARK: - BotInteractorInput
 
 extension BotInteractor: BotInteractorInput {
+    var previousUserInput: ResponseCategory? {
+        get { entity.previousUserInput }
+        set { entity.previousUserInput = newValue }
+    }
+
+    var previousResponse: ResponseCategory? {
+        get { entity.previousResponse }
+        set { entity.previousResponse = newValue }
+    }
+
+    func answer(question: String) -> String? {
+        let history = mapConversationHistory()
+        guard !history.isEmpty else {
+            return nil
+        }
+        do {
+            let context = history.joined(separator: GlobalConstants.newLine)
+            let answer =  try QuestionAnswerModel().predict(question: question,
+                                                            context: context)
+            return String(answer)
+        } catch {
+            handleError(error: error)
+            return nil
+        }
+    }
 
     func getSurvey(id: SurveyId) {
         router.displaySurvey(id: id, delegate: self)
@@ -67,7 +96,8 @@ extension BotInteractor: BotInteractorInput {
 
 extension BotInteractor: BotRouterOutput {
     func saveData() {
-        bot?.saveData()
+        let history = getOrderedModelHistory()
+        history.forEach { $0.save() }
     }
 }
 
@@ -77,18 +107,50 @@ extension BotInteractor: NewsRequestDelegate {
 
     func receiveNews(_ news: News) {
         pendingNewsRequest = nil
-        entity = Entity(newsResponse: news)
+        entity.newsResponse = news
 
         guard let newsString = entity.getNewsString() else {
-            error(error: GeneralError(message: "News Response Empty", domain: .bot))
+            handleError(error: GeneralError(message: "News Response Empty", domain: .bot))
             return
         }
         bot?.update(response: newsString)
     }
 
-    func error(error: Error) {
+    func handleError(error: Error) {
         router.displayError(message: error.localizedDescription)
     }
 
+}
+
+// MARK - Private
+
+private extension BotInteractor {
+    func mapConversationHistory(maxLength: Int = 100) -> [String] {
+        let history = getOrderedModelHistory(maxLength: maxLength)
+        return history.compactMap { $0.model.response }
+    }
+
+    func getOrderedModelHistory(maxLength: Int = 100) -> [ResponseCategory] {
+        var history: [ResponseCategory] = []
+        var currentUserResponse = entity.previousUserInput
+        var currentResponse = entity.previousResponse
+
+        while currentResponse != nil
+              && currentUserResponse != nil
+              && history.count < maxLength {
+
+            if let userResponse = currentUserResponse {
+                history.append(userResponse)
+            }
+            currentUserResponse = currentUserResponse?.previousResponse
+
+            if let response = currentResponse {
+                history.append(response)
+            }
+            currentResponse = currentResponse?.previousResponse
+
+        }
+        return history
+    }
 }
 
