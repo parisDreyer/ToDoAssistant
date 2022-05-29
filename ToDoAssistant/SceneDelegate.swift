@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUI
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     typealias Dependencies = ContentView.Dependencies
 
     var window: UIWindow?
@@ -18,8 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private lazy var dependencies: Dependencies = {
         let displayManager = TodoAssistantDisplayManager(navigationController: rootNavigationController)
         return AppDependencies(displayManager: displayManager,
-                        categoriesDao: CategoriesDao(),
-                        categoryDictionary: CategoryDictionary())
+                               categoriesDao: CategoriesDao(),
+                               categoryDictionary: CategoryDictionary(),
+                               decider: Decider())
     }()
 
 

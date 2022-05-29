@@ -23,6 +23,7 @@ protocol BotInteractorOutput: AnyObject {
 }
 
 final class BotInteractor {
+    public typealias Dependencies = ReflectOnResponse.Dependencies
     struct Entity {
         var newsResponse: News?
         var previousUserInput: ResponseCategory?
@@ -36,12 +37,14 @@ final class BotInteractor {
         // refactor to handle all saved state from this file
     }
 
+    private let dependencies: Dependencies
     private let router: BotRouterInput
     private(set) var entity: Entity = Entity(newsResponse: nil)
     private var pendingNewsRequest: NewsRequest?
     weak var bot: BotInteractorOutput?
 
-    init(router: BotRouterInput) {
+    init(dependencies: Dependencies, router: BotRouterInput) {
+        self.dependencies = dependencies
         self.router = router
     }
 }
@@ -96,7 +99,8 @@ extension BotInteractor: BotInteractorInput {
 
 extension BotInteractor: BotRouterOutput {
     func saveData() {
-        let history = getOrderedModelHistory()
+        // TODO: - evaluate dynamically if we want to `removeUndesiredSentimentTriggers`
+        let history = getOrderedModelHistory(removeUndesiredSentimentTriggers: true)
         history.forEach { $0.save() }
     }
 }
@@ -130,27 +134,39 @@ private extension BotInteractor {
         return history.compactMap { $0.model.response }
     }
 
-    func getOrderedModelHistory(maxLength: Int = 100) -> [ResponseCategory] {
+    func getOrderedModelHistory(maxLength: Int = 100,
+                                removeUndesiredSentimentTriggers: Bool = false) -> [ResponseCategory] {
         var history: [ResponseCategory] = []
         var currentUserResponse = entity.previousUserInput
-        var currentResponse = entity.previousResponse
+        // skip the last bot response because the user hasn't responded to it yet
+        var currentResponse = entity.previousResponse?.previousResponse
 
         while currentResponse != nil
               && currentUserResponse != nil
               && history.count < maxLength {
 
+            let avoidSaying = removeUndesiredSentimentTriggers
+                              && !shouldContinue(saying: currentUserResponse?.model.response)
             if let userResponse = currentUserResponse {
                 history.append(userResponse)
             }
             currentUserResponse = currentUserResponse?.previousResponse
 
-            if let response = currentResponse {
+            if !avoidSaying, let response = currentResponse {
                 history.append(response)
             }
             currentResponse = currentResponse?.previousResponse
 
         }
         return history
+    }
+
+    func shouldContinue(saying wordSequence: String?) -> Bool {
+        guard let wordSequence = wordSequence else {
+            return false
+        }
+        return ReflectOnResponse(dependencies: dependencies,
+                                 response: wordSequence).shouldDoAgain()
     }
 }
 

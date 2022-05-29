@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		56077FCF257D318900B3E0C2 /* ResponseCategoryModel+ContactsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56077FCE257D318900B3E0C2 /* ResponseCategoryModel+ContactsExtensions.swift */; };
 		56077FD7257D337100B3E0C2 /* ResponseCategoryModel+NewsExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56077FD6257D337100B3E0C2 /* ResponseCategoryModel+NewsExtensions.swift */; };
+		5615F5942841C24B00C41CDA /* Sentiment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5932841C24B00C41CDA /* Sentiment.swift */; };
+		5615F5962841C8E300C41CDA /* EvaluateResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5952841C8E300C41CDA /* EvaluateResponse.swift */; };
+		5615F5982841CDB900C41CDA /* ReflectOnResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5972841CDB900C41CDA /* ReflectOnResponse.swift */; };
+		5615F59A2843B6B800C41CDA /* Decider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5992843B6B800C41CDA /* Decider.swift */; };
+		5615F59D2843B73A00C41CDA /* OptionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F59C2843B73A00C41CDA /* OptionsList.swift */; };
+		5615F59F2843B77D00C41CDA /* Choice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F59E2843B77D00C41CDA /* Choice.swift */; };
+		5615F5A22843F60200C41CDA /* BotInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5A12843F60200C41CDA /* BotInteractorTests.swift */; };
+		5615F5A52843FA1300C41CDA /* MockAppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5A42843FA1300C41CDA /* MockAppDependencies.swift */; };
+		5615F5A82843FB3400C41CDA /* ReflectOnResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5A72843FB3400C41CDA /* ReflectOnResponseTests.swift */; };
 		56265320266442D900359DBB /* SurveyQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626531F266442D900359DBB /* SurveyQuestions.swift */; };
 		56265322266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56265321266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift */; };
 		56265326266485D700359DBB /* Bool+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56265325266485D700359DBB /* Bool+Extensions.swift */; };
@@ -104,6 +113,15 @@
 /* Begin PBXFileReference section */
 		56077FCE257D318900B3E0C2 /* ResponseCategoryModel+ContactsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResponseCategoryModel+ContactsExtensions.swift"; sourceTree = "<group>"; };
 		56077FD6257D337100B3E0C2 /* ResponseCategoryModel+NewsExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResponseCategoryModel+NewsExtensions.swift"; sourceTree = "<group>"; };
+		5615F5932841C24B00C41CDA /* Sentiment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sentiment.swift; sourceTree = "<group>"; };
+		5615F5952841C8E300C41CDA /* EvaluateResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluateResponse.swift; sourceTree = "<group>"; };
+		5615F5972841CDB900C41CDA /* ReflectOnResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectOnResponse.swift; sourceTree = "<group>"; };
+		5615F5992843B6B800C41CDA /* Decider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decider.swift; sourceTree = "<group>"; };
+		5615F59C2843B73A00C41CDA /* OptionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsList.swift; sourceTree = "<group>"; };
+		5615F59E2843B77D00C41CDA /* Choice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Choice.swift; sourceTree = "<group>"; };
+		5615F5A12843F60200C41CDA /* BotInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotInteractorTests.swift; sourceTree = "<group>"; };
+		5615F5A42843FA1300C41CDA /* MockAppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppDependencies.swift; sourceTree = "<group>"; };
+		5615F5A72843FB3400C41CDA /* ReflectOnResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectOnResponseTests.swift; sourceTree = "<group>"; };
 		5626531F266442D900359DBB /* SurveyQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestions.swift; sourceTree = "<group>"; };
 		56265321266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BotInteractor+SurveyDelegateExtensions.swift"; sourceTree = "<group>"; };
 		56265325266485D700359DBB /* Bool+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extensions.swift"; sourceTree = "<group>"; };
@@ -218,6 +236,43 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		5615F5922841BFF700C41CDA /* EvaluateResponse */ = {
+			isa = PBXGroup;
+			children = (
+				5615F5A02843C1F200C41CDA /* Evaluate */,
+				5615F59B2843B71200C41CDA /* Decide */,
+			);
+			path = EvaluateResponse;
+			sourceTree = "<group>";
+		};
+		5615F59B2843B71200C41CDA /* Decide */ = {
+			isa = PBXGroup;
+			children = (
+				5615F5992843B6B800C41CDA /* Decider.swift */,
+				5615F59C2843B73A00C41CDA /* OptionsList.swift */,
+				5615F59E2843B77D00C41CDA /* Choice.swift */,
+			);
+			path = Decide;
+			sourceTree = "<group>";
+		};
+		5615F5A02843C1F200C41CDA /* Evaluate */ = {
+			isa = PBXGroup;
+			children = (
+				5615F5932841C24B00C41CDA /* Sentiment.swift */,
+				5615F5952841C8E300C41CDA /* EvaluateResponse.swift */,
+				5615F5972841CDB900C41CDA /* ReflectOnResponse.swift */,
+			);
+			path = Evaluate;
+			sourceTree = "<group>";
+		};
+		5615F5A62843FB0900C41CDA /* EvaluateResponse */ = {
+			isa = PBXGroup;
+			children = (
+				5615F5A72843FB3400C41CDA /* ReflectOnResponseTests.swift */,
+			);
+			path = EvaluateResponse;
+			sourceTree = "<group>";
+		};
 		5626531E2664423700359DBB /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +324,7 @@
 		56279F242516264A00DAC0ED /* ToDoAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				5615F5922841BFF700C41CDA /* EvaluateResponse */,
 				56ECA3282837A6D500006857 /* MachineLearning */,
 				56D20DEA263D8A73000E9897 /* Survey */,
 				56393515257D7C8E00CA7B33 /* Core */,
@@ -300,6 +356,7 @@
 		56279F3B2516264C00DAC0ED /* ToDoAssistantTests */ = {
 			isa = PBXGroup;
 			children = (
+				5615F5A62843FB0900C41CDA /* EvaluateResponse */,
 				5695533527C2A18600C7248A /* Bot */,
 				5673D77127A5D417001688AE /* String+Extensions */,
 				56800181259AC761000DB888 /* Mocks */,
@@ -406,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				56800182259AC7B2000DB888 /* MockDisplayManager.swift */,
+				5615F5A42843FA1300C41CDA /* MockAppDependencies.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -414,6 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				5695533627C2A19100C7248A /* Category */,
+				5615F5A12843F60200C41CDA /* BotInteractorTests.swift */,
 			);
 			path = Bot;
 			sourceTree = "<group>";
@@ -698,7 +757,9 @@
 				56ECA33F2839423600006857 /* TokenizedString.swift in Sources */,
 				5653739725169B4800828464 /* Action.swift in Sources */,
 				56F46083265A896C005EA565 /* StaticActionId.swift in Sources */,
+				5615F59F2843B77D00C41CDA /* Choice.swift in Sources */,
 				56D20DEC263D8ACE000E9897 /* SurveyViewController.swift in Sources */,
+				5615F5942841C24B00C41CDA /* Sentiment.swift in Sources */,
 				56D1CE5D2555F625008485FD /* Article+Extensions.swift in Sources */,
 				56B9339125727FDA001EB195 /* BotRouter.swift in Sources */,
 				566D986C2691EB8F00BE68C4 /* SurveyId.swift in Sources */,
@@ -732,6 +793,7 @@
 				56077FCF257D318900B3E0C2 /* ResponseCategoryModel+ContactsExtensions.swift in Sources */,
 				56279F2A2516264A00DAC0ED /* ContentView.swift in Sources */,
 				56077FD7257D337100B3E0C2 /* ResponseCategoryModel+NewsExtensions.swift in Sources */,
+				5615F5982841CDB900C41CDA /* ReflectOnResponse.swift in Sources */,
 				56F5B3C92693CDA200773D6A /* String+BotExtensions.swift in Sources */,
 				56D1CE4F2555CF47008485FD /* String+Extensions.swift in Sources */,
 				5653737125167C8000828464 /* MessagesView.swift in Sources */,
@@ -748,11 +810,14 @@
 				56B9336825717627001EB195 /* ContactsInteractor.swift in Sources */,
 				56D1CE672556706F008485FD /* BotInteractor.swift in Sources */,
 				566D986A2690FA0200BE68C4 /* FileLoader.swift in Sources */,
+				5615F5962841C8E300C41CDA /* EvaluateResponse.swift in Sources */,
 				56265322266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift in Sources */,
 				5653736425167C1B00828464 /* Bot.swift in Sources */,
 				56B9337C25726972001EB195 /* ContactsRouter.swift in Sources */,
+				5615F59D2843B73A00C41CDA /* OptionsList.swift in Sources */,
 				56ED012E25951662001770B8 /* ContactsViewController.swift in Sources */,
 				56ECA341283945AE00006857 /* BERTQAFP16.mlmodel in Sources */,
+				5615F59A2843B6B800C41CDA /* Decider.swift in Sources */,
 				56ED013A2595455C001770B8 /* ContactCell.swift in Sources */,
 				566D98682690F34300BE68C4 /* CitizenshipSurvey.swift in Sources */,
 				563D7BB22674C97000B5E084 /* Queue.swift in Sources */,
@@ -764,8 +829,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5680017A259AC70D000DB888 /* ContactsTests.swift in Sources */,
+				5615F5A22843F60200C41CDA /* BotInteractorTests.swift in Sources */,
+				5615F5A52843FA1300C41CDA /* MockAppDependencies.swift in Sources */,
 				5673D77327A5D446001688AE /* StringUniqueIdEncodeDecodeTests.swift in Sources */,
 				5695533827C2A1B400C7248A /* ResponseCategoryTests.swift in Sources */,
+				5615F5A82843FB3400C41CDA /* ReflectOnResponseTests.swift in Sources */,
 				56800183259AC7B2000DB888 /* MockDisplayManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
