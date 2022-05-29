@@ -15,6 +15,9 @@
 		5615F59A2843B6B800C41CDA /* Decider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5992843B6B800C41CDA /* Decider.swift */; };
 		5615F59D2843B73A00C41CDA /* OptionsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F59C2843B73A00C41CDA /* OptionsList.swift */; };
 		5615F59F2843B77D00C41CDA /* Choice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F59E2843B77D00C41CDA /* Choice.swift */; };
+		5615F5A22843F60200C41CDA /* BotInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5A12843F60200C41CDA /* BotInteractorTests.swift */; };
+		5615F5A52843FA1300C41CDA /* MockAppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5A42843FA1300C41CDA /* MockAppDependencies.swift */; };
+		5615F5A82843FB3400C41CDA /* ReflectOnResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5A72843FB3400C41CDA /* ReflectOnResponseTests.swift */; };
 		56265320266442D900359DBB /* SurveyQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626531F266442D900359DBB /* SurveyQuestions.swift */; };
 		56265322266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56265321266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift */; };
 		56265326266485D700359DBB /* Bool+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56265325266485D700359DBB /* Bool+Extensions.swift */; };
@@ -116,6 +119,9 @@
 		5615F5992843B6B800C41CDA /* Decider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decider.swift; sourceTree = "<group>"; };
 		5615F59C2843B73A00C41CDA /* OptionsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsList.swift; sourceTree = "<group>"; };
 		5615F59E2843B77D00C41CDA /* Choice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Choice.swift; sourceTree = "<group>"; };
+		5615F5A12843F60200C41CDA /* BotInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotInteractorTests.swift; sourceTree = "<group>"; };
+		5615F5A42843FA1300C41CDA /* MockAppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppDependencies.swift; sourceTree = "<group>"; };
+		5615F5A72843FB3400C41CDA /* ReflectOnResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectOnResponseTests.swift; sourceTree = "<group>"; };
 		5626531F266442D900359DBB /* SurveyQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestions.swift; sourceTree = "<group>"; };
 		56265321266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BotInteractor+SurveyDelegateExtensions.swift"; sourceTree = "<group>"; };
 		56265325266485D700359DBB /* Bool+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extensions.swift"; sourceTree = "<group>"; };
@@ -259,6 +265,14 @@
 			path = Evaluate;
 			sourceTree = "<group>";
 		};
+		5615F5A62843FB0900C41CDA /* EvaluateResponse */ = {
+			isa = PBXGroup;
+			children = (
+				5615F5A72843FB3400C41CDA /* ReflectOnResponseTests.swift */,
+			);
+			path = EvaluateResponse;
+			sourceTree = "<group>";
+		};
 		5626531E2664423700359DBB /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +356,7 @@
 		56279F3B2516264C00DAC0ED /* ToDoAssistantTests */ = {
 			isa = PBXGroup;
 			children = (
+				5615F5A62843FB0900C41CDA /* EvaluateResponse */,
 				5695533527C2A18600C7248A /* Bot */,
 				5673D77127A5D417001688AE /* String+Extensions */,
 				56800181259AC761000DB888 /* Mocks */,
@@ -448,6 +463,7 @@
 			isa = PBXGroup;
 			children = (
 				56800182259AC7B2000DB888 /* MockDisplayManager.swift */,
+				5615F5A42843FA1300C41CDA /* MockAppDependencies.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -456,6 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				5695533627C2A19100C7248A /* Category */,
+				5615F5A12843F60200C41CDA /* BotInteractorTests.swift */,
 			);
 			path = Bot;
 			sourceTree = "<group>";
@@ -812,8 +829,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5680017A259AC70D000DB888 /* ContactsTests.swift in Sources */,
+				5615F5A22843F60200C41CDA /* BotInteractorTests.swift in Sources */,
+				5615F5A52843FA1300C41CDA /* MockAppDependencies.swift in Sources */,
 				5673D77327A5D446001688AE /* StringUniqueIdEncodeDecodeTests.swift in Sources */,
 				5695533827C2A1B400C7248A /* ResponseCategoryTests.swift in Sources */,
+				5615F5A82843FB3400C41CDA /* ReflectOnResponseTests.swift in Sources */,
 				56800183259AC7B2000DB888 /* MockDisplayManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

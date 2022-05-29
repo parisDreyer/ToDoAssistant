@@ -20,6 +20,6 @@ class ContactsTests: XCTestCase {
         let router = ContactsRouter(displayManager: mockDisplayManager)
         router.present()
 
-        XCTAssertNotNil(mockDisplayManager.presentedViewController)
+        XCTAssertTrue(mockDisplayManager.presentedViewController is ContactsViewController)
     }
 }
