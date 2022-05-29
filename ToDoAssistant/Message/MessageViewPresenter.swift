@@ -23,6 +23,7 @@ protocol MessageViewPresenterInput: AnyObject {
 final class MessageViewPresenter {
     typealias Dependencies = DisplayManagerDependency
                              & Bot.Dependencies
+                             & BotInteractor.Dependencies
     private let dependencies: Dependencies
 
     var setMessage: SetMessage?
@@ -31,7 +32,7 @@ final class MessageViewPresenter {
     
     private lazy var interactor: BotInteractor = {
         let router = BotRouter(displayManager: dependencies.displayManager)
-        let interactor = BotInteractor(router: router)
+        let interactor = BotInteractor(dependencies: dependencies, router: router)
         router.interactor = interactor
         return interactor
     }()

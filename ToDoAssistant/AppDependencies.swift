@@ -12,4 +12,5 @@ struct AppDependencies: SceneDelegate.Dependencies {
     var displayManager: DisplayManagerInput
     var categoriesDao: CategoriesDaoInput
     var categoryDictionary: CategoryDictionary
+    var decider: Decision
 }
