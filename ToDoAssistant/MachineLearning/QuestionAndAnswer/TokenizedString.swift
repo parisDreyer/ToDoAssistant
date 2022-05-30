@@ -103,7 +103,7 @@ struct TokenizedString {
                     if nextSubtoken.isEmpty {
                         // This token and its components are not in the vocabulary.
                         subTokens = [token]
-                        subTokenIDs = [BERTVocabulary.unkownTokenID]
+                        subTokenIDs = [BERTVocabulary.unkownTokenID].compactMap { $0 }
 
                         // Exit the while-loop, but continue the for-loop.
                         break

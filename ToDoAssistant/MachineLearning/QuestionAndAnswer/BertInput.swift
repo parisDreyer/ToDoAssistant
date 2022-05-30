@@ -93,7 +93,7 @@ struct BERTInput {
 
         // Create the BERT input MLFeatureProvider.
         let modelInput = BERTQAFP16Input(wordIDs: tokenIDInput,
-                                            wordTypes: tokenTypeInput)
+                                         wordTypes: tokenTypeInput)
         self.modelInput = modelInput
     }
 }

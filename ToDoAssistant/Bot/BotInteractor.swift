@@ -42,10 +42,21 @@ final class BotInteractor {
     private(set) var entity: Entity = Entity(newsResponse: nil)
     private var pendingNewsRequest: NewsRequest?
     weak var bot: BotInteractorOutput?
+    private var questionAnswerModel: QuestionAnswerModel?
+
 
     init(dependencies: Dependencies, router: BotRouterInput) {
         self.dependencies = dependencies
         self.router = router
+
+        // background initialize expensive model and dictionary
+        DispatchQueue.global(qos: .background).async {
+            _ = BERTVocabulary.lookupDictionary
+            DispatchQueue.main.async { [weak self] in
+                self?.questionAnswerModel = try? QuestionAnswerModel()
+            }
+        }
+
     }
 }
 
@@ -69,8 +80,10 @@ extension BotInteractor: BotInteractorInput {
         }
         do {
             let context = history.joined(separator: GlobalConstants.newLine)
-            let answer =  try QuestionAnswerModel().predict(question: question,
-                                                            context: context)
+            guard let answer = try questionAnswerModel?.predict(question: question,
+                                                                context: context) else {
+                return nil
+            }
             return String(answer)
         } catch {
             handleError(error: error)

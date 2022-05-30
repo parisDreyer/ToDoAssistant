@@ -8,10 +8,18 @@ Abstracts the BERT vocabulary setup to two tokenID methods and four constants.
 import Foundation
 
 struct BERTVocabulary {
-    static let unkownTokenID = lookupDictionary["[UNK]"]!         // 100
-    static let paddingTokenID = lookupDictionary["[PAD]"]!        // 0
-    static let separatorTokenID = lookupDictionary["[SEP]"]!      // 102
-    static let classifyStartTokenID = lookupDictionary["[CLS]"]!  // 101
+    static var unkownTokenID: Int {
+        lookupDictionary["[UNK]"] ?? 100
+    }
+    static var paddingTokenID: Int {
+        lookupDictionary["[PAD]"] ?? 0
+    }
+    static var separatorTokenID: Int {
+        lookupDictionary["[SEP]"] ?? 102
+    }
+    static var classifyStartTokenID: Int {
+        lookupDictionary["[CLS]"] ?? 101
+    }
 
     /// Searches for a token ID for the given word or wordpiece string.
     ///
@@ -34,7 +42,7 @@ struct BERTVocabulary {
     }
 
     private init() { }
-    private static let lookupDictionary = loadVocabulary()
+    static let lookupDictionary = loadVocabulary()
 
     /// Imports the model's vocabulary into a [word/wordpiece token: token ID] Dictionary.
     ///
@@ -48,23 +56,24 @@ struct BERTVocabulary {
             fatalError("Vocabulary file is missing")
         }
 
-        guard let rawVocabulary = try? String(contentsOf: url) else {
-            fatalError("Vocabulary file has no contents.")
-        }
+        var words = (try? String(contentsOf: url))?.split(separator: GlobalConstants.newLineChar)
 
-        let words = rawVocabulary.split(separator: "\n")
-
-        guard words.count == expectedVocabularySize else {
+        guard words?.count == expectedVocabularySize else {
             fatalError("Vocabulary file is not the correct size.")
         }
 
-        guard words.first! == "[PAD]" && words.last! == "##～" else {
+        guard words?.first == "[PAD]" && words?.last == "##～" else {
             fatalError("Vocabulary file contents appear to be incorrect.")
         }
 
-        let values = 0..<words.count
+        // a little messy though reduces space complexity
+        var vocabulary: [Substring: Int] = [:]
+        while (words?.count ?? 0) > 0 {
+            guard let word = words?.popLast() else { continue }
+            vocabulary[word] = (words?.count ?? 0)
+        }
 
-        let vocabulary = Dictionary(uniqueKeysWithValues: zip(words, values))
+
         return vocabulary
     }
 }
