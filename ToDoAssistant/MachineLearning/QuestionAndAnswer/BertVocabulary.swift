@@ -38,7 +38,7 @@ struct BERTVocabulary {
     /// - returns: A token ID.
     static func tokenID(of token: Substring) -> Int {
         let unkownTokenID = BERTVocabulary.unkownTokenID
-        return BERTVocabulary.lookupDictionary[token] ?? unkownTokenID
+        return BERTVocabulary.lookupDictionary[String(token)] ?? unkownTokenID
     }
 
     private init() { }
@@ -48,7 +48,7 @@ struct BERTVocabulary {
     ///
     /// - returns: A dictionary.
     /// - Tag: LoadVocabulary
-    private static func loadVocabulary() -> [Substring: Int] {
+    private static func loadVocabulary() -> [String: Int] {
         let fileName = "bert-base-uncased-vocab"
         let expectedVocabularySize = 30_522
 
@@ -56,24 +56,22 @@ struct BERTVocabulary {
             fatalError("Vocabulary file is missing")
         }
 
-        var words = (try? String(contentsOf: url))?.split(separator: GlobalConstants.newLineChar)
-
-        guard words?.count == expectedVocabularySize else {
+        guard var words = (try? String(contentsOf: url))?.split(separator: GlobalConstants.newLineChar).map(String.init),
+              words.count == expectedVocabularySize else {
             fatalError("Vocabulary file is not the correct size.")
         }
 
-        guard words?.first == "[PAD]" && words?.last == "##～" else {
+        guard words.first == "[PAD]" && words.last == "##～" else {
             fatalError("Vocabulary file contents appear to be incorrect.")
         }
 
-        // a little messy though reduces space complexity
-        var vocabulary: [Substring: Int] = [:]
-        while (words?.count ?? 0) > 0 {
-            guard let word = words?.popLast() else { continue }
-            vocabulary[word] = (words?.count ?? 0)
+        // use set dictionary size to reduce resizing as words are added
+        var vocabulary: Dictionary<String, Int> = .init(minimumCapacity: words.count)
+        while words.count > 0 {
+            // removeLast() has O(1) time and reduces space complexity of `words` incrementally so `vocabulary` + `words` doesn't take up too much memory
+            let word = words.removeLast()
+            vocabulary[word] = words.count
         }
-
-
         return vocabulary
     }
 }
