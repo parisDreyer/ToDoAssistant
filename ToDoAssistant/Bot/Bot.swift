@@ -88,6 +88,9 @@ private extension Bot {
             return "Hi!"
         case .rememberedResponse(let remembered):
             return remembered.response
+        case .wiki:
+            interactor.searchWiki()
+            return "... Fetching Wikipedia answer"
         }
     }
 }

@@ -18,17 +18,20 @@ final class CategoryDictionary {
     /// This function is the sole place to return an action that the bot will say or do
     func action(category: ResponseCategory) -> Action? {
         let identifier = category.possibleUniqueIdentifier
-        switch identifier {
-        case StaticActionID.greet.rawValue:
-            return .greet
-        case StaticActionID.news.rawValue:
-            return .getNews
-        case StaticActionID.contacts.rawValue:
-            return .getContacts
-        case StaticActionID.survey.rawValue:
-            return .getSurvey(surveyId: category.getSurveyId())
-        default:
-            break
+
+        if let staticIdentifier = StaticActionID(rawValue: identifier) {
+            switch staticIdentifier {
+            case .greet:
+                return .greet
+            case .news:
+                return .getNews
+            case .contacts:
+                return .getContacts
+            case .survey:
+                return .getSurvey(surveyId: category.getSurveyId())
+            case .wiki:
+                return .wiki
+            }
         }
 
         guard let actions = actionsByIdentifier[identifier], !actions.isEmpty else {

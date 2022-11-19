@@ -18,6 +18,9 @@
 		5615F5A22843F60200C41CDA /* BotInteractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5A12843F60200C41CDA /* BotInteractorTests.swift */; };
 		5615F5A52843FA1300C41CDA /* MockAppDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5A42843FA1300C41CDA /* MockAppDependencies.swift */; };
 		5615F5A82843FB3400C41CDA /* ReflectOnResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5615F5A72843FB3400C41CDA /* ReflectOnResponseTests.swift */; };
+		5618DCC4292287AB00EC7885 /* WikipediaRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618DCC3292287AB00EC7885 /* WikipediaRequest.swift */; };
+		5618DCC629229F0300EC7885 /* Wikipedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618DCC529229F0300EC7885 /* Wikipedia.swift */; };
+		5618DCC92922E3F100EC7885 /* ResponseCategoryModel+WikipediaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618DCC82922E3F100EC7885 /* ResponseCategoryModel+WikipediaExtensions.swift */; };
 		56265320266442D900359DBB /* SurveyQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626531F266442D900359DBB /* SurveyQuestions.swift */; };
 		56265322266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56265321266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift */; };
 		56265326266485D700359DBB /* Bool+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56265325266485D700359DBB /* Bool+Extensions.swift */; };
@@ -122,6 +125,9 @@
 		5615F5A12843F60200C41CDA /* BotInteractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotInteractorTests.swift; sourceTree = "<group>"; };
 		5615F5A42843FA1300C41CDA /* MockAppDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppDependencies.swift; sourceTree = "<group>"; };
 		5615F5A72843FB3400C41CDA /* ReflectOnResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectOnResponseTests.swift; sourceTree = "<group>"; };
+		5618DCC3292287AB00EC7885 /* WikipediaRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaRequest.swift; sourceTree = "<group>"; };
+		5618DCC529229F0300EC7885 /* Wikipedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wikipedia.swift; sourceTree = "<group>"; };
+		5618DCC82922E3F100EC7885 /* ResponseCategoryModel+WikipediaExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResponseCategoryModel+WikipediaExtensions.swift"; sourceTree = "<group>"; };
 		5626531F266442D900359DBB /* SurveyQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestions.swift; sourceTree = "<group>"; };
 		56265321266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BotInteractor+SurveyDelegateExtensions.swift"; sourceTree = "<group>"; };
 		56265325266485D700359DBB /* Bool+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extensions.swift"; sourceTree = "<group>"; };
@@ -273,6 +279,24 @@
 			path = EvaluateResponse;
 			sourceTree = "<group>";
 		};
+		5618DCC22922876500EC7885 /* Wikipedia */ = {
+			isa = PBXGroup;
+			children = (
+				5618DCC72922E3D100EC7885 /* Extensions */,
+				5618DCC3292287AB00EC7885 /* WikipediaRequest.swift */,
+				5618DCC529229F0300EC7885 /* Wikipedia.swift */,
+			);
+			path = Wikipedia;
+			sourceTree = "<group>";
+		};
+		5618DCC72922E3D100EC7885 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5618DCC82922E3F100EC7885 /* ResponseCategoryModel+WikipediaExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		5626531E2664423700359DBB /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -324,6 +348,7 @@
 		56279F242516264A00DAC0ED /* ToDoAssistant */ = {
 			isa = PBXGroup;
 			children = (
+				5618DCC22922876500EC7885 /* Wikipedia */,
 				5615F5922841BFF700C41CDA /* EvaluateResponse */,
 				56ECA3282837A6D500006857 /* MachineLearning */,
 				56D20DEA263D8A73000E9897 /* Survey */,
@@ -768,6 +793,7 @@
 				56265326266485D700359DBB /* Bool+Extensions.swift in Sources */,
 				563D7BBA2674E37A00B5E084 /* MessagesViewModel.swift in Sources */,
 				56279F562516303E00DAC0ED /* MessageView.swift in Sources */,
+				5618DCC629229F0300EC7885 /* Wikipedia.swift in Sources */,
 				5653737B251683EB00828464 /* CategoryDictionary.swift in Sources */,
 				56ECA32D2837A97800006857 /* QuestionAnswerModel.swift in Sources */,
 				56B933A5257290B2001EB195 /* Contact.swift in Sources */,
@@ -777,6 +803,7 @@
 				5695533A27C3026F00C7248A /* AppDependencies.swift in Sources */,
 				56B9337225726498001EB195 /* ContactsPresenter.swift in Sources */,
 				56D20DF4263D8ADF000E9897 /* SurveyInteractor.swift in Sources */,
+				5618DCC4292287AB00EC7885 /* WikipediaRequest.swift in Sources */,
 				56ECA3392839417900006857 /* BertInput.swift in Sources */,
 				563D7BB42674CA3500B5E084 /* LinkedList.swift in Sources */,
 				56F4609F265FDB4A005EA565 /* SurveyTaskFactory.swift in Sources */,
@@ -814,6 +841,7 @@
 				56265322266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift in Sources */,
 				5653736425167C1B00828464 /* Bot.swift in Sources */,
 				56B9337C25726972001EB195 /* ContactsRouter.swift in Sources */,
+				5618DCC92922E3F100EC7885 /* ResponseCategoryModel+WikipediaExtensions.swift in Sources */,
 				5615F59D2843B73A00C41CDA /* OptionsList.swift in Sources */,
 				56ED012E25951662001770B8 /* ContactsViewController.swift in Sources */,
 				56ECA341283945AE00006857 /* BERTQAFP16.mlmodel in Sources */,

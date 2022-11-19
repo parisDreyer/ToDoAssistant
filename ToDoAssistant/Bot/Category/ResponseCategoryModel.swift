@@ -112,6 +112,17 @@ extension ResponseCategoryModel {
         return isSurvey
     }
 
+    mutating func isWikiRequest() -> Bool {
+        if let calculatedUniqueIdentifier = calculatedUniqueIdentifier {
+            return calculatedUniqueIdentifier == StaticActionID.wiki.rawValue
+        }
+        let isWiki = calculateIsWikiRequest()
+        if isWiki {
+            calculatedUniqueIdentifier = StaticActionID.wiki.rawValue
+        }
+        return isWiki
+    }
+
     mutating func uniqueIdentifier() -> String {
         if let calculatedUniqueIdentifier = calculatedUniqueIdentifier {
             return calculatedUniqueIdentifier
@@ -124,11 +135,13 @@ extension ResponseCategoryModel {
             identifier = StaticActionID.contacts.rawValue
         } else if isSurveyRequest() {
             identifier = StaticActionID.survey.rawValue
+        }  else if isWikiRequest() {
+            identifier = StaticActionID.wiki.rawValue
         } else if let id = response.calculateUniqueIdentifier() {
             identifier = id
         } else {
             // should never happen if the above case is implemented correctly
-            identifier = "0"
+            identifier = StaticActionID.greet.rawValue
         }
         calculatedUniqueIdentifier = identifier
         return identifier

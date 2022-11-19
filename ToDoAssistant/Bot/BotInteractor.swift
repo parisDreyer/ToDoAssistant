@@ -8,11 +8,16 @@
 
 import Foundation
 
+protocol FailureOutput {
+    func failure(_ error: Error)
+}
+
 protocol BotInteractorInput: AnyObject {
     func getNews()
     func getContacts()
     func getSurvey(id: SurveyId)
     func answer(question: String) -> String?
+    func searchWiki()
     var previousUserInput: ResponseCategory? { get set }
     var previousResponse: ResponseCategory? { get set }
 }
@@ -28,6 +33,7 @@ final class BotInteractor {
         var newsResponse: News?
         var previousUserInput: ResponseCategory?
         var previousResponse: ResponseCategory?
+        var conversationLength = 0
 
         fileprivate func getNewsString() -> String? {
             return newsResponse?.articles?
@@ -65,12 +71,26 @@ final class BotInteractor {
 extension BotInteractor: BotInteractorInput {
     var previousUserInput: ResponseCategory? {
         get { entity.previousUserInput }
-        set { entity.previousUserInput = newValue }
+        set {
+            entity.previousUserInput = newValue
+            entity.conversationLength += 1
+        }
     }
 
     var previousResponse: ResponseCategory? {
         get { entity.previousResponse }
-        set { entity.previousResponse = newValue }
+        set {
+            entity.previousResponse = newValue
+            entity.conversationLength += 1
+        }
+    }
+
+    func searchWiki() {
+        guard let model = previousUserInput?.model else {
+            return
+        }
+        let wikipedia = Wikipedia(self, question: model)
+        wikipedia.getData()
     }
 
     func answer(question: String) -> String? {
@@ -137,6 +157,32 @@ extension BotInteractor: NewsRequestDelegate {
         router.displayError(message: error.localizedDescription)
     }
 
+}
+
+//MARK: - FailureOutput
+
+extension BotInteractor: FailureOutput {
+    func failure(_ error: Error) {
+        router.displayError(message: error.localizedDescription)
+    }
+}
+
+// MARK: - WikipediaOutput
+
+extension BotInteractor: WikipediaOutput {
+    func success(_ response: [WikiPage]) {
+        let synthesized = response.reduce("") {
+            var section = ""
+            if let title = $1.title {
+                section += "\(title) "
+            }
+            if let extract = $1.extract {
+                section += "\n\(extract)\n"
+            }
+            return $0 + section
+        }
+        bot?.update(response: synthesized)
+    }
 }
 
 // MARK - Private
