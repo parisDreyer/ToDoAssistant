@@ -80,10 +80,17 @@ final class BotInteractorTests: XCTestCase {
     }
 
     func testAnswerQuestionWithConversationHistory() {
-        interactor.previousUserInput = makeResponse("What is new?")
-        interactor.previousResponse = makeResponse("sweet",
-                                                   previous: makeResponse("Not much how about you?"))
-        XCTAssertNotNil(interactor.answer(question: "What is?"))
+        self.interactor.previousUserInput = self.makeResponse("What is new?")
+        self.interactor.previousResponse = self.makeResponse("sweet",
+                                                             previous: self.makeResponse("Not much how about you?"))
+        let loadBert = expectation(description: "waits for interactor to load BERT model")
+        // TODO: - remove this hacky test asyncAfter stuff after we extract BERT to interactor Dependencies injection
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            loadBert.fulfill()
+        }
+
+        wait(for: [loadBert], timeout: 11)
+        XCTAssertNotNil(self.interactor.answer(question: "What is?"))
     }
 
     func testGetSurvey() {
