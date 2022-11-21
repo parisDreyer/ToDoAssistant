@@ -19,6 +19,7 @@ enum Action {
     case getSurvey(surveyId: SurveyId = .none)
     case greet
     case rememberedResponse(response: ResponseCategoryModel)
+    case wiki
 }
 
 // MARK: Hashable
@@ -56,6 +57,8 @@ private extension Action {
             return StaticActionID.contacts.rawValue
         case .getSurvey:
             return StaticActionID.survey.rawValue
+        case .wiki:
+            return StaticActionID.wiki.rawValue
         }
     }
 

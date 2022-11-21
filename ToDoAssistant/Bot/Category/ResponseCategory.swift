@@ -43,19 +43,19 @@ final class ResponseCategory {
     }
 
     var isNewsRequest: Bool {
-        return model.isNewsRequest()
+        model.isNewsRequest()
     }
 
     var isContactsRequest: Bool {
-        return model.isContactsRequest()
+        model.isContactsRequest()
     }
 
     var isSurveyRequest: Bool {
-        return model.isSurveyRequest()
+        model.isSurveyRequest()
     }
 
     func getSurveyId() -> SurveyId {
-        return model.surveyId()
+        model.surveyId()
     }
 
     var isUncategorized: Bool {
@@ -71,8 +71,9 @@ final class ResponseCategory {
             && requiresMoreContext
     }
 
-    class func from(category: ResponseCategory) -> ResponseCategory? {
-        return .init(dependencies: category.dependencies, previousResponse: category.previousResponse)
+    /// Helper initializer to create a ResponseCategory object from another ResponseCategory instance
+    class func from(category: ResponseCategory) -> ResponseCategory {
+        .init(dependencies: category.dependencies, previousResponse: category.previousResponse)
     }
 }
 
@@ -81,7 +82,7 @@ final class ResponseCategory {
 extension ResponseCategory: Categorizable {
 
     var possibleUniqueIdentifier: String {
-        return model.uniqueIdentifier()
+        model.uniqueIdentifier()
     }
 
 }
@@ -116,6 +117,7 @@ extension ResponseCategory: StoredDataItem {
         }
     }
 
+    /// Load saved state by id from the database
     func loadBy(id: String) {
         guard let row = dependencies.categoriesDao.get(identifier: id) else {
             // todo error handling

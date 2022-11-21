@@ -13,4 +13,5 @@ enum StaticActionID: String {
     case news = "1"
     case contacts = "2"
     case survey = "3"
+    case wiki = "4"
 }

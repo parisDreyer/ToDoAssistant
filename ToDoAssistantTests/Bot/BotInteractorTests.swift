@@ -35,8 +35,10 @@ final class MockBotInteractorOutput: BotInteractorOutput {
     }
 
     var didUpdate = false
+    var response: String?
     func update(response: String) {
         didUpdate = true
+        self.response = response
     }
 }
 
@@ -80,10 +82,17 @@ final class BotInteractorTests: XCTestCase {
     }
 
     func testAnswerQuestionWithConversationHistory() {
-        interactor.previousUserInput = makeResponse("What is new?")
-        interactor.previousResponse = makeResponse("sweet",
-                                                   previous: makeResponse("Not much how about you?"))
-        XCTAssertNotNil(interactor.answer(question: "What is?"))
+        self.interactor.previousUserInput = self.makeResponse("What is new?")
+        self.interactor.previousResponse = self.makeResponse("sweet",
+                                                             previous: self.makeResponse("Not much how about you?"))
+        let loadBert = expectation(description: "waits for interactor to load BERT model")
+        // TODO: - remove this hacky test asyncAfter stuff after we extract BERT to interactor Dependencies injection
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            loadBert.fulfill()
+        }
+
+        wait(for: [loadBert], timeout: 11)
+        XCTAssertNotNil(self.interactor.answer(question: "What is?"))
     }
 
     func testGetSurvey() {
@@ -124,6 +133,15 @@ final class BotInteractorTests: XCTestCase {
     func testHandleError() {
         interactor.handleError(error: GeneralError(message: "Test"))
         XCTAssertTrue(router.didDisplayError)
+    }
+}
+
+// MARK: - WikipediaOutput
+
+extension BotInteractorTests {
+    func testSuccessWikiPages() {
+        interactor.success([.init(title: "hi", extract: "hi </> <br/> at the")])
+        XCTAssertEqual(bot.response, "hi \nhi at the\n")
     }
 }
 
