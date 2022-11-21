@@ -35,8 +35,10 @@ final class MockBotInteractorOutput: BotInteractorOutput {
     }
 
     var didUpdate = false
+    var response: String?
     func update(response: String) {
         didUpdate = true
+        self.response = response
     }
 }
 
@@ -131,6 +133,15 @@ final class BotInteractorTests: XCTestCase {
     func testHandleError() {
         interactor.handleError(error: GeneralError(message: "Test"))
         XCTAssertTrue(router.didDisplayError)
+    }
+}
+
+// MARK: - WikipediaOutput
+
+extension BotInteractorTests {
+    func testSuccessWikiPages() {
+        interactor.success([.init(title: "hi", extract: "hi </> <br/> at the")])
+        XCTAssertEqual(bot.response, "hi \nhi at the\n")
     }
 }
 

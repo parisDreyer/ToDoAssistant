@@ -21,6 +21,8 @@
 		5618DCC4292287AB00EC7885 /* WikipediaRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618DCC3292287AB00EC7885 /* WikipediaRequest.swift */; };
 		5618DCC629229F0300EC7885 /* Wikipedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618DCC529229F0300EC7885 /* Wikipedia.swift */; };
 		5618DCC92922E3F100EC7885 /* ResponseCategoryModel+WikipediaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618DCC82922E3F100EC7885 /* ResponseCategoryModel+WikipediaExtensions.swift */; };
+		5618DCD1292ACC5B00EC7885 /* WikipediaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618DCD0292ACC5B00EC7885 /* WikipediaTests.swift */; };
+		5618DCD3292AD95E00EC7885 /* WikipediaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5618DCD2292AD95E00EC7885 /* WikipediaRepository.swift */; };
 		56265320266442D900359DBB /* SurveyQuestions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5626531F266442D900359DBB /* SurveyQuestions.swift */; };
 		56265322266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56265321266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift */; };
 		56265326266485D700359DBB /* Bool+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56265325266485D700359DBB /* Bool+Extensions.swift */; };
@@ -128,6 +130,8 @@
 		5618DCC3292287AB00EC7885 /* WikipediaRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaRequest.swift; sourceTree = "<group>"; };
 		5618DCC529229F0300EC7885 /* Wikipedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wikipedia.swift; sourceTree = "<group>"; };
 		5618DCC82922E3F100EC7885 /* ResponseCategoryModel+WikipediaExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ResponseCategoryModel+WikipediaExtensions.swift"; sourceTree = "<group>"; };
+		5618DCD0292ACC5B00EC7885 /* WikipediaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaTests.swift; sourceTree = "<group>"; };
+		5618DCD2292AD95E00EC7885 /* WikipediaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaRepository.swift; sourceTree = "<group>"; };
 		5626531F266442D900359DBB /* SurveyQuestions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestions.swift; sourceTree = "<group>"; };
 		56265321266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BotInteractor+SurveyDelegateExtensions.swift"; sourceTree = "<group>"; };
 		56265325266485D700359DBB /* Bool+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bool+Extensions.swift"; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 				5618DCC72922E3D100EC7885 /* Extensions */,
 				5618DCC3292287AB00EC7885 /* WikipediaRequest.swift */,
 				5618DCC529229F0300EC7885 /* Wikipedia.swift */,
+				5618DCD2292AD95E00EC7885 /* WikipediaRepository.swift */,
 			);
 			path = Wikipedia;
 			sourceTree = "<group>";
@@ -295,6 +300,14 @@
 				5618DCC82922E3F100EC7885 /* ResponseCategoryModel+WikipediaExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5618DCCF292ACC4C00EC7885 /* Wikipedia */ = {
+			isa = PBXGroup;
+			children = (
+				5618DCD0292ACC5B00EC7885 /* WikipediaTests.swift */,
+			);
+			path = Wikipedia;
 			sourceTree = "<group>";
 		};
 		5626531E2664423700359DBB /* Models */ = {
@@ -381,6 +394,7 @@
 		56279F3B2516264C00DAC0ED /* ToDoAssistantTests */ = {
 			isa = PBXGroup;
 			children = (
+				5618DCCF292ACC4C00EC7885 /* Wikipedia */,
 				5615F5A62843FB0900C41CDA /* EvaluateResponse */,
 				5695533527C2A18600C7248A /* Bot */,
 				5673D77127A5D417001688AE /* String+Extensions */,
@@ -837,6 +851,7 @@
 				56B9336825717627001EB195 /* ContactsInteractor.swift in Sources */,
 				56D1CE672556706F008485FD /* BotInteractor.swift in Sources */,
 				566D986A2690FA0200BE68C4 /* FileLoader.swift in Sources */,
+				5618DCD3292AD95E00EC7885 /* WikipediaRepository.swift in Sources */,
 				5615F5962841C8E300C41CDA /* EvaluateResponse.swift in Sources */,
 				56265322266478B300359DBB /* BotInteractor+SurveyDelegateExtensions.swift in Sources */,
 				5653736425167C1B00828464 /* Bot.swift in Sources */,
@@ -857,6 +872,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5680017A259AC70D000DB888 /* ContactsTests.swift in Sources */,
+				5618DCD1292ACC5B00EC7885 /* WikipediaTests.swift in Sources */,
 				5615F5A22843F60200C41CDA /* BotInteractorTests.swift in Sources */,
 				5615F5A52843FA1300C41CDA /* MockAppDependencies.swift in Sources */,
 				5673D77327A5D446001688AE /* StringUniqueIdEncodeDecodeTests.swift in Sources */,

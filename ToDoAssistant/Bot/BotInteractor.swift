@@ -89,7 +89,7 @@ extension BotInteractor: BotInteractorInput {
         guard let model = previousUserInput?.model else {
             return
         }
-        let wikipedia = Wikipedia(self, question: model)
+        let wikipedia = Wikipedia(self, repository: WikipediaRepository(), question: model)
         wikipedia.getData()
     }
 
@@ -177,7 +177,14 @@ extension BotInteractor: WikipediaOutput {
                 section += "\(title) "
             }
             if let extract = $1.extract {
-                section += "\n\(extract)\n"
+                // TODO: - refactor this with a real HTML parser
+                // trimming html and non words from the string
+                let wikiResponseBody = extract.split(separator: GlobalConstants.spaceSeparator)
+
+                                              .filter {
+                    String.containsOnlyLetters(input: "\($0)")
+                }.joined(separator: GlobalConstants.spaceSeparatorString)
+                section += "\n\(wikiResponseBody)\n"
             }
             return $0 + section
         }

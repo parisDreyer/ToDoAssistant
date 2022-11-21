@@ -16,32 +16,41 @@ final class Wikipedia {
     typealias Dependencies = WikipediaOutput & FailureOutput
 
     private weak var dependencies: Dependencies?
+    private let repository: WikipediaRepositoryInput?
     private let question: ResponseCategoryModel
 
 
-    init(_ dependencies: Dependencies?, question: ResponseCategoryModel) {
+    init(_ dependencies: Dependencies? = nil,
+         repository: WikipediaRepositoryInput? = nil,
+         question: ResponseCategoryModel) {
         self.dependencies = dependencies
+        self.repository = repository
         self.question = question
     }
 
     func shouldSendRequest() -> Bool {
-        let isDiscussingFacts = question.previousResponseWasNegation ??
-                                question.previousResponseWasAffirmation ??
-                                false
+        let isDiscussingFacts = question.previousResponseWasNegation == true ||
+                                question.previousResponseWasAffirmation == true
         return question.response.count < Constants.upperBoundForWikiSearch &&
                isDiscussingFacts
     }
 
     func getData() {
-        let request = WikipediaRequest(searchTerm: question.response)
-        request.get(handleSuccess, handleError)
+        repository?.set(delegate: self)
+        repository?.getData()
     }
 }
 
-private extension Wikipedia {
-    enum Constants {
+// MARK: - WikipediaRepositoryOutput
+
+extension Wikipedia: WikipediaRepositoryOutput {
+    private enum Constants {
         static let upperBoundForWikiSearch = 97
         static let searchForNewInformationInterval = 3
+    }
+
+    var searchTerm: String {
+        question.response
     }
 
     func handleSuccess(_ pages: [WikiPage]) {

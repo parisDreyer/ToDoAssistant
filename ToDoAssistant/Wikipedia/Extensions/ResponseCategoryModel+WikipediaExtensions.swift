@@ -10,6 +10,6 @@ import Foundation
 
 extension ResponseCategoryModel {
     func calculateIsWikiRequest() -> Bool {
-        Wikipedia(nil, question: self).shouldSendRequest()
+        Wikipedia(question: self).shouldSendRequest()
     }
 }
