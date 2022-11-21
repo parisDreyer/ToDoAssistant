@@ -60,6 +60,7 @@ final class WikipediaTests: XCTestCase {
 
     func testGetData() {
         wikipedia.getData()
+        XCTAssertTrue(repository.didSetDelegate)
         XCTAssertTrue(repository.gotData)
     }
 
@@ -71,11 +72,5 @@ final class WikipediaTests: XCTestCase {
     func testHandleSuccess() {
         wikipedia.handleSuccess([])
         XCTAssertTrue(dependencies.handledSuccess)
-    }
-
-    func testInitSetsDelegate() {
-        repository.didSetDelegate = false
-        _ = Wikipedia(dependencies, repository: repository, question: question)
-        XCTAssertTrue(repository.didSetDelegate)
     }
 }
