@@ -113,7 +113,6 @@ extension ResponseCategoryModel {
     }
 
     mutating func isWikiRequest() -> Bool {
-        return true
         if let calculatedUniqueIdentifier = calculatedUniqueIdentifier {
             return calculatedUniqueIdentifier == StaticActionID.wiki.rawValue
         }
